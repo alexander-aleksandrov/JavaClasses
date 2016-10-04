@@ -18,10 +18,19 @@ class MoneyTest {
 
     @Test
     @DisplayName("be comparable in case if they have the same currency")
-    void compareMoney() {
+    void compareSameCurrencyMoney() {
         Money money1 = Money.newAmount("GBP", 65);
         Money money2 = Money.newAmount("GBP", 75);
         assertTrue(money1.compareTo(money2) < 0);
+//        fail("Equal currencies are not comparable for some reason");
+    }
+
+    @Test
+    @DisplayName("not be comparable in case if they have the different currency")
+    void comparedDiffernetCurrency() {
+        Money money1 = Money.newAmount("GBP", 65);
+        Money money2 = Money.newAmount("USD", 75);
+        money1.compareTo(money2);
 //        fail("Equal currencies are not comparable for some reason");
     }
 
