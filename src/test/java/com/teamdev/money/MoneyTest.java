@@ -22,7 +22,6 @@ class MoneyTest {
         Money money1 = Money.newAmount("GBP", 65);
         Money money2 = Money.newAmount("GBP", 75);
         assertTrue(money1.compareTo(money2) < 0);
-//        fail("Equal currencies are not comparable for some reason");
     }
 
     @Test
@@ -30,8 +29,17 @@ class MoneyTest {
     void comparedDiffernetCurrency() {
         Money money1 = Money.newAmount("GBP", 65);
         Money money2 = Money.newAmount("USD", 75);
-        money1.compareTo(money2);
-//        fail("Equal currencies are not comparable for some reason");
+        try { money1.compareTo(money2);
+        }catch (IllegalArgumentException e){
+            assertEquals("Cannot compare money of different currencies GBP, USD", e.getMessage());
+        }
+
     }
 
+    @Test
+    @DisplayName("give currency symbol")
+    void getCurrencySymbol() {
+        Money money1 = Money.newAmount("GBP", 65);
+        assertEquals(money1.getCurrency().getSymbol(), '£');
+    }
 }
