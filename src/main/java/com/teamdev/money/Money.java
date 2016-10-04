@@ -1,6 +1,7 @@
 package com.teamdev.money;
 
 public class Money implements Comparable<Money>{
+
     private final Currency currency;
     private final long amount;
 
@@ -8,9 +9,17 @@ public class Money implements Comparable<Money>{
         return new Builder();
     }
 
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public long getAmount(){
+        return amount;
+    }
     public static class Builder {
-        public Currency currency;
-        public long amount;
+
+        public static Currency currency;
+        public static long amount;
 
         public Builder setCurrency(Currency currencyCode) {
             currency = currencyCode;
@@ -34,18 +43,18 @@ public class Money implements Comparable<Money>{
         this.amount = builder.amount;
     }
 
-    public Money createNewAmount(String currencyCode, long newValue){
+    public static Money newAmount(String currencyCode, long amount){
         Currency currency = Currency.valueOf(currencyCode);
-        Money newAmount = Money.newBuilder().setCurrency(currency).setAmount(newValue).build();
+        Money newAmount = Money.newBuilder().setCurrency(currency).setAmount(amount).build();
         return newAmount;
     }
 
-    public long getCurrentAmount(){
-        return amount;
-    }
-
-    // TODO: 10/4/2016 define how to override this method
     public int compareTo(Money o) {
-        return 0;
+        if (getCurrency() != o.getCurrency()) {
+            String errMsg = String.format("Cannot compare money of different currencies %s, %s", getCurrency(), o.getCurrency());
+            throw new IllegalArgumentException(errMsg);
+        }
+        long result = getAmount() - o.getAmount();
+        return (int)result;
     }
 }

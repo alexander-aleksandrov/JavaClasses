@@ -1,7 +1,9 @@
 package com.teamdev.money;
 
 public enum Currency {
+
     USD('$', "USD"),
+
     GBP('£', "GBP");
 
     private final char symbol;
