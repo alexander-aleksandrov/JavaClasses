@@ -1,6 +1,6 @@
 package com.teamdev.money;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.Assert.*;
@@ -13,7 +13,7 @@ class MoneyTest {
     void createNewValue() {
         Money money1 = Money.newAmount("GBP", 65);
         assertEquals(money1.getCurrency().getCurrecyCode(), "GBP");
-        fail("new value was not created");
+//        fail("new value was not created");
     }
 
     @Test
@@ -21,8 +21,8 @@ class MoneyTest {
     void compareMoney() {
         Money money1 = Money.newAmount("GBP", 65);
         Money money2 = Money.newAmount("GBP", 75);
-        money1.compareTo(money2);
-        fail("Equal currencies are not comparable for some reason");
+        assertTrue(money1.compareTo(money2) < 0);
+//        fail("Equal currencies are not comparable for some reason");
     }
 
 }
