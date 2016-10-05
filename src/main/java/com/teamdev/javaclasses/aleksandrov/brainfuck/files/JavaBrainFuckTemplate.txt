@@ -1,0 +1,18 @@
+package com.teamdev.javaclasses.files;
+
+public class BrainFuckRunner {
+
+    private final int[] memory = new int[3000];
+    int i = 0;
+    int pointer = 0;
+    char compiledChar;
+
+    public static void main(String... args) {
+        BrainFuckRunner program = new BrainFuckRunner();
+        program.execute();
+    }
+
+    public void execute() {
+        ${code}
+    }
+}
