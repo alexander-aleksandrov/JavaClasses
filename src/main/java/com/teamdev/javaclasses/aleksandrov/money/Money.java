@@ -1,4 +1,4 @@
-package com.teamdev.money;
+package com.teamdev.javaclasses.aleksandrov.money;
 
 public class Money implements Comparable<Money>{
 

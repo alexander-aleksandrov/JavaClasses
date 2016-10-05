@@ -1,5 +1,6 @@
-package com.teamdev.money;
+package com.teamdev.javaclasses.aleksandrov.money;
 
+import com.teamdev.javaclasses.aleksandrov.money.Money;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
