@@ -5,6 +5,6 @@ package com.teamdev.money;
  */
 public class JustToCheck {
     public static void main(String[] args) {
-
+        // here some changes
     }
 }
