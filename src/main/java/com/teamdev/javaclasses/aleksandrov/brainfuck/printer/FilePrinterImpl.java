@@ -25,11 +25,11 @@ public class FilePrinterImpl implements Printer {
 
     final File output;
 
-    public FilePrinterImpl(final File output) {
+    public FilePrinterImpl(File output) {
         this.output = output;
     }
 
-    public void printToFile(final List<String> text) {
+    public void printToFile(List<String> text) {
         int i = 0;
         try {
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
@@ -41,7 +41,7 @@ public class FilePrinterImpl implements Printer {
         }catch (IOException e) {}
 
     }
-    public void clearFile(final File output){
+    public void clearFile(File output){
         try{PrintWriter writer = new PrintWriter(output);
             writer.print("");
             writer.close();}catch (IOException e) {}

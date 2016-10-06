@@ -32,7 +32,7 @@ public class BrainFuckInterpreterImpl implements BrainFuckInterpreter {
 
     private String result;
 
-    public void execute(final File program) {
+    public void execute(File program) {
         final Reader reader = new FileReaderImp();
         final Parser parser = new InterpreterParser();
         final String programText = reader.read(program);

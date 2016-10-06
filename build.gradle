@@ -26,7 +26,7 @@ apply plugin: 'groovy'
 apply plugin: 'org.junit.platform.gradle.plugin'
 
 jar {
-    baseName = 'junit5-gradle-consumer'
+    baseName = 'JavaClasses'
     version = '1.0.0-SNAPSHOT'
 }
 
@@ -43,8 +43,8 @@ junitPlatform {
          exclude 'custom-engine'
     }
     tags {
-        include 'fast'
-        exclude 'slow'
+        //include 'fast'
+        //exclude 'slow'
     }
      includeClassNamePattern '.*Test'
      enableStandardTestTask true
@@ -69,5 +69,3 @@ task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
     gradleVersion = '3.0'
 }
-
-

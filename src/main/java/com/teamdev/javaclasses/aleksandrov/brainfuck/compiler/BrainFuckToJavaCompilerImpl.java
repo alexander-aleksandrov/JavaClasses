@@ -34,7 +34,7 @@ import java.util.List;
 public class BrainFuckToJavaCompilerImpl implements BrainFuckToJavaCompiler {
 
     @Override
-    public void execute(final File program, final File output) {
+    public void execute(File program, File output) {
         final Reader reader = new FileReaderImp();
         final Parser parser = new InterpreterParser();
         final Generator generator = new JavaFileGenerator();

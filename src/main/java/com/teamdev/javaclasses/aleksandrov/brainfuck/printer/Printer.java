@@ -24,6 +24,6 @@ import java.util.List;
 
 public interface Printer {
 
-    void printToFile(final List<String> text);
+    void printToFile(List<String> text);
 
 }

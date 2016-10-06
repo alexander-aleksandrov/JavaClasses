@@ -23,5 +23,5 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
 import java.util.List;
 
 public interface Parser {
-    List<Command> parse(final String codeText);
+    List<Command> parse(String codeText);
 }

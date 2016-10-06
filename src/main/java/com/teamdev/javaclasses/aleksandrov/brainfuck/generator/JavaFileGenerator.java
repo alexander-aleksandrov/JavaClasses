@@ -26,7 +26,7 @@ public class JavaFileGenerator implements Generator {
     private final File templateFile = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaBrainFuckTemplate.txt");
 
     @Override
-    public File generateTemplate(final File output) {
+    public File generateTemplate(File output) {
         try {
             if (!output.exists()) {
                 output.createNewFile();

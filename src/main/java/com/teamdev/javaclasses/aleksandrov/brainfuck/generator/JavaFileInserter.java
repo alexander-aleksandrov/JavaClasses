@@ -40,7 +40,7 @@ public class JavaFileInserter {
         }
     }
 
-    public String getString(final File file) {
+    public String getString(File file) {
         try {
             final BufferedReader reader = new BufferedReader(new FileReader(file));
             String line = null;

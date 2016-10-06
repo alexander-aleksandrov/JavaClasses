@@ -29,7 +29,7 @@ public class Memory {
         cells = new int[memorySize];
     }
 
-    public void setCurrentCellValue(final int newValue) {
+    public void setCurrentCellValue(int newValue) {
         cells[pointer] = newValue;
 
     }
