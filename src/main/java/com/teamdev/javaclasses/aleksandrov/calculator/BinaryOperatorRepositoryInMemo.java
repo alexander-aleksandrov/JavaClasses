@@ -31,15 +31,13 @@ import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.
 
 public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository {
 
-    private static final Logger LOG = LoggerFactory.getLogger(BinaryOperatorRepositoryInMemo.class);
-
+    private static final Logger log = LoggerFactory.getLogger(BinaryOperatorRepositoryInMemo.class);
     private final Map<String, BinaryOperator> repository = new HashMap<String, BinaryOperator>() {{
         put("+", new BinaryOperatorImpl("leftOperand + rightOperand", LOW));
         put("-", new BinaryOperatorImpl("leftOperand - rightOperand", LOW));
         put("*", new BinaryOperatorImpl("leftOperand * rightOperand", MEDIUM));
         put("/", new BinaryOperatorImpl("leftOperand / rightOperand", MEDIUM));
     }};
-
 
     @Override
     public Set<String> getRepresentations() {

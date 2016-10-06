@@ -22,33 +22,31 @@ buildscript {
     repositories {
         mavenCentral()
     }
+
+    ext {
+        junit4Version = '4.12'
+        junitVintageVersion = '4.12.0-M2'
+        junitPlatformVersion = '1.0.0-M2'
+        junitJupiterVersion = '5.0.0-M2'
+        log4jVersion = '2.6.2'
+        slf4JVersion = '1.7.21'
+    }
+
     dependencies {
-        compile 'org.codehaus.groovy:groovy-all:2.4.7'
-        compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4JVersion
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M2'
     }
 }
 
-repositories {
-    mavenCentral()
+
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'groovy'
+    apply plugin: 'org.junit.platform.gradle.plugin'
 }
 
-ext.junit4Version        = '4.12'
-ext.junitVintageVersion  = '4.12.0-M2'
-ext.junitPlatformVersion = '1.0.0-M2'
-ext.junitJupiterVersion  = '5.0.0-M2'
-ext.log4jVersion         = '2.6.2'
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'groovy'
-apply plugin: 'org.junit.platform.gradle.plugin'
-
-jar {
-    baseName = 'JavaClasses'
-    version = '1.0.0-SNAPSHOT'
-}
 
 compileTestJava {
     sourceCompatibility = 1.8
@@ -73,6 +71,10 @@ junitPlatform {
 }
 
 dependencies {
+
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.7'
+
     // JUnit Jupiter API and TestEngine implementation
     testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
@@ -83,9 +85,4 @@ dependencies {
 
     testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
     testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
-}
-
-task wrapper(type: Wrapper) {
-    description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '3.0'
 }
