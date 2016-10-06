@@ -36,7 +36,6 @@ public class BrainFuckInterpreterVisitorTest {
         visitor.visit(command);
         assertEquals("Incorrect processing of CellDecrement command.",
                 9, memory.getCurrentCellValue());
-
     }
 
     @Test
@@ -49,7 +48,6 @@ public class BrainFuckInterpreterVisitorTest {
         visitor.visit(command);
         assertEquals("Incorrect processing of CellIncrement command.",
                 11, memory.getCurrentCellValue());
-
     }
 
     @Test
@@ -62,7 +60,6 @@ public class BrainFuckInterpreterVisitorTest {
         visitor.visit(command);
         assertEquals("Incorrect processing of NextCell command.",
                 11, memory.getPointer());
-
     }
 
     @Test
@@ -75,7 +72,6 @@ public class BrainFuckInterpreterVisitorTest {
         visitor.visit(command);
         assertEquals("Incorrect processing of PreviouseCell command.",
                 9, memory.getPointer());
-
     }
 
     @Test
@@ -88,8 +84,5 @@ public class BrainFuckInterpreterVisitorTest {
         visitor.visit(command);
         assertEquals("Incorrect processing of PrintCell command.",
                 108, memory.getCurrentCellValue());
-
     }
-
-
 }

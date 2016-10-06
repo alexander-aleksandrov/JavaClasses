@@ -39,9 +39,7 @@ public class FilePrinterImpl implements Printer {
                 i++;
             }
             writer.close();
-        } catch (IOException e) {
-        }
-
+        } catch (IOException e) {}
     }
 
     public void clearFile(File output) {
@@ -49,8 +47,7 @@ public class FilePrinterImpl implements Printer {
             PrintWriter writer = new PrintWriter(output);
             writer.print("");
             writer.close();
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
     }
 }
 

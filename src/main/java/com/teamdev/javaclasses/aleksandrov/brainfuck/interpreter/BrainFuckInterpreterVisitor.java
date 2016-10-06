@@ -34,14 +34,12 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     public void visit(CellDecrement cellDecrement) {
         int currentValue = memory.getCurrentCellValue();
         memory.setCurrentCellValue(--currentValue);
-
     }
 
     @Override
     public void visit(CellIncrement cellIncrement) {
         int currentValue = memory.getCurrentCellValue();
         memory.setCurrentCellValue(++currentValue);
-
     }
 
     @Override
@@ -55,14 +53,12 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
 
     @Override
     public void visit(InputCell inputCell) {
-
     }
 
     @Override
     public void visit(NextCell nextCell) {
         final int pointer = memory.getPointer();
         memory.setPointer(pointer + 1);
-
     }
 
     @Override

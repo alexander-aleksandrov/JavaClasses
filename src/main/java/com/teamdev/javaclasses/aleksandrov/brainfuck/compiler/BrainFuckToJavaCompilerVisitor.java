@@ -28,9 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
-    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/Draft.txt");
+    private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/Draft.txt");
     private final Printer printer = new FilePrinterImpl(output);
-
 
     @Override
     public void visit(CellDecrement cellDecrement) {

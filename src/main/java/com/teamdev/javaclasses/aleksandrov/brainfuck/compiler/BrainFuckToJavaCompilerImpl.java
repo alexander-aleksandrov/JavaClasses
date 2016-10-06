@@ -44,7 +44,6 @@ public class BrainFuckToJavaCompilerImpl implements BrainFuckToJavaCompiler {
         programText = reader.read(program);
         generator.generateTemplate(output);
 
-
         System.out.println("Program text: ");
         System.out.println(programText);
         System.out.println("Result: ");

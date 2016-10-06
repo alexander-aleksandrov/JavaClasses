@@ -24,10 +24,10 @@ public enum Country {
     CANADA("Canada"),
     NEWCOUNTRY("qwerty");
 
-    private String s;
+    private String country;
 
-    Country(String s) {
-        this.s = s;
+    Country(String counrty) {
+        this.country = country;
     }
 
 }

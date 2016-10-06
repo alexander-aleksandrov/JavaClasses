@@ -17,34 +17,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
 
-import org.junit.Test;
+/**
+ *
+ * This package provides classes for factory command pattern that describes all possible brain fuck commands.
+ *
+ */
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.Scanner;
+@ParametersAreNonnullByDefault
+package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
-import static org.junit.Assert.assertEquals;
-
-public class JavaFileGeneratorTest {
-    final private File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaFileGeneratorTest.txt");
-    final private File source = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaBrainFuckTemplate.txt");
-
-    @Test
-    public void testGenerateTemplate() throws Exception {
-
-        final JavaFileGenerator generator = new JavaFileGenerator();
-
-        File actualFile = generator.generateTemplate(output);
-
-        Scanner in = new Scanner(new FileReader(actualFile));
-        String actual = in.next();
-
-        Scanner in2 = new Scanner(new FileReader(source));
-        String expected = in2.next();
-
-        assertEquals(actual, expected);
-    }
-
-}
+import javax.annotation.ParametersAreNonnullByDefault;

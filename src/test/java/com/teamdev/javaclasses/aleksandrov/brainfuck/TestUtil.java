@@ -30,8 +30,5 @@ public class TestUtil {
             writer.write("");
             writer.close();
         } catch (IOException e) {}
-
-
     }
-
 }

@@ -40,8 +40,7 @@ public class FilePrinterImplTest {
             if (!output.exists()) {
                 output.createNewFile();
             }
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
     }
 
 
@@ -54,7 +53,6 @@ public class FilePrinterImplTest {
         filePrinter.printToFile(text);
         Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
-
         assertEquals(actual, expected);
     }
 

@@ -45,18 +45,13 @@ public class JavaFileInserter {
             final BufferedReader reader = new BufferedReader(new FileReader(file));
             String line = null;
             final StringBuilder stringBuilder = new StringBuilder();
-
             try {
                 while ((line = reader.readLine()) != null) {
                     stringBuilder.append(line);
-
                 }
-
                 return stringBuilder.toString();
-
             } catch (IOException e) {
             }
-
         } catch (FileNotFoundException e) {
         }
         return "";

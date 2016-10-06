@@ -24,9 +24,7 @@ import com.sun.istack.internal.Nullable;
 import java.text.ParseException;
 
 public final class PhoneNumber {
-
     @Nullable
-
     private final CountryCode countryCode;
     @Nullable
     private final AreaCode areaCode;
@@ -106,12 +104,8 @@ public final class PhoneNumber {
     }
 
     public final static PhoneNumber parse(String input) throws ParseException {
-
         input.toCharArray();
-
-
     }
-
 
     @Override
     public int hashCode() {

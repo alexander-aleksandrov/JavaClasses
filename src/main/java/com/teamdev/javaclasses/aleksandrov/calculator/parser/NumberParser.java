@@ -31,21 +31,13 @@ public class NumberParser implements ExpressionParser {
 
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {
 
-
         if (LOG.isLoggable(Level.INFO)) {
             LOG.info("I'm in the number parser");
         }
-
         final String expression = reader.getMathExpression();
-
         final Double number = Double.valueOf(expression);
-
         stack.pushNumber(number);
-
         reader.setPosition(expression.length());
-
         return true;
-
-
     }
 }

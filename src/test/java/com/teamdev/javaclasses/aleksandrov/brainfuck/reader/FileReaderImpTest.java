@@ -55,8 +55,5 @@ public class FileReaderImpTest {
         final FileReaderImp fileReader = new FileReaderImp();
         final String actual = fileReader.read(program);
         assertEquals(actual, expected);
-
-
     }
-
 }

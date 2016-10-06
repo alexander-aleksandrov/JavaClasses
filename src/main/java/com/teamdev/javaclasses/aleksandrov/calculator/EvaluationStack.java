@@ -30,7 +30,6 @@ public class EvaluationStack {
     private final Deque<Double> argumentStack = new ArrayDeque<Double>();
     private final Deque<BinaryOperator> operatorStack = new ArrayDeque<BinaryOperator>();
 
-
     public void pushNumber(double number) {
         if (LOG.isLoggable(Level.INFO)) {
             LOG.info("The number was pushed to stack: " + number);

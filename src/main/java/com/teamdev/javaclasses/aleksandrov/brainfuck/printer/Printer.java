@@ -23,7 +23,5 @@ import java.io.File;
 import java.util.List;
 
 public interface Printer {
-
     void printToFile(List<String> text);
-
 }

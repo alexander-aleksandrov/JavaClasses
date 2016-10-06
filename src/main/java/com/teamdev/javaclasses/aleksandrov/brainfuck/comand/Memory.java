@@ -25,13 +25,11 @@ public class Memory {
     private int pointer = 0;
 
     public Memory(int memorySize) {
-
         cells = new int[memorySize];
     }
 
     public void setCurrentCellValue(int newValue) {
         cells[pointer] = newValue;
-
     }
 
     public void setPointer(int pointer) {

@@ -33,7 +33,6 @@ class MoneyTest {
     void createNewValue() {
         Money money1 = Money.newAmount("GBP", 65);
         assertEquals(money1.getCurrency().getCurrecyCode(), "GBP");
-//        fail("new value was not created");
     }
 
     @Test
@@ -54,7 +53,6 @@ class MoneyTest {
         } catch (IllegalArgumentException e) {
             assertEquals("Cannot compare money of different currencies GBP, USD", e.getMessage());
         }
-
     }
 
     @Test

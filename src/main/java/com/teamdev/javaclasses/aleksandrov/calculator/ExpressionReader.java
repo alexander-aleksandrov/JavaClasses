@@ -60,7 +60,6 @@ public class ExpressionReader {
             } else if (found) {
                 break;
             }
-
             if (c == '+' || c == '-' || c == '*' || c == '/') {
                 sb.append(c);
                 break;

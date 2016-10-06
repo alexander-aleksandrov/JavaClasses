@@ -37,15 +37,12 @@ abstract public class MachineRunner<
 
     private final static Logger LOG = Logger.getLogger(MachineRunner.class.getName());
 
-
     public MachineRunner(Matrix matrix, Recognizer recognizer) {
         this.matrix = matrix;
         this.recognizer = recognizer;
     }
 
-
     public Result move(InputContext inputContext, OutputContext outputContext) {
-
         State currentState = matrix.getStartState();
 
         if (LOG.isLoggable(Level.INFO)) {
@@ -53,31 +50,25 @@ abstract public class MachineRunner<
         }
 
         while (currentState != matrix.getFinishState()) {
-
             currentState = acceptNewState(inputContext, outputContext, matrix.getPossibleTransitions(currentState));
-
             if (LOG.isLoggable(Level.INFO)) {
                 LOG.info("Accepted a new state: " + currentState);
             }
-
             if (currentState == null) {
                 deadlock(inputContext);
             }
         }
-
         return prepareResult(outputContext);
     }
 
-    private State acceptNewState(InputContext inputContext, OutputContext outputContext,
+    private State acceptNewState(InputContext inputContext,
+                                 OutputContext outputContext,
                                  Set<State> possibleTransitions) {
-
         for (State possibleState : possibleTransitions) {
             if (recognizer.accept(inputContext, outputContext, possibleState)) {
-
                 if (LOG.isLoggable(Level.INFO)) {
                     LOG.info("Trying to accept new state: " + possibleState);
                 }
-
                 return possibleState;
             }
         }
@@ -86,9 +77,6 @@ abstract public class MachineRunner<
         }
         return null;
     }
-
     abstract protected void deadlock(InputContext inputContext);
-
     abstract protected Result prepareResult(OutputContext outputContext);
-
 }

@@ -34,6 +34,7 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
     }
 
     private final static Logger LOG = Logger.getLogger(BinaryOperatorImpl.class.getName());
+
     private final String script;
     private final Priority priority;
 

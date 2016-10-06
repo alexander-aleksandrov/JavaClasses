@@ -35,7 +35,6 @@ public class BrainFuckToJavaCompilerVisitorTest {
 
     private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/Draft.txt");
 
-
     @Test
     public void testCellDecrementVisit() throws Exception {
         final BrainFuckToJavaCompilerVisitor visitor = new BrainFuckToJavaCompilerVisitor();
