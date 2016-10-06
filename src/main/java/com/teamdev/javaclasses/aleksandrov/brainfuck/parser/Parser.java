@@ -18,6 +18,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.parser;
+
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
 
 import java.util.List;

@@ -28,16 +28,16 @@ public enum Currency {
     private final char symbol;
     private final String code;
 
-    Currency(char symbol, String code){
+    Currency(char symbol, String code) {
         this.symbol = symbol;
         this.code = code;
     }
 
-    public char getSymbol(){
+    public char getSymbol() {
         return symbol;
     }
 
-    public String getCurrecyCode(){
+    public String getCurrecyCode() {
         return code;
     }
 }

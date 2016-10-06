@@ -19,7 +19,7 @@
  */
 package com.teamdev.javaclasses.aleksandrov.money;
 
-public class Money implements Comparable<Money>{
+public class Money implements Comparable<Money> {
 
     private final Currency currency;
     private final long amount;
@@ -32,9 +32,10 @@ public class Money implements Comparable<Money>{
         return currency;
     }
 
-    public long getAmount(){
+    public long getAmount() {
         return amount;
     }
+
     public static class Builder {
 
         public static Currency currency;
@@ -51,7 +52,7 @@ public class Money implements Comparable<Money>{
 
         }
 
-        public Money build(){
+        public Money build() {
             return new Money(this);
         }
 
@@ -62,7 +63,7 @@ public class Money implements Comparable<Money>{
         this.amount = builder.amount;
     }
 
-    public static Money newAmount(String currencyCode, long amount){
+    public static Money newAmount(String currencyCode, long amount) {
         Currency currency = Currency.valueOf(currencyCode);
         Money newAmount = Money.newBuilder().setCurrency(currency).setAmount(amount).build();
         return newAmount;
@@ -74,6 +75,6 @@ public class Money implements Comparable<Money>{
             throw new IllegalArgumentException(errMsg);
         }
         long result = getAmount() - o.getAmount();
-        return (int)result;
+        return (int) result;
     }
 }

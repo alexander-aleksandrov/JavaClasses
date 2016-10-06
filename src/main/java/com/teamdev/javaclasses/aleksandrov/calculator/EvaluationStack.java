@@ -47,7 +47,7 @@ public class EvaluationStack {
 
     public void pushOperator(BinaryOperator operator) {
 
-        if (operatorStack.isEmpty()||operatorStack.peek().compareTo(operator) <= 0) {
+        if (operatorStack.isEmpty() || operatorStack.peek().compareTo(operator) <= 0) {
             operatorStack.push(operator);
             if (LOG.isLoggable(Level.INFO)) {
                 LOG.info("Pushed operator to stack: " + operator);
@@ -55,7 +55,7 @@ public class EvaluationStack {
             return;
         }
 
-        if (!operatorStack.isEmpty()&&operatorStack.peek().compareTo(operator) > 0){
+        if (!operatorStack.isEmpty() && operatorStack.peek().compareTo(operator) > 0) {
             double rightOperand = argumentStack.pop();
             double leftOperand = argumentStack.pop();
             double result = operatorStack.pop().calculate(leftOperand, rightOperand);
@@ -69,8 +69,8 @@ public class EvaluationStack {
 
     }
 
-    public void finalCalculation(){
-        while (!operatorStack.isEmpty()){
+    public void finalCalculation() {
+        while (!operatorStack.isEmpty()) {
             double rightOperand = argumentStack.pop();
             double leftOperand = argumentStack.pop();
             double result = operatorStack.pop().calculate(leftOperand, rightOperand);
@@ -81,6 +81,7 @@ public class EvaluationStack {
         }
 
     }
+
     public BinaryOperator popOperator() {
         return operatorStack.pop();
     }

@@ -25,8 +25,8 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter.BrainFuckInterp
 import java.io.File;
 
 public class Main {
-    static private final File output = new File ("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/BrainFuckRunner.java");
-    static private final File program = new File ("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/HelloWorld.txt");
+    static private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/BrainFuckRunner.java");
+    static private final File program = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/HelloWorld.txt");
 
     public static void main(String[] args) {
         BrainFuckInterpreterImpl interpreter = new BrainFuckInterpreterImpl();

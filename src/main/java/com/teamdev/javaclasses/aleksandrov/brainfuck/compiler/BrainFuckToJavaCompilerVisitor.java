@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
-    private final File output = new File ("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/Draft.txt");
+    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/Draft.txt");
     private final Printer printer = new FilePrinterImpl(output);
 
 
@@ -79,7 +79,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
         text.add("while(memory[pointer] > 0) {");
         printer.printToFile(text);
 
-        for (Command command: cycle.getInnerCycleCommands()){
+        for (Command command : cycle.getInnerCycleCommands()) {
             command.accept(this);
         }
 

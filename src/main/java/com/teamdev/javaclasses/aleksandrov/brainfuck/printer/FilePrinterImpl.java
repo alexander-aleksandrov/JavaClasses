@@ -18,6 +18,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.printer;
+
 import java.io.*;
 import java.util.List;
 
@@ -38,13 +39,18 @@ public class FilePrinterImpl implements Printer {
                 i++;
             }
             writer.close();
-        }catch (IOException e) {}
+        } catch (IOException e) {
+        }
 
     }
-    public void clearFile(File output){
-        try{PrintWriter writer = new PrintWriter(output);
+
+    public void clearFile(File output) {
+        try {
+            PrintWriter writer = new PrintWriter(output);
             writer.print("");
-            writer.close();}catch (IOException e) {}
+            writer.close();
+        } catch (IOException e) {
+        }
     }
 }
 

@@ -48,7 +48,7 @@ abstract public class MachineRunner<
 
         State currentState = matrix.getStartState();
 
-        if (LOG.isLoggable(Level.INFO)){
+        if (LOG.isLoggable(Level.INFO)) {
             LOG.info("Start State is set to: " + currentState);
         }
 

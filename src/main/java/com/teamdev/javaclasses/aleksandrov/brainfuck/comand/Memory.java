@@ -38,7 +38,7 @@ public class Memory {
         this.pointer = pointer;
     }
 
-    public int getCellValue(int i){
+    public int getCellValue(int i) {
         return cells[i];
     }
 

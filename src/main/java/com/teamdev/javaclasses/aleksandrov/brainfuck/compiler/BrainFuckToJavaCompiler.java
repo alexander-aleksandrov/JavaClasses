@@ -18,8 +18,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
+
 import java.io.File;
 
 public interface BrainFuckToJavaCompiler {
-    void execute (File program, File output);
+    void execute(File program, File output);
 }

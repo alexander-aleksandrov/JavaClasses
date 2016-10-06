@@ -19,11 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
+import com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine.StateRecognizer;
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.BinaryOperatorParser;
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.EndOfExpressionParser;
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.ExpressionParser;
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.NumberParser;
-import com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine.StateRecognizer;
 
 import java.util.HashMap;
 import java.util.Map;

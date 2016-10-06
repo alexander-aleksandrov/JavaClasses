@@ -18,6 +18,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.parser;
+
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 
 import java.util.*;
@@ -25,12 +26,12 @@ import java.util.*;
 public class InterpreterParser implements Parser {
 
     @Override
-    public List <Command> parse(String codeString){
+    public List<Command> parse(String codeString) {
 
         final Deque<List<Command>> stack = new ArrayDeque<>();
         stack.push(new ArrayList<Command>());
 
-        for (Character commandIdentifier: codeString.toCharArray()) {
+        for (Character commandIdentifier : codeString.toCharArray()) {
             createCommand(commandIdentifier, stack);
         }
         return stack.pop();

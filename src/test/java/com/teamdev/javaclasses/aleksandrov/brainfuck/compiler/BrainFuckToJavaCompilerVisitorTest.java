@@ -33,7 +33,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BrainFuckToJavaCompilerVisitorTest {
 
-    private final File output = new File ("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/Draft.txt");
+    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/Draft.txt");
 
 
     @Test
@@ -42,7 +42,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
         final CellDecrement command = new CellDecrement();
         TestUtil.clearDraft(output);
         visitor.visit(command);
-        Scanner in  = new Scanner(new FileReader(output));
+        Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
         assertEquals("Incorrect processing of CellDecrement command.",
                 "memory[pointer]--;", actual);
@@ -54,7 +54,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
         final CellIncrement command = new CellIncrement();
         TestUtil.clearDraft(output);
         visitor.visit(command);
-        Scanner in  = new Scanner(new FileReader(output));
+        Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
         assertEquals("Incorrect processing of CellIncrement command.",
                 "memory[pointer]++;", actual);
@@ -66,7 +66,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
         final NextCell command = new NextCell();
         TestUtil.clearDraft(output);
         visitor.visit(command);
-        Scanner in  = new Scanner(new FileReader(output));
+        Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
         assertEquals("Incorrect processing of NextCell command.",
                 "pointer++;", actual);
@@ -78,7 +78,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
         final PreviouseCell command = new PreviouseCell();
         TestUtil.clearDraft(output);
         visitor.visit(command);
-        Scanner in  = new Scanner(new FileReader(output));
+        Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
         assertEquals("Incorrect processing of PreviouseCell command.",
                 "pointer--;", actual);
@@ -90,8 +90,8 @@ public class BrainFuckToJavaCompilerVisitorTest {
         final PrintCell command = new PrintCell();
         TestUtil.clearDraft(output);
         visitor.visit(command);
-        Scanner in  = new Scanner(new FileReader(output));
-        String actual = in.nextLine()+ in.nextLine();
+        Scanner in = new Scanner(new FileReader(output));
+        String actual = in.nextLine() + in.nextLine();
         assertEquals("Incorrect processing of PrintCell command.",
                 "compiledChar = (char) memory[pointer];System.out.print(compiledChar);", actual);
     }
@@ -104,12 +104,11 @@ public class BrainFuckToJavaCompilerVisitorTest {
         final Cycle command = new Cycle(cycle);
         TestUtil.clearDraft(output);
         visitor.visit(command);
-        Scanner in  = new Scanner(new FileReader(output));
+        Scanner in = new Scanner(new FileReader(output));
         String actual = in.nextLine() + in.nextLine() + in.nextLine();
         assertEquals("Incorrect processing of Cycle command.",
                 "while(memory[pointer] > 0) {memory[pointer]++;}", actual);
     }
-
 
 
 }

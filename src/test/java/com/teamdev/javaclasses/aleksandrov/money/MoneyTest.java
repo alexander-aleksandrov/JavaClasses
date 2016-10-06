@@ -49,8 +49,9 @@ class MoneyTest {
     void comparedDiffernetCurrency() {
         Money money1 = Money.newAmount("GBP", 65);
         Money money2 = Money.newAmount("USD", 75);
-        try { money1.compareTo(money2);
-        }catch (IllegalArgumentException e){
+        try {
+            money1.compareTo(money2);
+        } catch (IllegalArgumentException e) {
             assertEquals("Cannot compare money of different currencies GBP, USD", e.getMessage());
         }
 

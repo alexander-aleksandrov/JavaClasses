@@ -61,7 +61,7 @@ public class ExpressionReader {
                 break;
             }
 
-            if (c=='+'||c=='-'||c=='*'||c=='/'){
+            if (c == '+' || c == '-' || c == '*' || c == '/') {
                 sb.append(c);
                 break;
             }
@@ -74,7 +74,6 @@ public class ExpressionReader {
         return newExpression;
 
     }
-
 
 
     public boolean hasMoreToRead() {
