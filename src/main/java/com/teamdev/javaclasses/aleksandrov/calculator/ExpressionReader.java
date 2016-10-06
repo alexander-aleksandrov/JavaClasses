@@ -24,8 +24,8 @@ import java.util.logging.Logger;
 
 public class ExpressionReader {
 
-    final private String mathExpression;
-    private final static Logger LOG = Logger.getLogger(ExpressionReader.class.getName());
+    private final String mathExpression;
+    private static final Logger LOG = Logger.getLogger(ExpressionReader.class.getName());
     private int position = 0;
 
     public ExpressionReader(String mathExpression) {

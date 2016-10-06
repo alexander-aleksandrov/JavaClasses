@@ -31,7 +31,7 @@ import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.
 
 public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository {
 
-    private final static Logger LOG = LoggerFactory.getLogger(BinaryOperatorRepositoryInMemo.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BinaryOperatorRepositoryInMemo.class);
 
     private final Map<String, BinaryOperator> repository = new HashMap<String, BinaryOperator>() {{
         put("+", new BinaryOperatorImpl("leftOperand + rightOperand", LOW));

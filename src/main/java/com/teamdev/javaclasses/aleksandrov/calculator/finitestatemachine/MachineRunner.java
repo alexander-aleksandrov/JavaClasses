@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-abstract public class MachineRunner<
+public abstract class MachineRunner<
         Result,
         State extends Enum,
         InputContext,
@@ -32,10 +32,10 @@ abstract public class MachineRunner<
         Recognizer extends StateRecognizer<InputContext, OutputContext, State>,
         Matrix extends TransitionMatrix<State>> {
 
-    final private Matrix matrix;
-    final private Recognizer recognizer;
+    private final Matrix matrix;
+    private final Recognizer recognizer;
 
-    private final static Logger LOG = Logger.getLogger(MachineRunner.class.getName());
+    private static final  Logger LOG = Logger.getLogger(MachineRunner.class.getName());
 
     public MachineRunner(Matrix matrix, Recognizer recognizer) {
         this.matrix = matrix;
@@ -77,6 +77,6 @@ abstract public class MachineRunner<
         }
         return null;
     }
-    abstract protected void deadlock(InputContext inputContext);
-    abstract protected Result prepareResult(OutputContext outputContext);
+    protected abstract void deadlock(InputContext inputContext);
+    protected abstract Result prepareResult(OutputContext outputContext);
 }

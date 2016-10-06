@@ -35,9 +35,9 @@ public class ParsingService implements StateRecognizer<
         EvaluationStack,
         CalculationState> {
 
-    private final static Logger LOG = Logger.getLogger(StateRecognizer.class.getName());
+    private static final  Logger LOG = Logger.getLogger(StateRecognizer.class.getName());
 
-    final private Map<CalculationState, ExpressionParser> parsers = new HashMap<CalculationState, ExpressionParser>() {{
+    private final Map<CalculationState, ExpressionParser> parsers = new HashMap<CalculationState, ExpressionParser>() {{
         put(CalculationState.NUMBER, new NumberParser());
         put(CalculationState.BINARY_OPERATOR, new BinaryOperatorParser());
         put(CalculationState.FINISH, new EndOfExpressionParser());

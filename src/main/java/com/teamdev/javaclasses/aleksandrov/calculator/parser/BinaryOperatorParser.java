@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 
 public class BinaryOperatorParser implements ExpressionParser {
 
-    private final static Logger LOG = Logger.getLogger(BinaryOperatorParser.class.getName());
+    private static final  Logger LOG = Logger.getLogger(BinaryOperatorParser.class.getName());
     private final BinaryOperatorRepository reposytory = new BinaryOperatorRepositoryInMemo();
 
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {

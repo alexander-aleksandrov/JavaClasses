@@ -24,7 +24,7 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 public class BrainFuckInterpreterVisitor implements CommandVisitor {
 
-    final private Memory memory = new Memory(1000);
+    private final Memory memory = new Memory(1000);
 
     public Memory getMemory() {
         return memory;

@@ -22,7 +22,6 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.FilePrinterImpl;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.Printer;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

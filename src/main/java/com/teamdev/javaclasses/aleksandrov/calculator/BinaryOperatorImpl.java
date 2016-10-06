@@ -33,7 +33,7 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
         HIGH
     }
 
-    private final static Logger LOG = Logger.getLogger(BinaryOperatorImpl.class.getName());
+    private static final  Logger LOG = Logger.getLogger(BinaryOperatorImpl.class.getName());
 
     private final String script;
     private final Priority priority;

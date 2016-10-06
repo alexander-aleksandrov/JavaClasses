@@ -28,8 +28,8 @@ import java.util.Scanner;
 import static org.junit.Assert.assertEquals;
 
 public class JavaFileGeneratorTest {
-    final private File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaFileGeneratorTest.txt");
-    final private File source = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaBrainFuckTemplate.txt");
+    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaFileGeneratorTest.txt");
+    private final File source = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaBrainFuckTemplate.txt");
 
     @Test
     public void testGenerateTemplate() throws Exception {

@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 
 public class NumberParser implements ExpressionParser {
 
-    private final static Logger LOG = Logger.getLogger(NumberParser.class.getCanonicalName());
+    private static final Logger LOG = Logger.getLogger(NumberParser.class.getCanonicalName());
 
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {
 
