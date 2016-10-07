@@ -27,12 +27,21 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.parser.InterpreterParser;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.parser.Parser;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.FileReaderImp;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.Reader;
-
 import java.io.File;
 import java.util.List;
 
+/**
+ * Performs compilation of BrainFuck source code to Java code
+ *
+ * @author Alexander Aleksandrov
+ */
 public class BrainFuckToJavaCompilerImpl implements BrainFuckToJavaCompiler {
 
+    /**
+     * This method performs a visitor pattern for every parsed command
+     * @param program   File with BrainFuck unformatted source code.
+     * @param output    File with generated Java code.
+     */
     @Override
     public void execute(File program, File output) {
         final Reader reader = new FileReaderImp();

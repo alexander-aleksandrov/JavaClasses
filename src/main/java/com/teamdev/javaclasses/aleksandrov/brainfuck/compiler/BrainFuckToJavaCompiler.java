@@ -21,6 +21,11 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import java.io.File;
 
+/**
+ * Interface to launch BrainFuck to Java Compiler
+ *
+ * @author Alexander Aleksandrov
+ */
 public interface BrainFuckToJavaCompiler {
     void execute(File program, File output);
 }

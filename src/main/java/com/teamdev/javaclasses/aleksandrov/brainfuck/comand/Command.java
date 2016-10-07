@@ -21,6 +21,11 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
+/**
+ *
+ *
+ * @author Alexander Aleksandrov
+ */
 public interface Command {
     void accept(CommandVisitor visitor);
 }

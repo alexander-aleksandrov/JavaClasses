@@ -21,6 +21,11 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
 
 import java.io.File;
 
+/**
+ * This interface allows generate templates
+ *
+ * @author Alexander Aleksandrov
+ */
 public interface Generator {
     File generateTemplate(File template);
 }

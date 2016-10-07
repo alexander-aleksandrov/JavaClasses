@@ -20,7 +20,6 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.parser;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
-
 import java.util.*;
 
 public class InterpreterParser implements Parser {

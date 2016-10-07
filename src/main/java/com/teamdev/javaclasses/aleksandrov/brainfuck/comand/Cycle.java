@@ -20,9 +20,13 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
-
 import java.util.List;
 
+/**
+ * Accepts command visitor across all commands in the cycle list
+ *
+ * @author Alexander Aleksandrov
+ */
 public class Cycle implements Command {
 
     private final List<Command> innerCycleCommands;

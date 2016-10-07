@@ -21,6 +21,11 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
+/**
+ * Accepts command visitor
+ *
+ * @author Alexander Aleksandrov
+ */
 public class PrintCell implements Command {
     @Override
     public void accept(CommandVisitor visitor) {

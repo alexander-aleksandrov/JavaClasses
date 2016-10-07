@@ -19,61 +19,95 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
+import com.google.common.collect.Lists;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.FilePrinterImpl;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.Printer;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class defines the logic for every specific visit method
+ *
+ * @author Alexander Aleksandrov
+ */
 public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/Draft.txt");
+
     private final Printer printer = new FilePrinterImpl(output);
 
+    /**
+     * States exact string that should be added to the java file when visitor visits CellDecrement command
+     * @param cellDecrement CellDecrement command object
+     */
     @Override
     public void visit(CellDecrement cellDecrement) {
-        List<String> text = new ArrayList<>();
+        List<String> text = Lists.newArrayList();
         text.add("memory[pointer]--;");
         printer.printToFile(text);
     }
 
+    /**
+     * States exact string that should be added to the java file when visitor visits CellIncrement command
+     * @param cellIncrement CellIncrement command object
+     */
     @Override
     public void visit(CellIncrement cellIncrement) {
-        List<String> text = new ArrayList<>();
+        List<String> text = Lists.newArrayList();
         text.add("memory[pointer]++;");
         printer.printToFile(text);
     }
 
+    /**
+     * This is the stub
+     * @param inputCell InputCell command object
+     */
     @Override
     public void visit(InputCell inputCell) {
         System.out.println("input cell");
     }
 
+    /**
+     * States exact string that should be added to the java file when visitor visits NextCell command
+     * @param nextCell NextCell command object
+     */
     @Override
     public void visit(NextCell nextCell) {
-        List<String> text = new ArrayList<>();
+        List<String> text = Lists.newArrayList();
         text.add("pointer++;");
         printer.printToFile(text);
     }
 
+    /**
+     * States exact string that should be added to the java file when visitor visits PreviousCell command
+     * @param previousCell  PreviousCell command object
+     */
     @Override
     public void visit(PreviousCell previousCell) {
-        List<String> text = new ArrayList<>();
+        List<String> text = Lists.newArrayList();
         text.add("pointer--;");
         printer.printToFile(text);
     }
 
+    /**
+     * States exact text that should be added to the java file when visitor visits PrintCell command
+     * @param printCell PrintCell command object
+     */
     @Override
     public void visit(PrintCell printCell) {
-        List<String> text = new ArrayList<>();
+        List<String> text = Lists.newArrayList();
         text.add("compiledChar = (char) memory[pointer];");
         text.add("System.out.print(compiledChar);");
         printer.printToFile(text);
     }
 
+    /**
+     * States exact string that should be added to the java file when visitor visits Cycle command
+     * @param cycle Cycle command object
+     */
     @Override
     public void visit(Cycle cycle) {
-        List<String> text = new ArrayList<>();
+        List<String> text = Lists.newArrayList();
         text.add("while(memory[pointer] > 0) {");
         printer.printToFile(text);
 

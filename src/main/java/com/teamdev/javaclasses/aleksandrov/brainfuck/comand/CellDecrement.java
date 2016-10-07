@@ -21,6 +21,11 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
+/**
+ * Accepts command visitor
+ *
+ * @author Alexander Aleksandrov
+ */
 public class CellDecrement implements Command {
 
     @Override

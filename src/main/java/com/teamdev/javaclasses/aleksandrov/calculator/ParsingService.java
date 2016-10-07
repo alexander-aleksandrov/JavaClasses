@@ -19,6 +19,7 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
+import com.google.common.collect.ImmutableMap;
 import com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine.StateRecognizer;
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.BinaryOperatorParser;
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.EndOfExpressionParser;
@@ -37,11 +38,12 @@ public class ParsingService implements StateRecognizer<
 
     private static final Logger log = LoggerFactory.getLogger(ParsingService.class);
 
-    private final Map<CalculationState, ExpressionParser> parsers = new HashMap<CalculationState, ExpressionParser>() {{
-        put(CalculationState.NUMBER, new NumberParser());
-        put(CalculationState.BINARY_OPERATOR, new BinaryOperatorParser());
-        put(CalculationState.FINISH, new EndOfExpressionParser());
-    }};
+    static final ImmutableMap<CalculationState, ExpressionParser> parsers =
+            new ImmutableMap.Builder<CalculationState, ExpressionParser>()
+                    .put(CalculationState.NUMBER, new NumberParser())
+                    .put(CalculationState.BINARY_OPERATOR, new BinaryOperatorParser())
+                    .put(CalculationState.FINISH, new EndOfExpressionParser())
+                    .build();
 
     public boolean accept(ExpressionReader reader, EvaluationStack stack, CalculationState possibleState) {
         final ExpressionParser parser = parsers.get(possibleState);

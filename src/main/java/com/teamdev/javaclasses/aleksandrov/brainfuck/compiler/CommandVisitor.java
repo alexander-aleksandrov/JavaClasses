@@ -21,6 +21,11 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 
+/**
+ * This interface defines specific visit method
+ *
+ * @author Alexander Aleksandrov
+ */
 public interface CommandVisitor {
 
     void visit(CellIncrement cellIncrement);

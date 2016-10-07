@@ -19,6 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
+/**
+ * Provides utility methods to work with memory cell objects
+ *
+ * @author Alexander Aleksandrov
+ */
 public class Memory {
 
     private final int[] cells;
@@ -28,22 +33,34 @@ public class Memory {
         cells = new int[memorySize];
     }
 
+    /**
+     * Sets a new value into a currently active cell specified by pointer
+     * @param newValue  Numeric value of current cell
+     */
     public void setCurrentCellValue(int newValue) {
         cells[pointer] = newValue;
     }
 
+    /**
+     * Sets a new position of cell pointer
+     * @param pointer   An index number of the cell
+     */
     public void setPointer(int pointer) {
         this.pointer = pointer;
     }
 
-    public int getCellValue(int i) {
-        return cells[i];
-    }
-
+    /**
+     * Gets a current pointer position
+     * @return  Value stored in pointer
+     */
     public int getPointer() {
         return pointer;
     }
 
+    /**
+     * Gets the current value stored in a cell specified by pointer
+     * @return  The value stored in the specified cell
+     */
     public int getCurrentCellValue() {
         return cells[pointer];
     }
