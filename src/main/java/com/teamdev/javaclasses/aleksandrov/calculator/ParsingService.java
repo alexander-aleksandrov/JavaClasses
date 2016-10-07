@@ -24,18 +24,18 @@ import com.teamdev.javaclasses.aleksandrov.calculator.parser.BinaryOperatorParse
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.EndOfExpressionParser;
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.ExpressionParser;
 import com.teamdev.javaclasses.aleksandrov.calculator.parser.NumberParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ParsingService implements StateRecognizer<
         ExpressionReader,
         EvaluationStack,
         CalculationState> {
 
-    private static final  Logger LOG = Logger.getLogger(StateRecognizer.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(ParsingService.class);
 
     private final Map<CalculationState, ExpressionParser> parsers = new HashMap<CalculationState, ExpressionParser>() {{
         put(CalculationState.NUMBER, new NumberParser());
@@ -45,17 +45,11 @@ public class ParsingService implements StateRecognizer<
 
     public boolean accept(ExpressionReader reader, EvaluationStack stack, CalculationState possibleState) {
         final ExpressionParser parser = parsers.get(possibleState);
-
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("Next posible state is: " + possibleState);
-        }
-
+        log.info("Next posible state is: " + possibleState);
         if (parser == null) {
             throw new IllegalStateException("ParserImpl not found for state: " + possibleState);
         }
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("Trying to parse by another parser");
-        }
+        log.info("Trying to parse by another parser");
         return parser.parseExpression(reader, stack);
     }
 }

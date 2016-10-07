@@ -46,7 +46,7 @@ public class InterpreterParser implements Parser {
                 stackOfCommands.peek().add(new CellDecrement());
                 break;
             case '<':
-                stackOfCommands.peek().add(new PreviouseCell());
+                stackOfCommands.peek().add(new PreviousCell());
                 break;
             case '>':
                 stackOfCommands.peek().add(new NextCell());

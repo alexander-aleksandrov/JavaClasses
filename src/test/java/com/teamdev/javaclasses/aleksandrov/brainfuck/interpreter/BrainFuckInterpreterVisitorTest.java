@@ -21,7 +21,6 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 
 public class BrainFuckInterpreterVisitorTest {
@@ -66,11 +65,11 @@ public class BrainFuckInterpreterVisitorTest {
     public void testPreviouseCellVisit() throws Exception {
 
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
-        final PreviouseCell command = new PreviouseCell();
+        final PreviousCell command = new PreviousCell();
         final Memory memory = visitor.getMemory();
         memory.setPointer(10);
         visitor.visit(command);
-        assertEquals("Incorrect processing of PreviouseCell command.",
+        assertEquals("Incorrect processing of PreviousCell command.",
                 9, memory.getPointer());
     }
 

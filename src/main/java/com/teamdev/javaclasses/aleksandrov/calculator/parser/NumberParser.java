@@ -21,19 +21,16 @@ package com.teamdev.javaclasses.aleksandrov.calculator.parser;
 
 import com.teamdev.javaclasses.aleksandrov.calculator.EvaluationStack;
 import com.teamdev.javaclasses.aleksandrov.calculator.ExpressionReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class NumberParser implements ExpressionParser {
 
-    private static final Logger LOG = Logger.getLogger(NumberParser.class.getCanonicalName());
+    private static final Logger log = LoggerFactory.getLogger(NumberParser.class);
 
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {
-
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("I'm in the number parser");
-        }
+        log.info("I'm in the number parser");
         final String expression = reader.getMathExpression();
         final Double number = Double.valueOf(expression);
         stack.pushNumber(number);

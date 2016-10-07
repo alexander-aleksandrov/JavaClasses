@@ -20,11 +20,9 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
 
 import org.junit.Test;
-
 import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
-
 import static org.junit.Assert.assertEquals;
 
 public class JavaFileGeneratorTest {

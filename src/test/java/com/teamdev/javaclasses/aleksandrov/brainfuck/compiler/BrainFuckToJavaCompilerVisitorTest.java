@@ -22,7 +22,6 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.TestUtil;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 import org.junit.Test;
-
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -74,12 +73,12 @@ public class BrainFuckToJavaCompilerVisitorTest {
     @Test
     public void testPreviouseCellVisit() throws Exception {
         final BrainFuckToJavaCompilerVisitor visitor = new BrainFuckToJavaCompilerVisitor();
-        final PreviouseCell command = new PreviouseCell();
+        final PreviousCell command = new PreviousCell();
         TestUtil.clearDraft(output);
         visitor.visit(command);
         Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
-        assertEquals("Incorrect processing of PreviouseCell command.",
+        assertEquals("Incorrect processing of PreviousCell command.",
                 "pointer--;", actual);
     }
 

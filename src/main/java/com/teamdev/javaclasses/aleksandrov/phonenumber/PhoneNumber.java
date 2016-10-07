@@ -20,7 +20,6 @@
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 import com.sun.istack.internal.Nullable;
-
 import java.text.ParseException;
 
 public final class PhoneNumber {

@@ -48,7 +48,6 @@ public class FSMCalculator extends MachineRunner<
     }
 
     public static void main(String[] args) throws Exception {
-
         final double result = new FSMCalculator().evaluate("6*3/3");
         System.out.println("result = " + result);
     }

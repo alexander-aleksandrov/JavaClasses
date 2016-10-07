@@ -21,9 +21,7 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.parser;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 import org.junit.Test;
-
 import java.util.List;
-
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -54,7 +52,7 @@ public class InterpreterParserTest {
     public void testParsePreviouseCell() throws Exception {
         final Parser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("<");
-        assertTrue("Should be PreviouseCell object", actual.get(0) instanceof PreviouseCell);
+        assertTrue("Should be PreviousCell object", actual.get(0) instanceof PreviousCell);
     }
 
     @Test

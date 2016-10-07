@@ -21,9 +21,8 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
 
@@ -33,7 +32,7 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
         HIGH
     }
 
-    private static final  Logger LOG = Logger.getLogger(BinaryOperatorImpl.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(BinaryOperatorImpl.class);
 
     private final String script;
     private final Priority priority;
@@ -50,9 +49,7 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
         binding.setVariable("leftOperand", leftOperand);
         binding.setVariable("rightOperand", rightOperand);
         GroovyShell shell = new GroovyShell(binding);
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("Made a calculation");
-        }
+        log.info("Made a calculation");
         return (Double) shell.evaluate(script);
     }
 

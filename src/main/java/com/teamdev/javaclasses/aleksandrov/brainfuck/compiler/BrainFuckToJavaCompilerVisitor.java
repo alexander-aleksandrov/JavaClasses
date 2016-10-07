@@ -57,7 +57,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     @Override
-    public void visit(PreviouseCell previouseCell) {
+    public void visit(PreviousCell previousCell) {
         List<String> text = new ArrayList<>();
         text.add("pointer--;");
         printer.printToFile(text);

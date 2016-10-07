@@ -19,9 +19,10 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public abstract class MachineRunner<
@@ -35,7 +36,7 @@ public abstract class MachineRunner<
     private final Matrix matrix;
     private final Recognizer recognizer;
 
-    private static final  Logger LOG = Logger.getLogger(MachineRunner.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(MachineRunner.class);
 
     public MachineRunner(Matrix matrix, Recognizer recognizer) {
         this.matrix = matrix;
@@ -45,15 +46,11 @@ public abstract class MachineRunner<
     public Result move(InputContext inputContext, OutputContext outputContext) {
         State currentState = matrix.getStartState();
 
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("Start State is set to: " + currentState);
-        }
+        log.info("Start State is set to: " + currentState);
 
         while (currentState != matrix.getFinishState()) {
             currentState = acceptNewState(inputContext, outputContext, matrix.getPossibleTransitions(currentState));
-            if (LOG.isLoggable(Level.INFO)) {
-                LOG.info("Accepted a new state: " + currentState);
-            }
+            log.info("Accepted a new state: " + currentState);
             if (currentState == null) {
                 deadlock(inputContext);
             }
@@ -66,17 +63,15 @@ public abstract class MachineRunner<
                                  Set<State> possibleTransitions) {
         for (State possibleState : possibleTransitions) {
             if (recognizer.accept(inputContext, outputContext, possibleState)) {
-                if (LOG.isLoggable(Level.INFO)) {
-                    LOG.info("Trying to accept new state: " + possibleState);
-                }
+                log.info("Trying to accept new state: " + possibleState);
                 return possibleState;
             }
         }
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("Unable to accept state: " + possibleTransitions);
-        }
+        log.info("Unable to accept state: " + possibleTransitions);
         return null;
     }
+
     protected abstract void deadlock(InputContext inputContext);
+
     protected abstract Result prepareResult(OutputContext outputContext);
 }

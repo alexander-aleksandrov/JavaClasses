@@ -33,7 +33,7 @@ public interface CommandVisitor {
 
     void visit(NextCell nextCell);
 
-    void visit(PreviouseCell previouseCell);
+    void visit(PreviousCell previousCell);
 
     void visit(Cycle cycle);
 

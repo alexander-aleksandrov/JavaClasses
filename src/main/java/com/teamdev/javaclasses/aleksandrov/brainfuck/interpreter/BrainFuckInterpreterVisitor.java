@@ -62,7 +62,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     @Override
-    public void visit(PreviouseCell previouseCell) {
+    public void visit(PreviousCell previousCell) {
         final int pointer = memory.getPointer();
         memory.setPointer(pointer - 1);
     }

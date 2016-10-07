@@ -19,13 +19,13 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExpressionReader {
 
     private final String mathExpression;
-    private static final Logger LOG = Logger.getLogger(ExpressionReader.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(ExpressionReader.class);
     private int position = 0;
 
     public ExpressionReader(String mathExpression) {
@@ -41,14 +41,10 @@ public class ExpressionReader {
     }
 
     public String getMathExpression() {
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("Current position is: " + getPosition());
-        }
+        log.info("Current position is: " + getPosition());
         String remainedExpression = mathExpression.substring(getPosition());
 
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("remainedExpression is: " + remainedExpression);
-        }
+        log.info("remainedExpression is: " + remainedExpression);
 
         StringBuilder sb = new StringBuilder();
         boolean found = false;
@@ -67,9 +63,7 @@ public class ExpressionReader {
 
         }
         String newExpression = sb.toString();
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info("Reader gives a String:" + newExpression);
-        }
+        log.info("Reader gives a String:" + newExpression);
         return newExpression;
 
     }

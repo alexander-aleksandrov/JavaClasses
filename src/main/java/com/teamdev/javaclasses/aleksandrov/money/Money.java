@@ -37,21 +37,17 @@ public class Money implements Comparable<Money> {
     }
 
     public static class Builder {
-
         public static Currency currency;
         public static long amount;
-
         public Builder setCurrency(Currency currencyCode) {
             currency = currencyCode;
             return this;
         }
-
         public Builder setAmount(long value) {
             amount = value;
             return this;
 
         }
-
         public Money build() {
             return new Money(this);
         }
