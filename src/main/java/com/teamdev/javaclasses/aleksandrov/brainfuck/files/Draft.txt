@@ -1,0 +1,2 @@
+compiledChar = (char) memory[pointer];
+System.out.print(compiledChar);

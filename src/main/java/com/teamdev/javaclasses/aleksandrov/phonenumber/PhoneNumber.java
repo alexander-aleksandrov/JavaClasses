@@ -1,4 +1,4 @@
-package com.teamdev.phonenumber;
+package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 import com.sun.istack.internal.Nullable;
 
@@ -7,6 +7,7 @@ import java.text.ParseException;
 public final class PhoneNumber {
 
     @Nullable
+
     private final CountryCode countryCode;
     @Nullable
     private final AreaCode areaCode;
@@ -75,7 +76,7 @@ public final class PhoneNumber {
 
     public static PhoneNumber newPhoneNumber() {
 
-        CountryCode cc = CountryCode.valueOf()
+        CountryCode cc = CountryCode.valueOf();
         PhoneNumber ph = PhoneNumber.newBuilder()
                 .setCountryCode()
                 .setAreaCode()

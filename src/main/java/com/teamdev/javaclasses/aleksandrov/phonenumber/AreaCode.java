@@ -1,4 +1,4 @@
-package com.teamdev.phonenumber;
+package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 public enum AreaCode {
     ALABAMA("250"),
