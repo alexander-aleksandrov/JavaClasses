@@ -25,13 +25,15 @@ import org.slf4j.LoggerFactory;
 import java.util.Set;
 
 /**
+ * An abstract class that describes the logic of finite state machine.
  *
- * @param <Result>
- * @param <State>
- * @param <InputContext>
- * @param <OutputContext>
- * @param <Recognizer>
- * @param <Matrix>
+ * @param <Result>        The result of machine work
+ * @param <State>         A possible state of machine
+ * @param <InputContext>  The context before the new state
+ * @param <OutputContext> The context after the state has passed
+ * @param <Recognizer>    Some one who check states for validity
+ * @param <Matrix>        A matrix of all possible states
+ * @author Oleg Melnik
  */
 public abstract class MachineRunner<
         Result,
@@ -46,11 +48,24 @@ public abstract class MachineRunner<
 
     private static final Logger log = LoggerFactory.getLogger(MachineRunner.class);
 
+    /**
+     * Constructor for Machine runner.
+     *
+     * @param matrix     Matrix object
+     * @param recognizer Recognizer object
+     */
     public MachineRunner(Matrix matrix, Recognizer recognizer) {
         this.matrix = matrix;
         this.recognizer = recognizer;
     }
 
+    /**
+     * Returns a result of every move that was made.
+     *
+     * @param inputContext  InputContext object
+     * @param outputContext OutputContext object
+     * @return A Result object
+     */
     public Result move(InputContext inputContext, OutputContext outputContext) {
         State currentState = matrix.getStartState();
 

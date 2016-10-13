@@ -22,8 +22,20 @@ package com.teamdev.javaclasses.aleksandrov.calculator.parser;
 import com.teamdev.javaclasses.aleksandrov.calculator.EvaluationStack;
 import com.teamdev.javaclasses.aleksandrov.calculator.ExpressionReader;
 
+/**
+ * A parser that triggers when expression finishes.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class EndOfExpressionParser implements ExpressionParser {
 
+    /**
+     * Return true if there no more expression to read and starts all calculations across stored value in stacks.
+     *
+     * @param reader ExpressionReader object
+     * @param stack  EvaluationStack object
+     * @return boolean
+     */
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {
         stack.finalCalculation();
         return !reader.hasMoreToRead();

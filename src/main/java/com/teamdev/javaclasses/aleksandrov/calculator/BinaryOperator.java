@@ -19,6 +19,19 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
+/**
+ * An interface to make operations between two numbers.
+ *
+ * @param <O>
+ * @author Oleg Melnik
+ */
 public interface BinaryOperator<O extends BinaryOperator> extends Comparable<O> {
+    /**
+     * Describes an operation between two double numbers.
+     *
+     * @param leftOperand  double number
+     * @param rightOperand double number
+     * @return double result of operation
+     */
     double calculate(double leftOperand, double rightOperand);
 }
