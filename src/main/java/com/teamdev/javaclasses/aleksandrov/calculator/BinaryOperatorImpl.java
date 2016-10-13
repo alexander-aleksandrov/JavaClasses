@@ -24,6 +24,11 @@ import groovy.lang.GroovyShell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Binary Operator logic implemented with Groovy script.
+ *
+ * @author Oleg Melnik
+ */
 public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
 
     enum Priority {
@@ -37,11 +42,24 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
     private final String script;
     private final Priority priority;
 
+    /**
+     * Constructor that makes Binary operator object.
+     *
+     * @param script   String that contain Groovy script.
+     * @param priority Priority Enum of
+     */
     public BinaryOperatorImpl(String script, Priority priority) {
         this.script = script;
         this.priority = priority;
     }
 
+    /**
+     * Calculates operation stored in this script with left and right operands.
+     *
+     * @param leftOperand  double number
+     * @param rightOperand double number
+     * @return double result of calculation
+     */
     @Override
     public double calculate(double leftOperand, double rightOperand) {
 
@@ -53,6 +71,12 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
         return (Double) shell.evaluate(script);
     }
 
+    /**
+     * Overrides compareTo method based on priority specified in {@link Priority} enum.
+     *
+     * @param o Comparable object
+     * @return int value less than 0 if object have a higher priority, 0 if equals, and more than 0 if object have lower priority
+     */
     @Override
     public int compareTo(BinaryOperatorImpl o) {
 

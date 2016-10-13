@@ -22,24 +22,58 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 
 /**
- * This interface defines specific visit method
+ * This interface defines classes that the visitor can work with.
  *
  * @author Alexander Aleksandrov
  */
 public interface CommandVisitor {
-
+    /**
+     * Allows to describe actions in specific visitor class for CellIncrement command.
+     *
+     * @param cellIncrement CellIncrement command object
+     */
     void visit(CellIncrement cellIncrement);
 
+    /**
+     * Allows to describe actions in specific visitor class for CellDecrement command.
+     *
+     * @param cellDecrement CellDecrement command object
+     */
     void visit(CellDecrement cellDecrement);
 
+    /**
+     * Allows to describe actions in specific visitor class for InputCell command.
+     *
+     * @param inputCell InputCell command object
+     */
     void visit(InputCell inputCell);
 
+    /**
+     * Allows to describe actions in specific visitor class for PrintCell command.
+     *
+     * @param printCell PrintCell command object
+     */
     void visit(PrintCell printCell);
 
+    /**
+     * Allows to describe actions in specific visitor class for NextCell command.
+     *
+     * @param nextCell NextCell command object
+     */
     void visit(NextCell nextCell);
 
+    /**
+     * Allows to describe actions in specific visitor class for PreviousCell command.
+     *
+     * @param previousCell PreviousCell command object
+     */
     void visit(PreviousCell previousCell);
 
+    /**
+     * Allows to describe actions in specific visitor class for Cycle command.
+     *
+     * @param cycle Cycle command object
+     */
     void visit(Cycle cycle);
 
 }

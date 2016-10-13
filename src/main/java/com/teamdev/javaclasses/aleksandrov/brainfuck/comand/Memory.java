@@ -29,37 +29,46 @@ public class Memory {
     private final int[] cells;
     private int pointer = 0;
 
+    /**
+     * Instantiates a new Array of int values.
+     *
+     * @param memorySize Array length
+     */
     public Memory(int memorySize) {
         cells = new int[memorySize];
     }
 
     /**
-     * Sets a new value into a currently active cell specified by pointer
-     * @param newValue  Numeric value of current cell
+     * Sets a new value into a currently active cell specified by pointer.
+     *
+     * @param newValue Numeric value of current cell
      */
     public void setCurrentCellValue(int newValue) {
         cells[pointer] = newValue;
     }
 
     /**
-     * Sets a new position of cell pointer
-     * @param pointer   An index number of the cell
+     * Sets a new position of cell pointer.
+     *
+     * @param pointer An index number of the cell
      */
     public void setPointer(int pointer) {
         this.pointer = pointer;
     }
 
     /**
-     * Gets a current pointer position
-     * @return  Value stored in pointer
+     * Gets a current pointer position.
+     *
+     * @return Value stored in pointer
      */
     public int getPointer() {
         return pointer;
     }
 
     /**
-     * Gets the current value stored in a cell specified by pointer
-     * @return  The value stored in the specified cell
+     * Gets the current value stored in a cell specified by pointer.
+     *
+     * @return The value stored in the specified cell
      */
     public int getCurrentCellValue() {
         return cells[pointer];

@@ -19,10 +19,25 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine;
 
+/**
+ * Generic interface to describe a recognizer of a valid state.
+ *
+ * @param <InputContext>  InputContext
+ * @param <OutputContext> OutputContext
+ * @param <State>         State
+ * @author Oleg Melnik
+ */
 public interface StateRecognizer<
         InputContext,
         OutputContext,
         State extends Enum> {
-
+    /**
+     * Returns true in case if a State was accepted.
+     *
+     * @param inputContext  InputContext object
+     * @param outputContext OutputContext object
+     * @param possibleState State object
+     * @return boolean
+     */
     boolean accept(InputContext inputContext, OutputContext outputContext, State possibleState);
 }

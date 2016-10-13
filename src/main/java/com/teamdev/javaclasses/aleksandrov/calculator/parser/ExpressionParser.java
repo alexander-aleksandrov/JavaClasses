@@ -22,6 +22,18 @@ package com.teamdev.javaclasses.aleksandrov.calculator.parser;
 import com.teamdev.javaclasses.aleksandrov.calculator.EvaluationStack;
 import com.teamdev.javaclasses.aleksandrov.calculator.ExpressionReader;
 
+/**
+ * An interface to state exact behaviour for different parsers
+ *
+ * @author Oleg Melnik
+ */
 public interface ExpressionParser {
+    /**
+     * Returns boolean after attempt to parse math expression
+     *
+     * @param reader ExpressionReader object
+     * @param stack  EvaluationStack object
+     * @return boolean
+     */
     boolean parseExpression(ExpressionReader reader, EvaluationStack stack);
 }

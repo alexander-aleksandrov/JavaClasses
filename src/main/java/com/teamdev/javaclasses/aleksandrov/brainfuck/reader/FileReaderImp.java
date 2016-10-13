@@ -18,21 +18,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.reader;
+
 import java.io.*;
 import java.util.Scanner;
 
+/**
+ * Reader for files.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class FileReaderImp implements Reader {
 
+    /**
+     * Reads a text inside a file one by one.
+     *
+     * @param file File object
+     * @return String
+     */
     @Override
     public String read(File file) {
         try {
-            Scanner in  = new Scanner(new FileReader(file));
+            Scanner in = new Scanner(new FileReader(file));
             return in.next();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return "";
     }
-    }
+}
 
 

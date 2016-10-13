@@ -23,13 +23,24 @@ import com.teamdev.javaclasses.aleksandrov.calculator.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * A parser that takes expression and pushes Binary Operator to stack.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class BinaryOperatorParser implements ExpressionParser {
 
     private static final Logger log = LoggerFactory.getLogger(BinaryOperatorParser.class);
     private final BinaryOperatorRepository reposytory = new BinaryOperatorRepositoryInMemo();
 
+    /**
+     * Returns boolean in case if expression was parsed correctly and pushes binary operators to stack according to priority.
+     *
+     * @param reader ExpressionReader object
+     * @param stack  EvaluationStack object
+     * @return boolean
+     */
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {
-
         if (reader.hasMoreToRead()) {
             final String expression = reader.getMathExpression();
             log.info("I'm in the BinaryOperator parser");

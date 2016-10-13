@@ -22,14 +22,29 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.printer;
 import java.io.*;
 import java.util.List;
 
-public class FilePrinterImpl implements Printer {
+/**
+ * Printer implementation that takes a file on constructor and prints a text inside it.
+ *
+ * @author Alexander Aleksandrov
+ */
+public class FilePrinter implements Printer {
 
     final File output;
 
-    public FilePrinterImpl(File output) {
+    /**
+     * Constructor that gets some file as a parameter.
+     *
+     * @param output File object
+     */
+    public FilePrinter(File output) {
         this.output = output;
     }
 
+    /**
+     * Writes a list of strings into this FilePrinter.
+     *
+     * @param text List of Strings
+     */
     public void printToFile(List<String> text) {
         int i = 0;
         try {
@@ -39,15 +54,22 @@ public class FilePrinterImpl implements Printer {
                 i++;
             }
             writer.close();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
     }
 
+    /**
+     * Wipes all data inside the file.
+     *
+     * @param output File object
+     */
     public void clearFile(File output) {
         try {
             PrintWriter writer = new PrintWriter(output);
             writer.print("");
             writer.close();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
     }
 }
 

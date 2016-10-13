@@ -24,11 +24,22 @@ import com.teamdev.javaclasses.aleksandrov.calculator.ExpressionReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * A parser that takes a chunk of expression and pushes it to number stack.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class NumberParser implements ExpressionParser {
 
     private static final Logger log = LoggerFactory.getLogger(NumberParser.class);
 
+    /**
+     * Returns true after a number was pushed to {@link EvaluationStack} and sets a new position to expression reader.
+     *
+     * @param reader ExpressionReader object
+     * @param stack  EvaluationStack object
+     * @return
+     */
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {
         log.info("I'm in the number parser");
         final String expression = reader.getMathExpression();

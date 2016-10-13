@@ -19,19 +19,24 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.BrainFuckToJavaCompilerImpl;
-import com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter.BrainFuckInterpreterImpl;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.BrainFuckToJavaCompiler;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter.BrainFuckInterpreter;
 
 import java.io.File;
 
+/**
+ * Start point of Brain Fuck interpreter.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class Main {
     private static final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/BrainFuckRunner.java");
     private static final File program = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/HelloWorld.txt");
 
     public static void main(String[] args) {
-        BrainFuckInterpreterImpl interpreter = new BrainFuckInterpreterImpl();
+        BrainFuckInterpreter interpreter = new BrainFuckInterpreter();
         interpreter.execute(program);
-        BrainFuckToJavaCompilerImpl compiler = new BrainFuckToJavaCompilerImpl();
+        BrainFuckToJavaCompiler compiler = new BrainFuckToJavaCompiler();
         compiler.execute(program, output);
     }
 }

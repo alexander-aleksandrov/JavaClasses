@@ -22,26 +22,53 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
+import java.util.Scanner;
+
+/**
+ * {@link CommandVisitor} implementation for interpreting commands into actions.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class BrainFuckInterpreterVisitor implements CommandVisitor {
 
     private final Memory memory = new Memory(1000);
 
+    /**
+     * Gets the memory array.
+     *
+     * @return Memory object
+     */
     public Memory getMemory() {
         return memory;
     }
 
+    /**
+     * States the logic when visitor is called by {@link CellDecrement} object.
+     *
+     * @param cellDecrement CellDecrement command object
+     */
     @Override
     public void visit(CellDecrement cellDecrement) {
         int currentValue = memory.getCurrentCellValue();
         memory.setCurrentCellValue(--currentValue);
     }
 
+    /**
+     * States the logic when visitor is called by {@link CellIncrement} object.
+     *
+     * @param cellIncrement CellIncrement command object
+     */
     @Override
     public void visit(CellIncrement cellIncrement) {
         int currentValue = memory.getCurrentCellValue();
         memory.setCurrentCellValue(++currentValue);
     }
 
+    /**
+     * States the logic when visitor is called by {@link Cycle} object.
+     *
+     * @param cycle Cycle command object
+     */
     @Override
     public void visit(Cycle cycle) {
         while (memory.getCurrentCellValue() > 0) {
@@ -51,22 +78,46 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
         }
     }
 
+    /**
+     * States the logic when visitor is called by {@link InputCell} object.
+     *
+     * @param inputCell InputCell command object
+     */
     @Override
     public void visit(InputCell inputCell) {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Please enter an integer: ");
+        int value = keyboard.nextInt();
+        memory.setCurrentCellValue(value);
     }
 
+    /**
+     * States the logic when visitor is called by {@link NextCell} object.
+     *
+     * @param nextCell NextCell command object
+     */
     @Override
     public void visit(NextCell nextCell) {
         final int pointer = memory.getPointer();
         memory.setPointer(pointer + 1);
     }
 
+    /**
+     * States the logic when visitor is called by {@link PreviousCell} object.
+     *
+     * @param previousCell PreviousCell command object
+     */
     @Override
     public void visit(PreviousCell previousCell) {
         final int pointer = memory.getPointer();
         memory.setPointer(pointer - 1);
     }
 
+    /**
+     * States the logic when visitor is called by {@link PrintCell} object.
+     *
+     * @param printCell PrintCell command object
+     */
     @Override
     public void visit(PrintCell printCell) {
         int currentValue = memory.getCurrentCellValue();

@@ -22,11 +22,17 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 /**
- * Accepts command visitor
+ * Serves to link a visitor object to realisation related to PrintCell command.
  *
  * @author Alexander Aleksandrov
  */
 public class PrintCell implements Command {
+
+    /**
+     * Tells visitor go to itself implementation related to this class.
+     *
+     * @param visitor CommandVisitor object
+     */
     @Override
     public void accept(CommandVisitor visitor) {
         visitor.visit(this);

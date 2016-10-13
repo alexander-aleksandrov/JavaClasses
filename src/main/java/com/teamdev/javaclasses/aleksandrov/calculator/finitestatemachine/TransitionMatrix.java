@@ -21,8 +21,16 @@ package com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine;
 
 import java.util.Set;
 
+/**
+ * An interface to describe a transition matrix.
+ *
+ * @param <State> Possible states
+ * @author Oleg Melnik
+ */
 public interface TransitionMatrix<State extends Enum> {
     State getStartState();
+
     State getFinishState();
+
     Set<State> getPossibleTransitions(State currentState);
 }
