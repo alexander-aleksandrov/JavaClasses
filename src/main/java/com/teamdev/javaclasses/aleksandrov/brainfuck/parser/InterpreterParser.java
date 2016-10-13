@@ -20,15 +20,26 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.parser;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
+
 import java.util.*;
 
-public class InterpreterParser implements Parser {
+/**
+ * Parser of Brain Fuck source code to command list.
+ *
+ * @author Alexander Aleksandrov
+ */
+public class InterpreterParser {
 
-    @Override
+    /**
+     * Goes through a string of Brain fuck code and creates a commands for each char.
+     *
+     * @param codeString String with text in Brain Fuck format
+     * @return List of Command objects
+     */
     public List<Command> parse(String codeString) {
 
         final Deque<List<Command>> stack = new ArrayDeque<>();
-        stack.push(new ArrayList<Command>());
+        stack.push(new ArrayList<>());
 
         for (Character commandIdentifier : codeString.toCharArray()) {
             createCommand(commandIdentifier, stack);
@@ -36,6 +47,7 @@ public class InterpreterParser implements Parser {
         return stack.pop();
     }
 
+    /*Puts a Command object to stack according to specific char.*/
     private void createCommand(char commandIdentifier, Deque<List<Command>> stackOfCommands) {
         switch (commandIdentifier) {
             case '+':

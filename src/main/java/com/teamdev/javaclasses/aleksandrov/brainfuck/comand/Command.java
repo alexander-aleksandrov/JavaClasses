@@ -22,10 +22,15 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 /**
- *
+ * Allows to use any command without specifying their names.
  *
  * @author Alexander Aleksandrov
  */
 public interface Command {
+    /**
+     * Tells to visitor go to itself implementation related to this class.
+     *
+     * @param visitor CommandVisitor object
+     */
     void accept(CommandVisitor visitor);
 }

@@ -19,8 +19,50 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 
-import java.io.File;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.parser.InterpreterParser;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.FileReaderImp;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.Reader;
 
-public interface BrainFuckInterpreter {
-    void execute(File program);
+import java.io.File;
+import java.util.List;
+
+/**
+ * Executor of Brain Fuck source code.
+ *
+ * @author Alexander Aleksandrov
+ */
+public class BrainFuckInterpreter {
+
+    private String result;
+
+    /**
+     * Performs a visitor pattern for every parsed command and prints the result in a command line.
+     *
+     * @param program File with Brain Fuck source code
+     */
+    public void execute(File program) {
+        final Reader reader = new FileReaderImp();
+        final InterpreterParser parser = new InterpreterParser();
+        final String programText = reader.read(program);
+
+        System.out.println("Program text: ");
+        System.out.println(programText);
+        System.out.println("Result: ");
+
+        final List<Command> commands = parser.parse(programText);
+
+        final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
+
+        for (Command command : commands) {
+            command.accept(visitor);
+        }
+
+    }
 }
+
+
+
+
+
+

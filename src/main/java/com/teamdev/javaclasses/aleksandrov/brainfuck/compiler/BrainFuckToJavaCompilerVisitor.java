@@ -21,23 +21,25 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import com.google.common.collect.Lists;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
-import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.FilePrinterImpl;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.FilePrinter;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.Printer;
+
 import java.io.File;
 import java.util.List;
 
 /**
- * This class defines the logic for every specific visit method
+ * {@link CommandVisitor} implementation for compilation BrainFuck commands into Java code.
  *
  * @author Alexander Aleksandrov
  */
 public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/Draft.txt");
 
-    private final Printer printer = new FilePrinterImpl(output);
+    private final Printer printer = new FilePrinter(output);
 
     /**
-     * States exact string that should be added to the java file when visitor visits CellDecrement command
+     * States exact string that should be added to the java file when visitor visits {@link CellDecrement} command.
+     *
      * @param cellDecrement CellDecrement command object
      */
     @Override
@@ -48,7 +50,8 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits CellIncrement command
+     * States exact string that should be added to the java file when visitor visits {@link CellIncrement} command.
+     *
      * @param cellIncrement CellIncrement command object
      */
     @Override
@@ -59,16 +62,23 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * This is the stub
+     * States exact string that should be added to the java file when visitor visits {@link InputCell} command.
+     *
      * @param inputCell InputCell command object
      */
     @Override
     public void visit(InputCell inputCell) {
-        System.out.println("input cell");
+        List<String> text = Lists.newArrayList();
+        text.add("Scanner keyboard = new Scanner(System.in);");
+        text.add("System.out.println(\"Please enter an integer:\");");
+        text.add("int value = keyboard.nextInt();");
+        text.add("memory[pointer] = value;");
+        printer.printToFile(text);
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits NextCell command
+     * States exact string that should be added to the java file when visitor visits {@link NextCell} command.
+     *
      * @param nextCell NextCell command object
      */
     @Override
@@ -79,8 +89,9 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits PreviousCell command
-     * @param previousCell  PreviousCell command object
+     * States exact string that should be added to the java file when visitor visits {@link PreviousCell} command.
+     *
+     * @param previousCell PreviousCell command object
      */
     @Override
     public void visit(PreviousCell previousCell) {
@@ -90,7 +101,8 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact text that should be added to the java file when visitor visits PrintCell command
+     * States exact text that should be added to the java file when visitor visits {@link PrintCell} command.
+     *
      * @param printCell PrintCell command object
      */
     @Override
@@ -102,7 +114,8 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits Cycle command
+     * States exact string that should be added to the java file when visitor visits {@link Cycle} command.
+     *
      * @param cycle Cycle command object
      */
     @Override

@@ -30,8 +30,8 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class FilePrinterImplTest {
-    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/FilePrinterImplTest.txt");
+public class FilePrinterTest {
+    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/FilePrinterTest.txt");
 
     @Before
     public void testReadPreconditions() {
@@ -46,7 +46,7 @@ public class FilePrinterImplTest {
     @Test
     public void testPrintToFile() throws Exception {
         final String expected = "testString";
-        final FilePrinterImpl filePrinter = new FilePrinterImpl(output);
+        final FilePrinter filePrinter = new FilePrinter(output);
         List<String> text = new ArrayList<>();
         text.add(expected);
         filePrinter.printToFile(text);

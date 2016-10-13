@@ -24,7 +24,15 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 
-
+/**
+ *
+ * @param <Result>
+ * @param <State>
+ * @param <InputContext>
+ * @param <OutputContext>
+ * @param <Recognizer>
+ * @param <Matrix>
+ */
 public abstract class MachineRunner<
         Result,
         State extends Enum,

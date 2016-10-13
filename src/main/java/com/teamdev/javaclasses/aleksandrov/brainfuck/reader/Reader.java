@@ -21,6 +21,18 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.reader;
 
 import java.io.File;
 
+/**
+ * Interface for readers.
+ *
+ * @author Alexander Aleksandrov
+ */
 public interface Reader {
-    String read(final File file);
+
+    /**
+     * Reads a text inside a file.
+     *
+     * @param file File object
+     * @return String
+     */
+    String read(File file);
 }

@@ -19,9 +19,17 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.printer;
 
-import java.io.File;
 import java.util.List;
 
+/**
+ * Interface for all kinds of printers.
+ *
+ * @author Alexander Aleksandrov
+ */
 public interface Printer {
+    /**
+     * Takes a list of strings as a parameter and paste it to the file.
+     * @param text List of Strings
+     */
     void printToFile(List<String> text);
 }
