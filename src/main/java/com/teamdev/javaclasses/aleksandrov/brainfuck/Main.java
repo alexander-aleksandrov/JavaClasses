@@ -25,7 +25,7 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter.BrainFuckInterp
 import java.io.File;
 
 /**
- * Start point of Brain Fuck interpreter.
+ * Start point of Brain Fuck  interpreter.
  *
  * @author Alexander Aleksandrov
  */

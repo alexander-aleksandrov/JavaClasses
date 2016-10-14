@@ -39,7 +39,7 @@ public class Memory {
     }
 
     /**
-     * Sets a new value into a currently active cell specified by pointer.
+     * Sets a new value  into a currently active cell specified by pointer.
      *
      * @param newValue Numeric value of current cell
      */
@@ -48,7 +48,7 @@ public class Memory {
     }
 
     /**
-     * Sets a new position of cell pointer.
+     * Sets a new position  of cell pointer.
      *
      * @param pointer An index number of the cell
      */
@@ -57,7 +57,7 @@ public class Memory {
     }
 
     /**
-     * Gets a current pointer position.
+     * Gets a current  pointer position.
      *
      * @return Value stored in pointer
      */
@@ -66,7 +66,7 @@ public class Memory {
     }
 
     /**
-     * Gets the current value stored in a cell specified by pointer.
+     * Gets the current value  stored in a cell specified by pointer.
      *
      * @return The value stored in the specified cell
      */

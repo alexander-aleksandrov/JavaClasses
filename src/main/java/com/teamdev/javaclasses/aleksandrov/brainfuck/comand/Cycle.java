@@ -24,7 +24,7 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 import java.util.List;
 
 /**
- * Serves to link a visitor object across all commands in the cycle list.
+ * Serves to link a visitor  object across all commands in the cycle list.
  *
  * @author Alexander Aleksandrov
  */
@@ -33,7 +33,7 @@ public class Cycle implements Command {
     private final List<Command> innerCycleCommands;
 
     /**
-     * Constructor  that returns a Cycle object containing commands inside.
+     * Constructor  that returns  a Cycle object containing commands inside.
      *
      * @param innerCycleCommands List of commands inside the cycle
      */
@@ -42,7 +42,7 @@ public class Cycle implements Command {
     }
 
     /**
-     * Gets a list of commands inside this class.
+     * Gets a list of commands  inside this class.
      *
      * @return List of objects Command
      */
@@ -51,7 +51,7 @@ public class Cycle implements Command {
     }
 
     /**
-     * Tells to visitor go to itself implementation related to this class.
+     * Tells to visitor go to itself  implementation related to this class.
      *
      * @param visitor CommandVisitor object
      */

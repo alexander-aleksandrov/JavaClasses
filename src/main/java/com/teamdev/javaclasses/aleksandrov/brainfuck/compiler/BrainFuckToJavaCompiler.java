@@ -30,14 +30,14 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Performs compilation of BrainFuck source code to Java code.
+ * Performs compilation of  BrainFuck source code to Java code.
  *
  * @author Alexander Aleksandrov
  */
 public class BrainFuckToJavaCompiler {
 
     /**
-     * Performs a visitor pattern for every parsed command.
+     * Performs a visitor  pattern for every parsed command.
      *
      * @param program File with BrainFuck unformatted source code.
      * @param output  File with generated Java code.

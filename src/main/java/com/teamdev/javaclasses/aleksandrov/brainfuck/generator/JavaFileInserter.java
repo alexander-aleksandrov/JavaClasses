@@ -49,7 +49,7 @@ public class JavaFileInserter {
     }
 
     /**
-     * Transforms all the content from file to single string without spaces or breaking
+     * Transforms all the content from file to single string without spaces or breaking.
      *
      * @param file File with text
      * @return String

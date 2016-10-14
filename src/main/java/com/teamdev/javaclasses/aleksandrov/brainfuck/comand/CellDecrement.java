@@ -22,7 +22,7 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 /**
- * Serves to link a visitor object to realisation related to CellDecrement command.
+ * Serves to link a visitor object  to realisation related to CellDecrement command.
  *
  * @author Alexander Aleksandrov
  */

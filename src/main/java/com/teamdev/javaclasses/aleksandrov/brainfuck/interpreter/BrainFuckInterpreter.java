@@ -37,7 +37,7 @@ public class BrainFuckInterpreter {
     private String result;
 
     /**
-     * Performs a visitor pattern for every parsed command and prints the result in a command line.
+     * Performs a visitor pattern for every  parsed command and prints the result in a command line.
      *
      * @param program File with Brain Fuck source code
      */

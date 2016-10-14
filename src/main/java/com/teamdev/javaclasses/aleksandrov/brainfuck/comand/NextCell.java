@@ -22,14 +22,14 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 /**
- * Serves to link a visitor object to realisation related to NextCell command.
+ * Serves to link a visitor  object to realisation related to NextCell command.
  *
  * @author Alexander Aleksandrov
  */
 public class NextCell implements Command {
 
     /**
-     * Tells visitor go to itself implementation related to this class.
+     * Tells visitor go to  itself implementation related to this class.
      *
      * @param visitor CommandVisitor object
      */

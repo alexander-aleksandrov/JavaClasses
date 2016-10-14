@@ -23,7 +23,7 @@ import java.io.*;
 import java.util.List;
 
 /**
- * Printer implementation that takes a file on constructor and prints a text inside it.
+ * Printer implementation that takes  a file on constructor and prints a text inside it.
  *
  * @author Alexander Aleksandrov
  */
@@ -41,7 +41,7 @@ public class FilePrinter implements Printer {
     }
 
     /**
-     * Writes a list of strings into this FilePrinter.
+     * Writes a list of strings into  this FilePrinter.
      *
      * @param text List of Strings
      */
@@ -59,7 +59,7 @@ public class FilePrinter implements Printer {
     }
 
     /**
-     * Wipes all data inside the file.
+     * Wipes all data inside  the file.
      *
      * @param output File object
      */

@@ -28,7 +28,7 @@ import java.io.File;
 import java.util.List;
 
 /**
- * {@link CommandVisitor} implementation for compilation BrainFuck commands into Java code.
+ * {@link CommandVisitor} implementation for  compilation BrainFuck commands into Java code.
  *
  * @author Alexander Aleksandrov
  */
@@ -38,7 +38,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     private final Printer printer = new FilePrinter(output);
 
     /**
-     * States exact string that should be added to the java file when visitor visits {@link CellDecrement} command.
+     * States exact string that should be added  to the java file when visitor visits {@link CellDecrement} command.
      *
      * @param cellDecrement CellDecrement command object
      */
@@ -50,7 +50,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits {@link CellIncrement} command.
+     * States exact string that should be added to  the java file when visitor visits {@link CellIncrement} command.
      *
      * @param cellIncrement CellIncrement command object
      */
@@ -62,7 +62,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits {@link InputCell} command.
+     * States exact string that should be added to  the java file when visitor visits {@link InputCell} command.
      *
      * @param inputCell InputCell command object
      */
@@ -77,7 +77,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits {@link NextCell} command.
+     * States exact string that should be added to  the java file when visitor visits {@link NextCell} command.
      *
      * @param nextCell NextCell command object
      */
@@ -89,7 +89,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits {@link PreviousCell} command.
+     * States exact string that should be added to  the java file when visitor visits {@link PreviousCell} command.
      *
      * @param previousCell PreviousCell command object
      */
@@ -101,7 +101,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact text that should be added to the java file when visitor visits {@link PrintCell} command.
+     * States exact text that should be added to  the java file when visitor visits {@link PrintCell} command.
      *
      * @param printCell PrintCell command object
      */
@@ -114,7 +114,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
     }
 
     /**
-     * States exact string that should be added to the java file when visitor visits {@link Cycle} command.
+     * States exact string that should be added to  the java file when visitor visits {@link Cycle} command.
      *
      * @param cycle Cycle command object
      */

@@ -25,7 +25,7 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 import java.util.Scanner;
 
 /**
- * {@link CommandVisitor} implementation for interpreting commands into actions.
+ * {@link CommandVisitor} implementation  for interpreting commands into actions.
  *
  * @author Alexander Aleksandrov
  */
@@ -43,7 +43,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link CellDecrement} object.
+     * States the logic when visitor is  called by {@link CellDecrement} object.
      *
      * @param cellDecrement CellDecrement command object
      */
@@ -54,7 +54,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link CellIncrement} object.
+     * States the logic when visitor is  called by {@link CellIncrement} object.
      *
      * @param cellIncrement CellIncrement command object
      */
@@ -65,7 +65,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link Cycle} object.
+     * States the logic when visitor is  called by {@link Cycle} object.
      *
      * @param cycle Cycle command object
      */
@@ -79,7 +79,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link InputCell} object.
+     * States the logic when visitor is  called by {@link InputCell} object.
      *
      * @param inputCell InputCell command object
      */
@@ -92,7 +92,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link NextCell} object.
+     * States the logic when visitor is  called by {@link NextCell} object.
      *
      * @param nextCell NextCell command object
      */
@@ -103,7 +103,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link PreviousCell} object.
+     * States the logic when visitor is  called by {@link PreviousCell} object.
      *
      * @param previousCell PreviousCell command object
      */
@@ -114,7 +114,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link PrintCell} object.
+     * States the logic when visitor is  called by {@link PrintCell} object.
      *
      * @param printCell PrintCell command object
      */
