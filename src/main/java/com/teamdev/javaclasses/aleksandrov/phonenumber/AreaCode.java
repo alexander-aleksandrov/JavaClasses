@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 /**
- * Area codes for phone numbers.
+ * Area code for phone numbers.
  *
  * @author Alexander Aleksandrov
  */

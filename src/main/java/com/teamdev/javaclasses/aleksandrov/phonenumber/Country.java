@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 /**
- * A list of countries
+ * A list of countries.
  *
  * @author Alexander Aleksandrov
  */

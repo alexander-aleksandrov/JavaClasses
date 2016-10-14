@@ -19,6 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
+/**
+ * Country phone codes.
+ *
+ * @author Alexander Aleksandrov
+ */
 public enum CountryCode {
 
     ANGUILLA("1-264", "Anguilla"),
@@ -33,10 +38,20 @@ public enum CountryCode {
         this.country = countryName;
     }
 
+    /**
+     * Gets country code from a record.
+     *
+     * @return String with a country code
+     */
     public String getCountryCode() {
         return countryCode;
     }
 
+    /**
+     * Gets country full name.
+     *
+     * @return String with a full name
+     */
     public String getCountryName() {
         return country;
     }
