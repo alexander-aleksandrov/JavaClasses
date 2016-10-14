@@ -20,17 +20,17 @@
 package com.teamdev.javaclasses.aleksandrov.money;
 
 /**
- * Represents different currencies.
+ * Represents different  currencies.
  *
  * @author Alexander Aleksandrov
  */
 public enum Currency {
     /**
-     * Dollars of United States of America
+     * Dollars  of United States of America
      */
     USD('$', "USD"),
     /**
-     * Great Britain Pounds
+     * Great  Britain Pounds
      */
     GBP('£', "GBP");
 
@@ -43,7 +43,7 @@ public enum Currency {
     }
 
     /**
-     * Gets the symbol of specified currency.
+     * Gets the symbol  of specified currency.
      *
      * @return char
      */
@@ -52,7 +52,7 @@ public enum Currency {
     }
 
     /**
-     * Gets international currency code.
+     * Gets  international currency code.
      *
      * @return String with currency code
      */

@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.money;
 
 /**
- * Class that allows to work with money as value object.
+ * Class  that allows to work with money as value object.
  *
  * @author Alexander Aleksandrov
  */
@@ -34,7 +34,7 @@ public class Money implements Comparable<Money> {
     }
 
     /**
-     * Gets currency.
+     * Gets  currency.
      *
      * @return Enum {@link Currency}
      */
@@ -43,7 +43,7 @@ public class Money implements Comparable<Money> {
     }
 
     /**
-     * Gets amount of money.
+     * Gets  amount of money.
      *
      * @return long value
      */
@@ -52,7 +52,7 @@ public class Money implements Comparable<Money> {
     }
 
     /**
-     * Builder for money object.
+     * Builder  for money object.
      */
     public static class Builder {
         public static Currency currency;
@@ -76,7 +76,7 @@ public class Money implements Comparable<Money> {
     }
 
     /**
-     * Constructor that takes Builder as a parameter.
+     * Constructor  that takes Builder as a parameter.
      *
      * @param builder {@link Builder} object
      */
@@ -86,7 +86,7 @@ public class Money implements Comparable<Money> {
     }
 
     /**
-     * Creates a new money object.
+     * Creates  a new money object.
      *
      * @param currencyCode String that contains international currency code
      * @param amount       long value of new amount
@@ -99,7 +99,7 @@ public class Money implements Comparable<Money> {
     }
 
     /**
-     * Compares amounts of moneys in case if they have the same currency.
+     * Compares  amounts of moneys in case if they have the same currency.
      *
      * @param o {@link Money} object
      * @return itn value less than zero in case if comparable is bigger, zero if equals, and more than zero if bigger
