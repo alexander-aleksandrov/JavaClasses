@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 /**
- * Country phone codes.
+ * Country phone  codes.
  *
  * @author Alexander Aleksandrov
  */
@@ -39,7 +39,7 @@ public enum CountryCode {
     }
 
     /**
-     * Gets country code from a record.
+     * Gets country  code from a record.
      *
      * @return String with a country code
      */
@@ -48,7 +48,7 @@ public enum CountryCode {
     }
 
     /**
-     * Gets country full name.
+     * Gets country  full name.
      *
      * @return String with a full name
      */

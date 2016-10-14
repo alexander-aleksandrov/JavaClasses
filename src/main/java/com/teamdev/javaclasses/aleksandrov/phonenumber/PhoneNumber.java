@@ -24,7 +24,7 @@ import com.sun.istack.internal.Nullable;
 import java.text.ParseException;
 
 /**
- * A class that allows to work with phone number as value object.
+ * A class  that allows to work with phone number as value object.
  *
  * @author Alexander Aleksandrov
  */
@@ -38,7 +38,7 @@ public final class PhoneNumber {
     private final String extensionNumber;
 
     /**
-     * Gets international country code.
+     * Gets  international country code.
      *
      * @return {@link CountryCode} enum
      */
@@ -47,7 +47,7 @@ public final class PhoneNumber {
     }
 
     /**
-     * Gets local to country area codes.
+     * Gets  local to country area codes.
      *
      * @return {@link AreaCode} enum
      */
@@ -56,7 +56,7 @@ public final class PhoneNumber {
     }
 
     /**
-     * Gets phone line number.
+     * Gets  phone line number.
      *
      * @return String with phone line number
      */
@@ -65,7 +65,7 @@ public final class PhoneNumber {
     }
 
     /**
-     * Gets Extension number.
+     * Gets  Extension number.
      *
      * @return String with extension number
      */
@@ -78,7 +78,7 @@ public final class PhoneNumber {
     }
 
     /**
-     * Builder for Phone Number.
+     * Builder  for Phone Number.
      */
     public static class Builder {
         private CountryCode countryCode;
@@ -87,7 +87,7 @@ public final class PhoneNumber {
         private String extensionNumber;
 
         /**
-         * Sets country code for this builder.
+         * Sets  country code for this builder.
          *
          * @param cc {@link CountryCode} enum
          * @return this Builder
@@ -98,7 +98,7 @@ public final class PhoneNumber {
         }
 
         /**
-         * Sets area code for this builder.
+         * Sets  area code for this builder.
          *
          * @param ac {@link AreaCode} enum
          * @return this Builder
@@ -109,7 +109,7 @@ public final class PhoneNumber {
         }
 
         /**
-         * Sets phone line number for this builder.
+         * Sets  phone line number for this builder.
          *
          * @param ln String with digits of line number
          * @return this Builder
@@ -120,7 +120,7 @@ public final class PhoneNumber {
         }
 
         /**
-         * Sets extension number for this builder.
+         * Sets  extension number for this builder.
          *
          * @param ex String with digits of extension number
          * @return this Builder
@@ -131,7 +131,7 @@ public final class PhoneNumber {
         }
 
         /**
-         * Calls constructor and passes itself to it.
+         * Calls  constructor and passes itself to it.
          *
          * @return {@link PhoneNumber} object
          */
@@ -149,7 +149,7 @@ public final class PhoneNumber {
     }
 
     /**
-     *  Creates a new phone number instance.
+     *  Creates  a new phone number instance.
      *
      * @return {@link PhoneNumber} object
      */
