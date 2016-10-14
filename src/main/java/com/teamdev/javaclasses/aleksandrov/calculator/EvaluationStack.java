@@ -26,7 +26,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * An output context of the model a stack that contains all results of calculations.
+ * An output  context of the model a stack that contains all results of calculations.
  *
  * @author Oleg Melnik
  * @author Alexander Aleksandrov`
@@ -38,7 +38,7 @@ public class EvaluationStack {
     private final Deque<BinaryOperator> operatorStack = new ArrayDeque<BinaryOperator>();
 
     /**
-     * Puts the number to stack.
+     * Puts  the number to stack.
      *
      * @param number double value of a number
      */
@@ -48,7 +48,7 @@ public class EvaluationStack {
     }
 
     /**
-     * Pops the last number out of stack.
+     * Pops  the last number out of stack.
      *
      * @return double number
      */
@@ -58,7 +58,7 @@ public class EvaluationStack {
     }
 
     /**
-     * Puts Binary operator to stack with checking priority and making appropriate calculation if it needed.
+     * Puts  Binary operator to stack with checking priority and making appropriate calculation if it needed.
      *
      * @param operator {@link BinaryOperator} object
      */
@@ -83,7 +83,7 @@ public class EvaluationStack {
     }
 
     /**
-     * Initiates calculation for all operators that have been stored in stack in case if expression is finished.
+     * Initiates  calculation for all operators that have been stored in stack in case if expression is finished.
      */
     public void finalCalculation() {
         while (!operatorStack.isEmpty()) {
@@ -97,7 +97,7 @@ public class EvaluationStack {
     }
 
     /**
-     * Pops last {@link BinaryOperator} out of stack.
+     * Pops  last {@link BinaryOperator} out of stack.
      *
      * @return {@link BinaryOperator} object
      */

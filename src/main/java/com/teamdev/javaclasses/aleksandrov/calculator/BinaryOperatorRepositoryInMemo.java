@@ -30,7 +30,7 @@ import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.
 import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.Priority.MEDIUM;
 
 /**
- * Implementation of {@link BinaryOperatorRepository} that stores all binary operators in memo.
+ * Implementation  of {@link BinaryOperatorRepository} that stores all binary operators in memo.
  *
  * @author Alexander Aleksandrov
  */
@@ -46,7 +46,7 @@ public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository 
     }};
 
     /**
-     * Gets a set of representations.
+     * Gets a set  of representations.
      *
      * @return Set of keys that represents binary operators
      */
@@ -56,7 +56,7 @@ public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository 
     }
 
     /**
-     * Gets some Binary operator according to representation.
+     * Gets some Binary  operator according to representation.
      *
      * @param representation
      * @return {@link BinaryOperator} object

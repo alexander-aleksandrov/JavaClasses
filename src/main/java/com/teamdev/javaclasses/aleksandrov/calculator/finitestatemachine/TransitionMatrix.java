@@ -22,7 +22,7 @@ package com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine;
 import java.util.Set;
 
 /**
- * An interface to describe a transition matrix.
+ * An interface to  describe a transition matrix.
  *
  * @param <State> Possible states
  * @author Oleg Melnik

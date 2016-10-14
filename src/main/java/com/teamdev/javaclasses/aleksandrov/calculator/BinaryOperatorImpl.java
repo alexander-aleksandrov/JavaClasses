@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Binary Operator logic implemented with Groovy script.
+ * Binary Operator  logic implemented with Groovy script.
  *
  * @author Oleg Melnik
  * @author Alexander Aleksandrov
@@ -44,7 +44,7 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
     private final Priority priority;
 
     /**
-     * Constructor that makes Binary operator object.
+     * Constructor  that makes Binary operator object.
      *
      * @param script   String that contain Groovy script.
      * @param priority Priority Enum of
@@ -55,7 +55,7 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
     }
 
     /**
-     * Calculates operation stored in this script with left and right operands.
+     * Calculates  operation stored in this script with left and right operands.
      *
      * @param leftOperand  double number
      * @param rightOperand double number
@@ -73,7 +73,7 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
     }
 
     /**
-     * Overrides compareTo method based on priority specified in {@link Priority} enum.
+     * Overrides  compareTo method based on priority specified in {@link Priority} enum.
      *
      * @param o Comparable object
      * @return int value less than 0 if object have a higher priority, 0 if equals, and more than 0 if object have lower priority

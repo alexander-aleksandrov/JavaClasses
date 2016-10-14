@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * A matrix of valid transitions between states.
+ * A matrix  of valid transitions between states.
  *
  * @author Oleg Melnik
  * @author Alexander Aleksandrov
@@ -42,7 +42,7 @@ public class CalculatorTransitions implements TransitionMatrix<CalculationState>
     }};
 
     /**
-     * Gets the initial state
+     * Gets the  initial state
      *
      * @return Enum initial state
      */
@@ -50,7 +50,7 @@ public class CalculatorTransitions implements TransitionMatrix<CalculationState>
         return CalculationState.START;
     }
     /**
-     * Gets the final state
+     * Gets the  final state
      *
      * @return Enum final state
      */
@@ -59,7 +59,7 @@ public class CalculatorTransitions implements TransitionMatrix<CalculationState>
     }
 
     /**
-     * Gets all possible allowed states in case of some current state.
+     * Gets all  possible allowed states in case of some current state.
      *
      * @param currentState Enum current state of machine
      * @return Set of Enum of allowed states
