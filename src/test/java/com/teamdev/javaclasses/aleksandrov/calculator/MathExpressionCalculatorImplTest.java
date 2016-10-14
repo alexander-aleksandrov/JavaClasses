@@ -32,7 +32,7 @@ public class MathExpressionCalculatorImplTest {
 
     private String mathEquation;
     private double expectedResult;
-    private final MathExpressionCalculator calculator = new FSMCalculator();
+    private final FSMCalculator calculator = new FSMCalculator();
 
     @Parameters
     public static Collection<Object[]> data() {

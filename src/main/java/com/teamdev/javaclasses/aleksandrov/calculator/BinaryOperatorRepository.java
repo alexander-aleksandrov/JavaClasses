@@ -21,7 +21,24 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
 
 import java.util.Set;
 
+/**
+ * An interface to work with repository of binary operators.
+ *
+ * @author Oleg Melnik
+ */
 public interface BinaryOperatorRepository {
+    /**
+     * Gets all kind of representations that describes binary operator.
+     *
+     * @return Full set of strings representing binary operator
+     */
     Set<String> getRepresentations();
+
+    /**
+     * Gets {@link BinaryOperator} object.
+     *
+     * @param represetation String with specific representation of operator
+     * @return BinaryOperator object
+     */
     BinaryOperator getBinaryOperator(String represetation);
 }

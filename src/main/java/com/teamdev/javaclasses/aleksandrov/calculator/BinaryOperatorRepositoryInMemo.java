@@ -21,6 +21,7 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -28,6 +29,11 @@ import java.util.Set;
 import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.Priority.LOW;
 import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.Priority.MEDIUM;
 
+/**
+ * Implementation of {@link BinaryOperatorRepository} that stores all binary operators in memo.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository {
 
     private static final Logger log = LoggerFactory.getLogger(BinaryOperatorRepositoryInMemo.class);
@@ -39,11 +45,22 @@ public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository 
         put("/", new BinaryOperatorImpl("leftOperand / rightOperand", MEDIUM));
     }};
 
+    /**
+     * Gets a set of representations.
+     *
+     * @return Set of keys that represents binary operators
+     */
     @Override
     public Set<String> getRepresentations() {
         return repository.keySet();
     }
 
+    /**
+     * Gets some Binary operator according to representation.
+     *
+     * @param representation
+     * @return {@link BinaryOperator} object
+     */
     @Override
     public BinaryOperator getBinaryOperator(String representation) {
         log.info("Someone requesting operator: " + representation);

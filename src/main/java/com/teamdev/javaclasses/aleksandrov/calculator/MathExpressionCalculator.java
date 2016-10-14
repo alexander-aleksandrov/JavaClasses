@@ -19,7 +19,18 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
-
+/**
+ * An interface for expression calculator that can evaluate simple expression contained of numbers and binary operators.
+ *
+ * @author Alexander Aleksandrov
+ */
 public interface MathExpressionCalculator {
+    /**
+     * Evaluates math expression and returns a result.
+     *
+     * @param equation String with math expression
+     * @return double result of calculation
+     * @throws IncorrectEvaluationException in case if expression was in wrong format
+     */
     double evaluate(String equation) throws IncorrectEvaluationException;
 }

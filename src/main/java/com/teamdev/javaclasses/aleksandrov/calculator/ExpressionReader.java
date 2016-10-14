@@ -22,24 +22,49 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Expression container that allows to work with it.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class ExpressionReader {
 
     private final String mathExpression;
     private static final Logger log = LoggerFactory.getLogger(ExpressionReader.class);
     private int position = 0;
 
+    /**
+     * Constructor that takes expression String as parameter.
+     *
+     * @param mathExpression
+     */
     public ExpressionReader(String mathExpression) {
         this.mathExpression = mathExpression;
     }
 
+    /**
+     * Gets a current position in expression.
+     *
+     * @return
+     */
     public int getPosition() {
         return position;
     }
 
+    /**
+     * Sets the position of current symbol in expression ro specific value.
+     *
+     * @param newposition
+     */
     public void setPosition(int newposition) {
         this.position = position + newposition;
     }
 
+    /**
+     * Parse the expression and passes a chunk of expression either it will be a number or a binary operator.
+     *
+     * @return String with next part of expression
+     */
     public String getMathExpression() {
         log.info("Current position is: " + getPosition());
         String remainedExpression = mathExpression.substring(getPosition());
@@ -68,7 +93,11 @@ public class ExpressionReader {
 
     }
 
-
+    /**
+     * Return true in case if there a still has something to read in expression.
+     *
+     * @return boolean
+     */
     public boolean hasMoreToRead() {
         return position < mathExpression.length() - 1;
     }

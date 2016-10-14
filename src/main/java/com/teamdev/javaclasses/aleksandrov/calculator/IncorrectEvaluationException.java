@@ -19,15 +19,31 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
+/**
+ * Exception that states that evaluation of math expression was corrupted by wrong format.
+ *
+ * @author Alexander Aleksandrov
+ */
 public class IncorrectEvaluationException extends Exception {
 
     private final int errorPosition;
 
+    /**
+     * Throws and shows a message and error position in expression.
+     *
+     * @param message       String with error message
+     * @param errorPosition A place of symbol in expression that has wrong format
+     */
     public IncorrectEvaluationException(String message, int errorPosition) {
         super(message);
         this.errorPosition = errorPosition;
     }
 
+    /**
+     * Returns a specific position in expression.
+     *
+     * @return int index of symbol
+     */
     public int getErrorPosition() {
         return errorPosition;
     }

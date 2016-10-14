@@ -31,6 +31,12 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Implementation of {@link StateRecognizer} allows to chose specific state and run a parser for it.
+ *
+ * @author Oleg Melnik
+ * @author Alexander Aleksandrov
+ */
 public class ParsingService implements StateRecognizer<
         ExpressionReader,
         EvaluationStack,
@@ -45,6 +51,14 @@ public class ParsingService implements StateRecognizer<
                     .put(CalculationState.FINISH, new EndOfExpressionParser())
                     .build();
 
+    /**
+     * Returns true in case if state parser was run well.
+     *
+     * @param reader        {@link ExpressionReader} object
+     * @param stack         {@link EvaluationStack} object
+     * @param possibleState State object
+     * @return boolean
+     */
     public boolean accept(ExpressionReader reader, EvaluationStack stack, CalculationState possibleState) {
         final ExpressionParser parser = parsers.get(possibleState);
         log.info("Next posible state is: " + possibleState);
