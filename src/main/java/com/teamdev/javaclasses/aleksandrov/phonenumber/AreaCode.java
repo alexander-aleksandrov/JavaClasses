@@ -19,6 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
+/**
+ * Area codes for phone numbers.
+ *
+ * @author Alexander Aleksandrov
+ */
 public enum AreaCode {
     ALABAMA("250"),
     ARISONА("480");

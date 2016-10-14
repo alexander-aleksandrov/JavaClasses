@@ -20,8 +20,14 @@
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 import com.sun.istack.internal.Nullable;
+
 import java.text.ParseException;
 
+/**
+ * A class that allows to work with phone number as value object.
+ *
+ * @author Alexander Aleksandrov
+ */
 public final class PhoneNumber {
     @Nullable
     private final CountryCode countryCode;
@@ -31,18 +37,38 @@ public final class PhoneNumber {
     @Nullable
     private final String extensionNumber;
 
+    /**
+     * Gets international country code.
+     *
+     * @return {@link CountryCode} enum
+     */
     public CountryCode getCountryCode() {
         return countryCode;
     }
 
+    /**
+     * Gets local to country area codes.
+     *
+     * @return {@link AreaCode} enum
+     */
     public AreaCode getAreaCode() {
         return areaCode;
     }
 
+    /**
+     * Gets phone line number.
+     *
+     * @return String with phone line number
+     */
     public String getPhoneLineNumber() {
         return phoneLineNumber;
     }
 
+    /**
+     * Gets Extension number.
+     *
+     * @return String with extension number
+     */
     public String getExtensionNumber() {
         return extensionNumber;
     }
@@ -51,32 +77,64 @@ public final class PhoneNumber {
         return new Builder();
     }
 
+    /**
+     * Builder for Phone Number.
+     */
     public static class Builder {
         private CountryCode countryCode;
         private AreaCode areaCode;
         private String phoneLineNumber;
         private String extensionNumber;
 
+        /**
+         * Sets country code for this builder.
+         *
+         * @param cc {@link CountryCode} enum
+         * @return this Builder
+         */
         public Builder setCountryCode(CountryCode cc) {
             countryCode = cc;
             return this;
         }
 
+        /**
+         * Sets area code for this builder.
+         *
+         * @param ac {@link AreaCode} enum
+         * @return this Builder
+         */
         public Builder setAreaCode(AreaCode ac) {
             areaCode = ac;
             return this;
         }
 
+        /**
+         * Sets phone line number for this builder.
+         *
+         * @param ln String with digits of line number
+         * @return this Builder
+         */
         public Builder setPhoneLineNumber(String ln) {
             phoneLineNumber = ln;
             return this;
         }
 
-        public Builder setExtention(String ex) {
+        /**
+         * Sets extension number for this builder.
+         *
+         * @param ex String with digits of extension number
+         * @return this Builder
+         */
+        public Builder setExtension(String ex) {
             extensionNumber = ex;
             return this;
         }
 
+        /**
+         * Calls constructor and passes itself to it.
+         *
+         * @return {@link PhoneNumber} object
+         */
         public PhoneNumber build() {
             return new PhoneNumber(this);
         }
@@ -90,6 +148,11 @@ public final class PhoneNumber {
 
     }
 
+    /**
+     *  Creates a new phone number instance.
+     *
+     * @return {@link PhoneNumber} object
+     */
     public static PhoneNumber newPhoneNumber() {
 
         CountryCode cc = CountryCode.valueOf();
@@ -97,7 +160,7 @@ public final class PhoneNumber {
                 .setCountryCode()
                 .setAreaCode()
                 .setPhoneLineNumber()
-                .setExtention()
+                .setExtension()
                 .build();
         return ph;
     }

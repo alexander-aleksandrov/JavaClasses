@@ -19,6 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
+/**
+ * A list of countries
+ *
+ * @author Alexander Aleksandrov
+ */
 public enum Country {
     UNITED_STATES("United States"),
     CANADA("Canada"),
