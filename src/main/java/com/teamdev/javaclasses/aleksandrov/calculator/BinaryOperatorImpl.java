@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
  * Binary Operator logic implemented with Groovy script.
  *
  * @author Oleg Melnik
+ * @author Alexander Aleksandrov
  */
 public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
 

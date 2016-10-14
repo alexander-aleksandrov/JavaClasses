@@ -21,6 +21,12 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
 
 import com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine.MachineRunner;
 
+/**
+ * Finite state machine realisation in view of calculator.
+ *
+ * @author Oleg Melnik
+ * @author Alexander Aleksandrov
+ */
 public class FSMCalculator extends MachineRunner<
         Double,
         CalculationState,
@@ -28,15 +34,29 @@ public class FSMCalculator extends MachineRunner<
         EvaluationStack,
         ParsingService,
         CalculatorTransitions> implements MathExpressionCalculator {
-
+    /**
+     * Constructor that takes {@link ParsingService} as Recognizer and {@link CalculatorTransitions} as matrix.
+     */
     public FSMCalculator() {
         super(new CalculatorTransitions(), new ParsingService());
     }
 
+    /**
+     * Evaluates math expression and shows the result.
+     *
+     * @param equation String that contains math expression
+     * @return double Result of all moves through expression.
+     * @throws IncorrectEvaluationException
+     */
     public double evaluate(String equation) throws IncorrectEvaluationException {
         return move(new ExpressionReader(equation), new EvaluationStack());
     }
 
+    /**
+     * Throws {@link IllegalStateException} in case if expression is not valid and machine don't know next state.
+     *
+     * @param expressionReader {@link ExpressionReader} object
+     */
     @Override
     protected void deadlock(ExpressionReader expressionReader) {
         throw new IllegalStateException("Syntax error at position " + expressionReader.getPosition());

@@ -34,7 +34,7 @@ public class BinaryOperatorParser implements ExpressionParser {
     private final BinaryOperatorRepository reposytory = new BinaryOperatorRepositoryInMemo();
 
     /**
-     * Returns boolean in case if expression was parsed correctly and pushes binary operators to stack according to priority.
+     * Returns boolean in case if expression was parsed correctly and pushes binary operator object to stack and changes current position in expression.
      *
      * @param reader ExpressionReader object
      * @param stack  EvaluationStack object

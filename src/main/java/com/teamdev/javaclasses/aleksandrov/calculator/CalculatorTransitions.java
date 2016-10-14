@@ -26,6 +26,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * A matrix of valid transitions between states.
+ *
+ * @author Oleg Melnik
+ * @author Alexander Aleksandrov
+ */
 public class CalculatorTransitions implements TransitionMatrix<CalculationState> {
 
     private final Map<CalculationState, Set<CalculationState>> transitions = new HashMap<CalculationState, Set<CalculationState>>() {{
@@ -35,14 +41,29 @@ public class CalculatorTransitions implements TransitionMatrix<CalculationState>
         put(CalculationState.FINISH, EnumSet.noneOf(CalculationState.class));
     }};
 
+    /**
+     * Gets the initial state
+     *
+     * @return Enum initial state
+     */
     public CalculationState getStartState() {
         return CalculationState.START;
     }
-
+    /**
+     * Gets the final state
+     *
+     * @return Enum final state
+     */
     public CalculationState getFinishState() {
         return CalculationState.FINISH;
     }
 
+    /**
+     * Gets all possible allowed states in case of some current state.
+     *
+     * @param currentState Enum current state of machine
+     * @return Set of Enum of allowed states
+     */
     public Set<CalculationState> getPossibleTransitions(CalculationState currentState) {
         return transitions.get(currentState);
     }
