@@ -19,7 +19,19 @@
  */
 package com.teamdev.javaclasses.aleksandrov.timetoanglecalculator;
 
+/**
+ * Implements {@link ClockHandsAngleCalculator} interface
+ *
+ * @author Alexander Aleksandrov
+ */
 public class ClockHandsAngleCalculatorImpl implements ClockHandsAngleCalculator {
+    /**
+     * Returns an angle between clock hands.
+     *
+     * @param hours24Format int value of hours
+     * @param minutes int value of minutes
+     * @return double angle between clock hands
+     */
     public double getMinAngleBetweenClockHands(int hours24Format, int minutes) {
 
         if (hours24Format > 24 | hours24Format < 0) {

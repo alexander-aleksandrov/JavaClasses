@@ -19,6 +19,18 @@
  */
 package com.teamdev.javaclasses.aleksandrov.timetoanglecalculator;
 
+/**
+ * An interface that allows to calculate an angle between clock hands
+ *
+ * @author Alexander Aleksandrov
+ */
 public interface ClockHandsAngleCalculator {
+    /**
+     * Returns minimum angle between clock hands.
+     *
+     * @param hours   int value of hours
+     * @param minutes int value of minutes
+     * @return double angle
+     */
     double getMinAngleBetweenClockHands(int hours, int minutes);
 }
