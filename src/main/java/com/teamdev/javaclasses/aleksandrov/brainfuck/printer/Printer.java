@@ -32,4 +32,5 @@ public interface Printer {
      * @param text List of Strings
      */
     void printToFile(List<String> text);
+    void printLine(String text);
 }

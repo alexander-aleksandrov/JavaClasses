@@ -22,7 +22,7 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
 import java.io.*;
 
 /**
- * Allows to insert draft generated code into a specific place in template generated file.
+ * Allows to insert a text into a specific place in file.
  *
  * @author Alexander Aleksandrov
  */

@@ -22,7 +22,7 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
 import java.io.*;
 
 /**
- * This class allows to generate a new file similar to specified template.
+ * Generates a new file similar to specified template.
  *
  * @author Alexander Aleksandrov
  */
@@ -31,7 +31,7 @@ public class JavaFileGenerator {
     private final File templateFile = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaBrainFuckTemplate.txt");
 
     /**
-     * Copies a content from specified   template to newly created file.
+     * Copies a content from specified template to newly created file.
      *
      * @param output File with template
      * @return File object with Java text from specified template

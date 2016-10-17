@@ -36,7 +36,5 @@ public class Main {
     public static void main(String[] args) {
         BrainFuckInterpreter interpreter = new BrainFuckInterpreter();
         interpreter.execute(program);
-        BrainFuckToJavaCompiler compiler = new BrainFuckToJavaCompiler();
-        compiler.execute(program, output);
     }
 }

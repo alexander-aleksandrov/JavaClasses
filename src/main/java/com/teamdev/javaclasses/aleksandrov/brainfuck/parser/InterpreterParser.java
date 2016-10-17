@@ -24,14 +24,14 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 import java.util.*;
 
 /**
- * Parser of Brain Fuck source  code to command list.
+ * Parser of Brain Fuck source code to command list.
  *
  * @author Alexander Aleksandrov
  */
 public class InterpreterParser {
 
     /**
-     * Goes through a string of Brain  fuck code and creates a commands for each char.
+     * Goes through a string of Brain fuck code and creates a commands for each char.
      *
      * @param codeString String with text in Brain Fuck format
      * @return List of Command objects
@@ -47,7 +47,7 @@ public class InterpreterParser {
         return stack.pop();
     }
 
-    /*Puts a Command object to stack  according to specific char.*/
+    /*Puts a Command object to stack according to specific char.*/
     private void createCommand(char commandIdentifier, Deque<List<Command>> stackOfCommands) {
         switch (commandIdentifier) {
             case '+':

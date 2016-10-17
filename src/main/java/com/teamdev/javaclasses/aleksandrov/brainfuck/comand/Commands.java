@@ -31,7 +31,6 @@ public enum Commands {
 
     Commands(CellIncrement cellIncrement) {
         this.cellIncrement = cellIncrement;
-
     }
     Commands(CellDecrement cellDecrement) {
         this.cellDecrement = cellDecrement;

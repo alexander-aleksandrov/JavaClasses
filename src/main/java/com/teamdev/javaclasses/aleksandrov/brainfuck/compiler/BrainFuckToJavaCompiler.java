@@ -30,14 +30,14 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Performs compilation of  BrainFuck source code to Java code.
+ * Performs compilation of BrainFuck source code to Java code.
  *
  * @author Alexander Aleksandrov
  */
 public class BrainFuckToJavaCompiler {
 
     /**
-     * Performs a visitor  pattern for every parsed command.
+     * Performs a visitor pattern for every parsed command.
      *
      * @param program File with BrainFuck unformatted source code.
      * @param output  File with generated Java code.
@@ -50,23 +50,16 @@ public class BrainFuckToJavaCompiler {
         final String programText;
 
         programText = reader.read(program);
-
         generator.generateTemplate(output);
-
         System.out.println("Program text: ");
         System.out.println(programText);
         System.out.println("Result: ");
-
         final List<Command> commands = parser.parse(programText);
-
         final BrainFuckToJavaCompilerVisitor visitor =
                 new BrainFuckToJavaCompilerVisitor();
-
         for (Command command : commands) {
             command.accept(visitor);
         }
-
         javaFile.generateJavaFile();
-
     }
 }

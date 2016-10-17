@@ -25,7 +25,7 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 import java.util.Scanner;
 
 /**
- * {@link CommandVisitor} implementation  for interpreting commands into actions.
+ * Performs BrainFuck commands.
  *
  * @author Alexander Aleksandrov
  */
@@ -34,38 +34,29 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     private final Memory memory = new Memory(1000);
 
     /**
-     * Gets the memory array.
-     *
-     * @return Memory object
-     */
-    public Memory getMemory() {
-        return memory;
-    }
-
-    /**
-     * States the logic when visitor is  called by {@link CellDecrement} object.
+     * Decrements current memory cell value.
      *
      * @param cellDecrement CellDecrement command object
      */
-    @Override
+//    @Override
     public void visit(CellDecrement cellDecrement) {
         int currentValue = memory.getCurrentCellValue();
         memory.setCurrentCellValue(--currentValue);
     }
 
     /**
-     * States the logic when visitor is  called by {@link CellIncrement} object.
+     * Increments current memory cell value.
      *
      * @param cellIncrement CellIncrement command object
      */
-    @Override
+//    @Override
     public void visit(CellIncrement cellIncrement) {
         int currentValue = memory.getCurrentCellValue();
         memory.setCurrentCellValue(++currentValue);
     }
 
     /**
-     * States the logic when visitor is  called by {@link Cycle} object.
+     * Executes all commands in a cycle.
      *
      * @param cycle Cycle command object
      */
@@ -79,7 +70,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is  called by {@link InputCell} object.
+     * Accepts a value typed by user and place it to current memory cell .
      *
      * @param inputCell InputCell command object
      */
@@ -92,7 +83,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is  called by {@link NextCell} object.
+     * Moves to the next memory cell.
      *
      * @param nextCell NextCell command object
      */
@@ -103,7 +94,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is  called by {@link PreviousCell} object.
+     * Moves to the previous memory cell.
      *
      * @param previousCell PreviousCell command object
      */
@@ -114,7 +105,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is  called by {@link PrintCell} object.
+     * Prints current cell value to console.
      *
      * @param printCell PrintCell command object
      */

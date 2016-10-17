@@ -22,57 +22,44 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
 
 /**
- * This interface defines classes that the  visitor can work with.
+ * This interface defines types of acceptor classes that the visitor can work with.
  *
  * @author Alexander Aleksandrov
  */
 public interface CommandVisitor {
+
     /**
-     * Allows to describe actions in specific visitor  class for CellIncrement command.
-     *
-     * @param cellIncrement CellIncrement command object
+     * {@inheritDoc}
      */
     void visit(Commands.CellIncrement cellIncrement);
 
     /**
-     * Allows to describe actions in specific visitor  class for CellDecrement command.
-     *
-     * @param cellDecrement CellDecrement command object
+     * {@inheritDoc}
      */
     void visit(Commands.CellDecrement cellDecrement);
 
     /**
-     * Allows to describe actions in specific visitor  class for InputCell command.
-     *
-     * @param inputCell InputCell command object
+     * {@inheritDoc}
      */
     void visit(InputCell inputCell);
 
     /**
-     * Allows to describe actions in specific visitor  class for PrintCell command.
-     *
-     * @param printCell PrintCell command object
+     * {@inheritDoc}
      */
     void visit(PrintCell printCell);
 
     /**
-     * Allows to describe actions in specific visitor  class for NextCell command.
-     *
-     * @param nextCell NextCell command object
+     * {@inheritDoc}
      */
     void visit(NextCell nextCell);
 
     /**
-     * Allows to describe actions in specific visitor  class for PreviousCell command.
-     *
-     * @param previousCell PreviousCell command object
+     * {@inheritDoc}
      */
     void visit(PreviousCell previousCell);
 
     /**
-     * Allows to describe actions in specific visitor  class for Cycle command.
-     *
-     * @param cycle Cycle command object
+     * {@inheritDoc}
      */
     void visit(Cycle cycle);
 
