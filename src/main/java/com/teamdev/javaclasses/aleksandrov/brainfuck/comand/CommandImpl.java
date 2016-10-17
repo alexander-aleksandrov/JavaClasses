@@ -22,15 +22,16 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 /**
- * Allows to use visitor pattern by specifying different acceptor classes.
+ * {@inheritDoc}
  *
  * @author Alexander Aleksandrov
  */
-public interface Command {
+public abstract class CommandImpl implements Command{
     /**
-     * Tells to visitor go to itself implementation related to {@code this} class.
-     *
-     * @param visitor {@link CommandVisitor} object
+     * {@inheritDoc}
      */
-    void accept(CommandVisitor visitor);
+    @Override
+    public void accept(CommandVisitor visitor)  {
+        visitor.visit(this);
+    }
 }

@@ -84,7 +84,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
      * @param inputCell InputCell command object
      */
     @Override
-    public void visit(InputCell inputCell) {
+    public void visit(CommandImpl inputCell) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter an integer: ");
         int value = keyboard.nextInt();

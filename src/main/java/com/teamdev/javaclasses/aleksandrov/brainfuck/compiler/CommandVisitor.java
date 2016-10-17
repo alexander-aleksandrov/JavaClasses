@@ -32,14 +32,14 @@ public interface CommandVisitor {
      *
      * @param cellIncrement CellIncrement command object
      */
-    void visit(CellIncrement cellIncrement);
+    void visit(Commands.CellIncrement cellIncrement);
 
     /**
      * Allows to describe actions in specific visitor  class for CellDecrement command.
      *
      * @param cellDecrement CellDecrement command object
      */
-    void visit(CellDecrement cellDecrement);
+    void visit(Commands.CellDecrement cellDecrement);
 
     /**
      * Allows to describe actions in specific visitor  class for InputCell command.
@@ -75,5 +75,7 @@ public interface CommandVisitor {
      * @param cycle Cycle command object
      */
     void visit(Cycle cycle);
+
+    void visit(CommandImpl command);
 
 }

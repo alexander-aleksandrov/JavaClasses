@@ -22,19 +22,10 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 /**
- * Serves to link a visitor object  to realisation related to CellIncrement command.
+ * {@inheritDoc}
  *
  * @author Alexander Aleksandrov
  */
-public class CellIncrement implements Command {
+public class CellIncrement extends CommandImpl {
 
-    /**
-     * Tells to visitor go to itself  implementation related to this class.
-     *
-     * @param visitor CommandVisitor object
-     */
-    @Override
-    public void accept(CommandVisitor visitor) {
-        visitor.visit(this);
-    }
 }

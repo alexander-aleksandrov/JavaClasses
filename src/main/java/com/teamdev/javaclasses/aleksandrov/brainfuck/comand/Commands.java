@@ -19,18 +19,24 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
-
 /**
- * Allows to use visitor pattern by specifying different acceptor classes.
- *
- * @author Alexander Aleksandrov
+ * @author a.aleksandrov
  */
-public interface Command {
-    /**
-     * Tells to visitor go to itself implementation related to {@code this} class.
-     *
-     * @param visitor {@link CommandVisitor} object
-     */
-    void accept(CommandVisitor visitor);
+public enum Commands {
+    CELL_DECREMENT(new CellDecrement()),
+    CELL_INCREMENT(new CellIncrement());
+
+    private CellIncrement cellIncrement;
+    private CellDecrement cellDecrement;
+
+    Commands(CellIncrement cellIncrement) {
+        this.cellIncrement = cellIncrement;
+
+    }
+    Commands(CellDecrement cellDecrement) {
+        this.cellDecrement = cellDecrement;
+    }
+
+    public static class CellDecrement extends CommandImpl {}
+    public static class CellIncrement extends CommandImpl {}
 }

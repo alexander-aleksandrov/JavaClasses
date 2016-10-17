@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
 /**
- * Provides utility methods to work with memory cell objects
+ * A model of memory made of indexed cells that is used for execution of BrainFuck commands and storing results.
  *
  * @author Alexander Aleksandrov
  */
@@ -30,25 +30,25 @@ public class Memory {
     private int pointer = 0;
 
     /**
-     * Instantiates a new Array of int values.
+     * Creates a new empty {@code Array} of specified length.
      *
-     * @param memorySize Array length
+     * @param memorySize Desired number of cells
      */
     public Memory(int memorySize) {
         cells = new int[memorySize];
     }
 
     /**
-     * Sets a new value  into a currently active cell specified by pointer.
+     * Stores a value into a currently active cell specified by pointer.
      *
-     * @param newValue Numeric value of current cell
+     * @param newValue New value
      */
     public void setCurrentCellValue(int newValue) {
         cells[pointer] = newValue;
     }
 
     /**
-     * Sets a new position  of cell pointer.
+     * Sets a new position of cell pointer.
      *
      * @param pointer An index number of the cell
      */
@@ -57,7 +57,7 @@ public class Memory {
     }
 
     /**
-     * Gets a current  pointer position.
+     * Gets a current pointer position.
      *
      * @return Value stored in pointer
      */
@@ -66,7 +66,7 @@ public class Memory {
     }
 
     /**
-     * Gets the current value  stored in a cell specified by pointer.
+     * Gets the current value stored in a cell specified by pointer.
      *
      * @return The value stored in the specified cell
      */

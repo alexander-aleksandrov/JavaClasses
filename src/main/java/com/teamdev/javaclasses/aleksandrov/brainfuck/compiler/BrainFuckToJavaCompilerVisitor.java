@@ -43,7 +43,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
      * @param cellDecrement CellDecrement command object
      */
     @Override
-    public void visit(CellDecrement cellDecrement) {
+    public void visit(Commands.CellDecrement cellDecrement) {
         List<String> text = Lists.newArrayList();
         text.add("memory[pointer]--;");
         printer.printToFile(text);
@@ -55,7 +55,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
      * @param cellIncrement CellIncrement command object
      */
     @Override
-    public void visit(CellIncrement cellIncrement) {
+    public void visit(Commands.CellIncrement cellIncrement) {
         List<String> text = Lists.newArrayList();
         text.add("memory[pointer]++;");
         printer.printToFile(text);
@@ -133,4 +133,8 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
         printer.printToFile(text);
     }
 
+    @Override
+    public void visit(CommandImpl command) {
+
+    }
 }
