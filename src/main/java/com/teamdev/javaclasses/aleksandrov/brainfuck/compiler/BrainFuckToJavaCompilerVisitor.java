@@ -20,10 +20,16 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import com.google.common.collect.Lists;
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.AbstractCommand;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Commands;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Cycle;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.InputCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.FilePrinter;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.printer.Printer;
-
 import java.io.File;
 import java.util.List;
 

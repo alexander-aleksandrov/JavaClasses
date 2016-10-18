@@ -23,7 +23,6 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.parser.InterpreterParser;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.FileReaderImp;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.Reader;
-
 import java.io.File;
 import java.util.List;
 

@@ -19,7 +19,13 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.AbstractCommand;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Commands;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Cycle;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.InputCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
 
 /**
  * This interface defines types of acceptor classes that the visitor can work with.

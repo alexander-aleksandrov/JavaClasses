@@ -19,9 +19,7 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.BrainFuckToJavaCompiler;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter.BrainFuckInterpreter;
-
 import java.io.File;
 
 /**
