@@ -63,6 +63,6 @@ public interface CommandVisitor {
      */
     void visit(Cycle cycle);
 
-    void visit(CommandImpl command);
+    void visit(AbstractCommand command);
 
 }

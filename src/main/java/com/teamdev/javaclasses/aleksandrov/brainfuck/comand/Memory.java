@@ -30,7 +30,7 @@ public class Memory {
     private int pointer = 0;
 
     /**
-     * Creates a new empty {@code Array} of specified length.
+     * Creates a Memory object of desired size.
      *
      * @param memorySize Desired number of cells
      */
@@ -41,10 +41,10 @@ public class Memory {
     /**
      * Stores a value into a currently active cell specified by pointer.
      *
-     * @param newValue New value
+     * @param value New value
      */
-    public void setCurrentCellValue(int newValue) {
-        cells[pointer] = newValue;
+    public void setCellValue(int value) {
+        cells[pointer] = value;
     }
 
     /**
@@ -70,7 +70,7 @@ public class Memory {
      *
      * @return The value stored in the specified cell
      */
-    public int getCurrentCellValue() {
+    public int getCellValue() {
         return cells[pointer];
     }
 

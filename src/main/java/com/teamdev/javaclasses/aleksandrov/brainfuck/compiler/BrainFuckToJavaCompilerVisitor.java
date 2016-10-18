@@ -113,7 +113,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
      * {@inheritDoc}
      */
     @Override
-    public void visit(CommandImpl command) {
+    public void visit(AbstractCommand command) {
 
     }
 }

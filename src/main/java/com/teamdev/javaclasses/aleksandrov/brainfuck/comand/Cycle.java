@@ -19,8 +19,6 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
-
 import java.util.List;
 
 /**
@@ -28,7 +26,7 @@ import java.util.List;
  *
  * @author Alexander Aleksandrov
  */
-public class Cycle extends CommandImpl {
+public class Cycle extends AbstractCommand {
 
     private final List<Command> innerCycleCommands;
 

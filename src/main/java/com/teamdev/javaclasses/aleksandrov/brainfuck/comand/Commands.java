@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
 /**
- * @author a.aleksandrov
+ * @author Alexander Aleksandrov
  */
 public enum Commands {
     CELL_DECREMENT(new CellDecrement()),
@@ -36,6 +36,6 @@ public enum Commands {
         this.cellDecrement = cellDecrement;
     }
 
-    public static class CellDecrement extends CommandImpl {}
-    public static class CellIncrement extends CommandImpl {}
+    public static class CellDecrement extends AbstractCommand {}
+    public static class CellIncrement extends AbstractCommand {}
 }

@@ -19,12 +19,10 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
-
 /**
  * {@inheritDoc}
  *
  * @author Alexander Aleksandrov
  */
-public class NextCell extends CommandImpl {
+public class NextCell extends AbstractCommand {
 }

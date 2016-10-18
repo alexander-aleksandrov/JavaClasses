@@ -19,7 +19,15 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Cycle;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.InputCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Memory;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 import java.util.Scanner;
@@ -40,8 +48,8 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
      */
 //    @Override
     public void visit(CellDecrement cellDecrement) {
-        int currentValue = memory.getCurrentCellValue();
-        memory.setCurrentCellValue(--currentValue);
+        int currentValue = memory.getCellValue();
+        memory.setCellValue(--currentValue);
     }
 
     /**
@@ -51,8 +59,8 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
      */
 //    @Override
     public void visit(CellIncrement cellIncrement) {
-        int currentValue = memory.getCurrentCellValue();
-        memory.setCurrentCellValue(++currentValue);
+        int currentValue = memory.getCellValue();
+        memory.setCellValue(++currentValue);
     }
 
     /**
@@ -62,7 +70,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
      */
     @Override
     public void visit(Cycle cycle) {
-        while (memory.getCurrentCellValue() > 0) {
+        while (memory.getCellValue() > 0) {
             for (Command command : cycle.getInnerCycleCommands()) {
                 command.accept(this);
             }
@@ -75,11 +83,11 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
      * @param inputCell InputCell command object
      */
     @Override
-    public void visit(CommandImpl inputCell) {
+    public void visit(InputCell inputCell) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter an integer: ");
         int value = keyboard.nextInt();
-        memory.setCurrentCellValue(value);
+        memory.setCellValue(value);
     }
 
     /**
@@ -111,7 +119,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
      */
     @Override
     public void visit(PrintCell printCell) {
-        int currentValue = memory.getCurrentCellValue();
+        int currentValue = memory.getCellValue();
         char compiledChar = (char) currentValue;
         System.out.print(compiledChar);
     }
