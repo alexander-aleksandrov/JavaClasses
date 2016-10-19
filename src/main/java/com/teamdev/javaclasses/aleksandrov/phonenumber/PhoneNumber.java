@@ -153,21 +153,21 @@ public final class PhoneNumber {
      *
      * @return {@link PhoneNumber} object
      */
-    public static PhoneNumber newPhoneNumber() {
+//    public static PhoneNumber newPhoneNumber() {
+//
+//        CountryCode cc = CountryCode.valueOf();
+//        PhoneNumber ph = PhoneNumber.newBuilder()
+//                .setCountryCode()
+//                .setAreaCode()
+//                .setPhoneLineNumber()
+//                .setExtension()
+//                .build();
+//        return ph;
+//    }
 
-        CountryCode cc = CountryCode.valueOf();
-        PhoneNumber ph = PhoneNumber.newBuilder()
-                .setCountryCode()
-                .setAreaCode()
-                .setPhoneLineNumber()
-                .setExtension()
-                .build();
-        return ph;
-    }
-
-    public final static PhoneNumber parse(String input) throws ParseException {
-        input.toCharArray();
-    }
+//    public final static PhoneNumber parse(String input) throws ParseException {
+//        input.toCharArray();
+//    }
 
     @Override
     public int hashCode() {
@@ -177,15 +177,5 @@ public final class PhoneNumber {
     @Override
     public boolean equals(Object obj) {
         return true;
-    }
-
-    public static void main(String[] args) {
-        String phoneNumber = "+38065864578";
-
-        try {
-            parse(phoneNumber);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 }
