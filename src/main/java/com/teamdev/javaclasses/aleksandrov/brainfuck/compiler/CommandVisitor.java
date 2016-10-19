@@ -20,7 +20,8 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.AbstractCommand;
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Commands;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Cycle;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.InputCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
@@ -37,12 +38,12 @@ public interface CommandVisitor {
     /**
      * {@inheritDoc}
      */
-    void visit(Commands.CellIncrement cellIncrement);
+    void visit(CellIncrement cellIncrement);
 
     /**
      * {@inheritDoc}
      */
-    void visit(Commands.CellDecrement cellDecrement);
+    void visit(CellDecrement cellDecrement);
 
     /**
      * {@inheritDoc}

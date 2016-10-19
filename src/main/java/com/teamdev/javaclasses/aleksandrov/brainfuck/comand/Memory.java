@@ -41,7 +41,7 @@ public class Memory {
     /**
      * Stores a value into a currently active cell specified by pointer.
      *
-     * @param value New value
+     * @param value Value
      */
     public void setCellValue(int value) {
         cells[pointer] = value;

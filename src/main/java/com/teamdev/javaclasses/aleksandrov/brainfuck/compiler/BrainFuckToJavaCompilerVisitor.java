@@ -21,8 +21,9 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import com.google.common.collect.Lists;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.AbstractCommand;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Commands;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Cycle;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.InputCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
@@ -47,7 +48,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
      * {@inheritDoc}
      */
     @Override
-    public void visit(Commands.CellDecrement cellDecrement) {
+    public void visit(CellDecrement cellDecrement) {
         printer.printLine("memory[pointer]--;");
     }
 
@@ -55,7 +56,7 @@ public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
      * {@inheritDoc}
      */
     @Override
-    public void visit(Commands.CellIncrement cellIncrement) {
+    public void visit(CellIncrement cellIncrement) {
         printer.printLine("memory[pointer]++;");
     }
 
