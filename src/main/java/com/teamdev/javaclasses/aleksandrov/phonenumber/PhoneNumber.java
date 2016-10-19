@@ -19,8 +19,7 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
-import com.sun.istack.internal.Nullable;
-
+import javax.annotation.Nullable;
 import java.text.ParseException;
 
 /**
