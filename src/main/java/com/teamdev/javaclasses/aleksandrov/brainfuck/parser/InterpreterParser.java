@@ -38,7 +38,8 @@ public class InterpreterParser {
      */
     public List<Command> parse(String codeString) {
 
-        final Deque<List<Command>> stack = new ArrayDeque<>();
+        final Deque<List<Command>> stack = new ArrayDeque<List<Command>>();
+
         stack.push(new ArrayList<>());
 
         for (Character commandIdentifier : codeString.toCharArray()) {
