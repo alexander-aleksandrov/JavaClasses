@@ -20,43 +20,51 @@
 package com.teamdev.javaclasses.aleksandrov.money;
 
 /**
- * Represents different  currencies.
+ * Contains only few records (USD, GBP, CHF) for this specific example. Currency codes and symbols are taken from "ISO 4217 Currency Codes."
  *
  * @author Alexander Aleksandrov
  */
 public enum Currency {
     /**
-     * Dollars  of United States of America
+     * United States Dollar
      */
-    USD('$', "USD"),
+    USD(new int[]{36}, "USD"),
     /**
-     * Great  Britain Pounds
+     * United Kingdom Pound
      */
-    GBP('£', "GBP");
+    GBP(new int[]{163}, "GBP"),
+    /**
+     * Switzerland Franc
+     */
+    CHF(new int[]{67, 72, 70}, "CHF");
 
-    private final char symbol;
+    private final int[] symbolUnicodeDecimal;
     private final String code;
 
-    Currency(char symbol, String code) {
-        this.symbol = symbol;
+    Currency(int[] symbolUnicodeDecimal, String code) {
+        this.symbolUnicodeDecimal = symbolUnicodeDecimal;
         this.code = code;
     }
 
     /**
-     * Gets the symbol  of specified currency.
+     * Gets the symbolic representation of specified currency.
      *
-     * @return char
+     * @return A string with representation.
      */
-    public char getSymbol() {
+    public String getSymbol() {
+        String symbol = "";
+        for (int unicode : symbolUnicodeDecimal) {
+            symbol = symbol + Character.toString((char) unicode);
+        }
         return symbol;
     }
 
     /**
-     * Gets  international currency code.
+     * Gets currency code.
      *
-     * @return String with currency code
+     * @return A string with currency code
      */
-    public String getCurrecyCode() {
+    public String getCurrencyCode() {
         return code;
     }
 }

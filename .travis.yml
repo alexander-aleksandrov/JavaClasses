@@ -1,2 +1,6 @@
 language: java
-script: gradle check
+
+before_install:
+  - chmod +x gradlew
+
+script: ./gradlew check --stacktrace
