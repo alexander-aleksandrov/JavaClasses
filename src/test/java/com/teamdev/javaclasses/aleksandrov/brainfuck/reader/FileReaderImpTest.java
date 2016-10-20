@@ -19,8 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.reader;
 
+import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.TempFiles;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,34 +31,36 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+@DisplayName("File reader should")
 public class FileReaderImpTest {
-    private final File program = new File("C:/Projects/JavaClasses/src/main/resources/files/FileReaderImpTest.txt");
+    private File output;
     private static final String expected = "+++<><+++";
 
-    @Before
-    public void testReadPreconditions() {
-        try {
-            if (!program.exists()) {
-                program.createNewFile();
-                try {
-                    Files.write(Paths.get("C:/Projects/JavaClasses/src/main/resources/files/FileReaderImpTest.txt"),
-                            expected.getBytes(), StandardOpenOption.APPEND);
+    @BeforeEach
+    public void precondition() {
+        final boolean tempFileExists = TempFiles.isCreated();
+        if (tempFileExists) {
+            output = TempFiles.getDraft();
+        } else {
+            TempFiles.createTempFile("draft-file");
+            output = TempFiles.getDraft();
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        }
+        try {
+            Files.write(Paths.get(output.getPath()), expected.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
+    @DisplayName("Read text inside the file.")
     public void testRead() throws Exception {
         final Reader fileReader = new FileReaderImp();
-        final String actual = fileReader.read(program);
+        final String actual = fileReader.read(output);
         assertEquals(actual, expected);
     }
 }
