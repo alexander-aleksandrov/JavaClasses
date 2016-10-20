@@ -20,14 +20,17 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.assertEquals;
 
+@DisplayName("Brainfuck interpreter should")
 public class BrainFuckInterpreterVisitorTest {
 
     @Test
+    @DisplayName("Decrease cell value on one point")
     public void testCellDecrementVisit() throws Exception {
-
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final CellDecrement command = new CellDecrement();
         final Memory memory = visitor.getMemory();
@@ -38,8 +41,8 @@ public class BrainFuckInterpreterVisitorTest {
     }
 
     @Test
+    @DisplayName("Increase cell value on one point")
     public void testCellIncrementVisit() throws Exception {
-
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final CellIncrement command = new CellIncrement();
         final Memory memory = visitor.getMemory();
@@ -50,8 +53,8 @@ public class BrainFuckInterpreterVisitorTest {
     }
 
     @Test
+    @DisplayName("Change pointer position on next cell value.")
     public void testNextCellVisit() throws Exception {
-
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final NextCell command = new NextCell();
         final Memory memory = visitor.getMemory();
@@ -62,8 +65,8 @@ public class BrainFuckInterpreterVisitorTest {
     }
 
     @Test
-    public void testPreviouseCellVisit() throws Exception {
-
+    @DisplayName("Change pointer position on previous cell value")
+    public void testPreviousCellVisit() throws Exception {
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final PreviousCell command = new PreviousCell();
         final Memory memory = visitor.getMemory();
@@ -74,8 +77,8 @@ public class BrainFuckInterpreterVisitorTest {
     }
 
     @Test
+    @DisplayName("Print cell value to console.")
     public void testPrintCellVisit() throws Exception {
-
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final PrintCell command = new PrintCell();
         final Memory memory = visitor.getMemory();

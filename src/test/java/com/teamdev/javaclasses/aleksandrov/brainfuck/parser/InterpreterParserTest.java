@@ -20,14 +20,19 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.parser;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import java.util.List;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+@DisplayName("Interpreter parser should")
 public class InterpreterParserTest {
 
     @Test
+    @DisplayName("Replace BrainFuck command '+' to CellIncrement command")
     public void testParseCellIncrement() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("+");
@@ -35,6 +40,7 @@ public class InterpreterParserTest {
     }
 
     @Test
+    @DisplayName("Replace BrainFuck command '-' to CellDecrement command")
     public void testParseCellDecrement() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("-");
@@ -42,6 +48,7 @@ public class InterpreterParserTest {
     }
 
     @Test
+    @DisplayName("Replace BrainFuck command '>' to NextCell command")
     public void testParseNextCell() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse(">");
@@ -49,13 +56,15 @@ public class InterpreterParserTest {
     }
 
     @Test
-    public void testParsePreviouseCell() throws Exception {
+    @DisplayName("Replace BrainFuck command '<' to PreviousCell command")
+    public void testParsePreviousCell() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("<");
         assertTrue("Should be PreviousCell object", actual.get(0) instanceof PreviousCell);
     }
 
     @Test
+    @DisplayName("Replace BrainFuck command '.' to PrintCell command")
     public void testParsePrintCell() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse(".");
@@ -63,6 +72,7 @@ public class InterpreterParserTest {
     }
 
     @Test
+    @DisplayName("Replace BrainFuck command ',' to InputCell command")
     public void testParseInputCell() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse(",");
@@ -70,11 +80,10 @@ public class InterpreterParserTest {
     }
 
     @Test
+    @DisplayName("Replace BrainFuck commands '[]' to Cycle command")
     public void testParseCycle() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("[]");
         assertNotNull("Should be Cycle object", actual.get(0));
     }
-
-
 }

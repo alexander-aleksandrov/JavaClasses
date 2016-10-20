@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class FilePrinter implements Printer {
 
-    final File output;
+    private final File output;
 
     /**
      * Constructor that gets some file as a parameter.
@@ -53,20 +53,6 @@ public class FilePrinter implements Printer {
                 writer.println(text.get(i));
                 i++;
             }
-            writer.close();
-        } catch (IOException e) {
-        }
-    }
-
-    /**
-     * Wipes all data inside the file.
-     *
-     * @param output File object
-     */
-    public void clearFile(File output) {
-        try {
-            PrintWriter writer = new PrintWriter(output);
-            writer.print("");
             writer.close();
         } catch (IOException e) {
         }

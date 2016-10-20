@@ -19,9 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.printer;
 
+import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.TempFiles;
 import org.junit.Before;
-import org.junit.Test;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -31,23 +33,24 @@ import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
-
+@DisplayName("File Printer should")
 public class FilePrinterTest {
-    private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/FilePrinterTest.txt");
+    //    private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/FilePrinterTest.txt");
+    private File output;
 
-    @Before
-    public void testReadPreconditions() {
-        try {
-            if (!output.exists()) {
-                output.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    @BeforeEach
+    public void precondition() {
+        final boolean tempFileExists = TempFiles.isCreated();
+        if (tempFileExists) {
+            output = TempFiles.getDraft();
+        } else {
+            TempFiles.createTempFile("draft-file");
+            output = TempFiles.getDraft();
         }
     }
 
-
     @Test
+    @DisplayName("print specified text to file")
     public void testPrintToFile() throws FileNotFoundException {
         final String expected = "testString";
         final Printer filePrinter = new FilePrinter(output);
@@ -58,10 +61,4 @@ public class FilePrinterTest {
         String actual = in.next();
         assertEquals(actual, expected);
     }
-
-    @Test
-    public void clearFile() throws Exception {
-
-    }
-
 }
