@@ -38,7 +38,7 @@ public class InterpreterParser {
      */
     public List<Command> parse(String codeString) {
 
-        final Deque<List<Command>> stack = new ArrayDeque<List<Command>>();
+        final Stack<List<Command>> stack = new Stack<List<Command>>();
 
         stack.push(new ArrayList<>());
 
@@ -49,7 +49,7 @@ public class InterpreterParser {
     }
 
     /*Puts a Command object to stack according to specific char.*/
-    private void createCommand(char commandIdentifier, Deque<List<Command>> stackOfCommands) {
+    private void createCommand(char commandIdentifier, Stack<List<Command>> stackOfCommands) {
         switch (commandIdentifier) {
             case '+':
                 stackOfCommands.peek().add(new CellIncrement());
