@@ -21,7 +21,9 @@ package com.teamdev.javaclasses.aleksandrov.brainfuck.printer;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ import java.util.Scanner;
 import static org.junit.Assert.assertEquals;
 
 public class FilePrinterTest {
-    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/FilePrinterTest.txt");
+    private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/FilePrinterTest.txt");
 
     @Before
     public void testReadPreconditions() {
@@ -39,14 +41,16 @@ public class FilePrinterTest {
             if (!output.exists()) {
                 output.createNewFile();
             }
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
     @Test
-    public void testPrintToFile() throws Exception {
+    public void testPrintToFile() throws FileNotFoundException {
         final String expected = "testString";
-        final FilePrinter filePrinter = new FilePrinter(output);
+        final Printer filePrinter = new FilePrinter(output);
         List<String> text = new ArrayList<>();
         text.add(expected);
         filePrinter.printToFile(text);

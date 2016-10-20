@@ -31,8 +31,8 @@ import java.nio.file.StandardOpenOption;
 import static org.junit.Assert.*;
 
 public class FileReaderImpTest {
-    private final File program = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/FileReaderImpTest.txt");
-    final private String expected = "+++<><+++";
+    private final File program = new File("C:/Projects/JavaClasses/src/main/resources/files/FileReaderImpTest.txt");
+    private static final String expected = "+++<><+++";
 
     @Before
     public void testReadPreconditions() {
@@ -40,19 +40,21 @@ public class FileReaderImpTest {
             if (!program.exists()) {
                 program.createNewFile();
                 try {
-                    Files.write(Paths.get("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/FileReaderImpTest.txt"),
+                    Files.write(Paths.get("C:/Projects/JavaClasses/src/main/resources/files/FileReaderImpTest.txt"),
                             expected.getBytes(), StandardOpenOption.APPEND);
-                    System.out.println();
+
                 } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @Test
     public void testRead() throws Exception {
-        final FileReaderImp fileReader = new FileReaderImp();
+        final Reader fileReader = new FileReaderImp();
         final String actual = fileReader.read(program);
         assertEquals(actual, expected);
     }
