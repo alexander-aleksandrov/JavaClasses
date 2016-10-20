@@ -20,8 +20,18 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.TestUtil;
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
-import org.junit.Test;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Cycle;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.TempFiles;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -31,11 +41,24 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
+@DisplayName("Brainfuck compiler should")
 public class BrainFuckToJavaCompilerVisitorTest {
+    private File output;
 
-    private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/Draft.txt");
+    @BeforeEach
+    public void precondition() {
+        final boolean tempFileExists = TempFiles.isCreated();
+        if (tempFileExists) {
+            output = TempFiles.getDraft();
+        } else {
+            TempFiles.createTempFile("draft-file");
+            output = TempFiles.getDraft();
+
+        }
+    }
 
     @Test
+    @DisplayName("add 'memory[pointer]--;' string on CellDecrement command")
     public void testCellDecrementVisit() throws FileNotFoundException {
         final CommandVisitor visitor = new BrainFuckToJavaCompilerVisitor();
         final CellDecrement command = new CellDecrement();
@@ -43,11 +66,13 @@ public class BrainFuckToJavaCompilerVisitorTest {
         visitor.visit(command);
         Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
+        System.out.println(actual);
         assertEquals("Incorrect processing of CellDecrement command.",
                 "memory[pointer]--;", actual);
     }
 
     @Test
+    @DisplayName("add 'memory[pointer]++;' string on CellIncrement command")
     public void testCellIncrementVisit() throws FileNotFoundException {
         final CommandVisitor visitor = new BrainFuckToJavaCompilerVisitor();
         final CellIncrement command = new CellIncrement();
@@ -60,6 +85,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
     }
 
     @Test
+    @DisplayName("add 'pointer++;' string on NextCell command")
     public void testNextCellVisit() throws FileNotFoundException {
         final CommandVisitor visitor = new BrainFuckToJavaCompilerVisitor();
         final NextCell command = new NextCell();
@@ -72,6 +98,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
     }
 
     @Test
+    @DisplayName("add 'pointer--;' string on PreviouseCell command")
     public void testPreviouseCellVisit() throws FileNotFoundException {
         final CommandVisitor visitor = new BrainFuckToJavaCompilerVisitor();
         final PreviousCell command = new PreviousCell();
@@ -84,6 +111,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
     }
 
     @Test
+    @DisplayName("add java code that print result on PrintCell command")
     public void testPrintCellVisit() throws FileNotFoundException {
         final CommandVisitor visitor = new BrainFuckToJavaCompilerVisitor();
         final PrintCell command = new PrintCell();
@@ -96,6 +124,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
     }
 
     @Test
+    @DisplayName("add java code for cycle on Cycle command")
     public void testCycleVisit() throws FileNotFoundException {
         final CommandVisitor visitor = new BrainFuckToJavaCompilerVisitor();
         List<Command> cycle = new ArrayList<>();
