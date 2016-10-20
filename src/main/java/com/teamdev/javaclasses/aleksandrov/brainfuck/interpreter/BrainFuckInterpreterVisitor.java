@@ -19,13 +19,21 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Cycle;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.InputCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Memory;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 import java.util.Scanner;
 
 /**
- * {@link CommandVisitor} implementation for interpreting commands into actions.
+ * Performs BrainFuck commands.
  *
  * @author Alexander Aleksandrov
  */
@@ -34,44 +42,35 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     private final Memory memory = new Memory(1000);
 
     /**
-     * Gets the memory array.
-     *
-     * @return Memory object
-     */
-    public Memory getMemory() {
-        return memory;
-    }
-
-    /**
-     * States the logic when visitor is called by {@link CellDecrement} object.
+     * Decrements current memory cell value.
      *
      * @param cellDecrement CellDecrement command object
      */
-    @Override
+//    @Override
     public void visit(CellDecrement cellDecrement) {
-        int currentValue = memory.getCurrentCellValue();
-        memory.setCurrentCellValue(--currentValue);
+        int currentValue = memory.getCellValue();
+        memory.setCellValue(--currentValue);
     }
 
     /**
-     * States the logic when visitor is called by {@link CellIncrement} object.
+     * Increments current memory cell value.
      *
      * @param cellIncrement CellIncrement command object
      */
-    @Override
+//    @Override
     public void visit(CellIncrement cellIncrement) {
-        int currentValue = memory.getCurrentCellValue();
-        memory.setCurrentCellValue(++currentValue);
+        int currentValue = memory.getCellValue();
+        memory.setCellValue(++currentValue);
     }
 
     /**
-     * States the logic when visitor is called by {@link Cycle} object.
+     * Executes all commands in a cycle.
      *
      * @param cycle Cycle command object
      */
     @Override
     public void visit(Cycle cycle) {
-        while (memory.getCurrentCellValue() > 0) {
+        while (memory.getCellValue() > 0) {
             for (Command command : cycle.getInnerCycleCommands()) {
                 command.accept(this);
             }
@@ -79,7 +78,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link InputCell} object.
+     * Accepts a value typed by user and place it to current memory cell .
      *
      * @param inputCell InputCell command object
      */
@@ -88,11 +87,11 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter an integer: ");
         int value = keyboard.nextInt();
-        memory.setCurrentCellValue(value);
+        memory.setCellValue(value);
     }
 
     /**
-     * States the logic when visitor is called by {@link NextCell} object.
+     * Moves to the next memory cell.
      *
      * @param nextCell NextCell command object
      */
@@ -103,7 +102,7 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link PreviousCell} object.
+     * Moves to the previous memory cell.
      *
      * @param previousCell PreviousCell command object
      */
@@ -114,13 +113,13 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
     }
 
     /**
-     * States the logic when visitor is called by {@link PrintCell} object.
+     * Prints current cell value to console.
      *
      * @param printCell PrintCell command object
      */
     @Override
     public void visit(PrintCell printCell) {
-        int currentValue = memory.getCurrentCellValue();
+        int currentValue = memory.getCellValue();
         char compiledChar = (char) currentValue;
         System.out.print(compiledChar);
     }

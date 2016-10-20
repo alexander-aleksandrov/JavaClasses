@@ -19,10 +19,15 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
- * This class allows to generate a new file similar to specified template.
+ * Generates a new file similar to specified template.
  *
  * @author Alexander Aleksandrov
  */

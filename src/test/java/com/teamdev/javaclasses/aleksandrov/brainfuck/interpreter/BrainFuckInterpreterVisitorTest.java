@@ -31,10 +31,10 @@ public class BrainFuckInterpreterVisitorTest {
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final CellDecrement command = new CellDecrement();
         final Memory memory = visitor.getMemory();
-        memory.setCurrentCellValue(10);
+        memory.setCellValue(10);
         visitor.visit(command);
         assertEquals("Incorrect processing of CellDecrement command.",
-                9, memory.getCurrentCellValue());
+                9, memory.getCellValue());
     }
 
     @Test
@@ -43,10 +43,10 @@ public class BrainFuckInterpreterVisitorTest {
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final CellIncrement command = new CellIncrement();
         final Memory memory = visitor.getMemory();
-        memory.setCurrentCellValue(10);
+        memory.setCellValue(10);
         visitor.visit(command);
         assertEquals("Incorrect processing of CellIncrement command.",
-                11, memory.getCurrentCellValue());
+                11, memory.getCellValue());
     }
 
     @Test
@@ -79,9 +79,9 @@ public class BrainFuckInterpreterVisitorTest {
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final PrintCell command = new PrintCell();
         final Memory memory = visitor.getMemory();
-        memory.setCurrentCellValue(108);
+        memory.setCellValue(108);
         visitor.visit(command);
         assertEquals("Incorrect processing of PrintCell command.",
-                108, memory.getCurrentCellValue());
+                108, memory.getCellValue());
     }
 }

@@ -155,18 +155,19 @@ public final class PhoneNumber {
      */
     public static PhoneNumber newPhoneNumber() {
 
-        CountryCode cc = CountryCode.valueOf();
-        PhoneNumber ph = PhoneNumber.newBuilder()
-                .setCountryCode()
-                .setAreaCode()
-                .setPhoneLineNumber()
-                .setExtension()
-                .build();
-        return ph;
+//        CountryCode cc = CountryCode.valueOf();
+//        PhoneNumber ph = PhoneNumber.newBuilder()
+//                .setCountryCode()
+//                .setAreaCode()
+//                .setPhoneLineNumber()
+//                .setExtension()
+//                .build();
+        return null;
     }
 
     public final static PhoneNumber parse(String input) throws ParseException {
         input.toCharArray();
+        return null;
     }
 
     @Override

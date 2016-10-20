@@ -19,15 +19,19 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.printer;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
- * Printer implementation that takes a file on constructor and prints a text inside it.
+ * Printer implementation that takes  a file on constructor and prints a text inside it.
  *
  * @author Alexander Aleksandrov
  */
-public class FilePrinter implements Printer {
+public class FilePrinter implements AutoCloseable, Printer {
 
     final File output;
 
@@ -47,29 +51,30 @@ public class FilePrinter implements Printer {
      */
     public void printToFile(List<String> text) {
         int i = 0;
-        try {
-            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
+        try(PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
             while (i < text.size()) {
                 writer.println(text.get(i));
                 i++;
             }
-            writer.close();
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     /**
-     * Wipes all data inside the file.
+     * Writes a {@code String} into this FilePrinter.
      *
-     * @param output File object
+     * @param text Text
      */
-    public void clearFile(File output) {
-        try {
-            PrintWriter writer = new PrintWriter(output);
-            writer.print("");
-            writer.close();
+    public void printLine(String text) {
+        try(PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
+            writer.println(text);
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    @Override
+    public void close() throws Exception {}
 }
 

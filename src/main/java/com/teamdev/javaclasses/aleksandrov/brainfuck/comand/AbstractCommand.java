@@ -19,10 +19,19 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
+import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
+
 /**
- * {@inheritDoc}
+ * Abstract class that allows to avoid method description in any child command class.
  *
  * @author Alexander Aleksandrov
  */
-public class NextCell extends AbstractCommand {
+public abstract class AbstractCommand implements Command {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void accept(CommandVisitor visitor) {
+        visitor.visit(this);
+    }
 }
