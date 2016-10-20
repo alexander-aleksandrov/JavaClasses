@@ -39,8 +39,8 @@ public class InterpreterParser {
     public List<Command> parse(String codeString) {
 
         final Stack<List<Command>> stack = new Stack<List<Command>>();
-
-        stack.push(new ArrayList<>());
+        List<Command> newList = new ArrayList<Command>();
+        stack.push(newList);
 
         for (Character commandIdentifier : codeString.toCharArray()) {
             createCommand(commandIdentifier, stack);
