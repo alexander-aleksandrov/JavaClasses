@@ -40,7 +40,7 @@ public class BrainFuckToJavaCompiler {
      * Performs a visitor pattern for every parsed command.
      *
      * @param program File with BrainFuck unformatted source code.
-     * @param output  File with generated Java code.
+     * @param output  File with generated Java codgit merge --no-ff money-javadoce.
      */
     public void execute(File program, File output) {
         final Reader reader = new FileReaderImp();
