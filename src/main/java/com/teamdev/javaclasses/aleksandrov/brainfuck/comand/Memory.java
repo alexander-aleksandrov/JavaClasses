@@ -73,5 +73,4 @@ public class Memory {
     public int getCellValue() {
         return cells[pointer];
     }
-
 }

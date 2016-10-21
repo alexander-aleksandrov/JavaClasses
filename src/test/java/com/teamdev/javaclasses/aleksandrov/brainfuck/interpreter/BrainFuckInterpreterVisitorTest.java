@@ -19,7 +19,14 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
+
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Memory;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
