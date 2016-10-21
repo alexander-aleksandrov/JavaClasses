@@ -17,43 +17,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.teamdev.javaclasses.aleksandrov.phonenumber;
+package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
+
+import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 /**
- * Country phone  codes.
+ * Abstract class that allows to avoid method description in any child command class.
  *
  * @author Alexander Aleksandrov
  */
-public enum CountryCode {
-
-    ANGUILLA("1-264", "Anguilla"),
-    CANADA("1", "Canada"),
-    UNITED_STATES("1", "United States");
-
-    private String countryCode;
-    private String country;
-
-    private CountryCode(String code, String countryName) {
-        this.countryCode = code;
-        this.country = countryName;
-    }
-
+public abstract class AbstractCommand implements Command {
     /**
-     * Gets country  code from a record.
-     *
-     * @return String with a country code
+     * {@inheritDoc}
      */
-    public String getCountryCode() {
-        return countryCode;
+    @Override
+    public void accept(CommandVisitor visitor) {
+        visitor.visit(this);
     }
-
-    /**
-     * Gets country  full name.
-     *
-     * @return String with a full name
-     */
-    public String getCountryName() {
-        return country;
-    }
-
 }

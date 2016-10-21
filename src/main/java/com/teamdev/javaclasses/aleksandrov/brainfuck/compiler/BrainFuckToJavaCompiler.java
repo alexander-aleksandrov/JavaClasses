@@ -50,23 +50,16 @@ public class BrainFuckToJavaCompiler {
         final String programText;
 
         programText = reader.read(program);
-
         generator.generateTemplate(output);
-
         System.out.println("Program text: ");
         System.out.println(programText);
         System.out.println("Result: ");
-
         final List<Command> commands = parser.parse(programText);
-
         final BrainFuckToJavaCompilerVisitor visitor =
                 new BrainFuckToJavaCompilerVisitor();
-
         for (Command command : commands) {
             command.accept(visitor);
         }
-
         javaFile.generateJavaFile();
-
     }
 }
