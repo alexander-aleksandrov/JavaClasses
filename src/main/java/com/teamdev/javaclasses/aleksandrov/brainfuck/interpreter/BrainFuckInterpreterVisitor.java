@@ -19,6 +19,7 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.AbstractCommand;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
@@ -29,7 +30,6 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
-
 import java.util.Scanner;
 
 /**
@@ -40,6 +40,15 @@ import java.util.Scanner;
 public class BrainFuckInterpreterVisitor implements CommandVisitor {
 
     private final Memory memory = new Memory(1000);
+
+    /**
+     * Obtains memory cells specific for this visitor.
+     *
+     * @return instance of memory for this visitor
+     */
+    public Memory getMemory() {
+        return memory;
+    }
 
     /**
      * Decrements current memory cell value.
@@ -122,5 +131,10 @@ public class BrainFuckInterpreterVisitor implements CommandVisitor {
         int currentValue = memory.getCellValue();
         char compiledChar = (char) currentValue;
         System.out.print(compiledChar);
+    }
+
+    @Override
+    public void visit(AbstractCommand command) {
+
     }
 }

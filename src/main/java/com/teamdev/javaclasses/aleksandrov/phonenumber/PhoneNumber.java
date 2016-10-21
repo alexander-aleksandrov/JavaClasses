@@ -19,8 +19,7 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
-import com.sun.istack.internal.Nullable;
-
+import javax.annotation.Nullable;
 import java.text.ParseException;
 
 /**
@@ -162,6 +161,13 @@ public final class PhoneNumber {
 //                .setPhoneLineNumber()
 //                .setExtension()
 //                .build();
+//        return ph;
+//    }
+
+//    public final static PhoneNumber parse(String input) throws ParseException {
+//        input.toCharArray();
+//    }
+
         return null;
     }
 
@@ -178,15 +184,5 @@ public final class PhoneNumber {
     @Override
     public boolean equals(Object obj) {
         return true;
-    }
-
-    public static void main(String[] args) {
-        String phoneNumber = "+38065864578";
-
-        try {
-            parse(phoneNumber);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 }

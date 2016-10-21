@@ -31,6 +31,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.Stack;
 
 
 /**
@@ -48,8 +49,9 @@ public class InterpreterParser {
      */
     public List<Command> parse(String codeString) {
 
-        final Deque<List<Command>> stack = new ArrayDeque<>();
-        stack.push(new ArrayList<>());
+        final Stack<List<Command>> stack = new Stack<List<Command>>();
+        List<Command> newList = new ArrayList<Command>();
+        stack.push(newList);
 
         for (Character commandIdentifier : codeString.toCharArray()) {
             createCommand(commandIdentifier, stack);
@@ -58,7 +60,7 @@ public class InterpreterParser {
     }
 
     /*Puts a Command object to stack according to specific char.*/
-    private void createCommand(char commandIdentifier, Deque<List<Command>> stackOfCommands) {
+    private void createCommand(char commandIdentifier, Stack<List<Command>> stackOfCommands) {
         switch (commandIdentifier) {
             case '+':
                 stackOfCommands.peek().add(new CellIncrement());

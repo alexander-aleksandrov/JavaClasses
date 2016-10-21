@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class FilePrinter implements AutoCloseable, Printer {
 
-    final File output;
+    private final File output;
 
     /**
      * Constructor that gets some file as a parameter.
@@ -76,5 +76,6 @@ public class FilePrinter implements AutoCloseable, Printer {
 
     @Override
     public void close() throws Exception {}
+
 }
 

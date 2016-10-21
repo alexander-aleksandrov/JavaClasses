@@ -33,8 +33,8 @@ import java.io.IOException;
  */
 public class JavaFileInserter {
 
-    private final File source = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/Draft.txt");
-    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/BrainFuckRunner.java");
+    private final File source = TempFiles.getDraft();
+    private final File output = TempFiles.getJavaFile();
 
     /**
      * Inserts the source string in a specific position into the output File.

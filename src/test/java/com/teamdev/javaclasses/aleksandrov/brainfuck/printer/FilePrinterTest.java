@@ -19,9 +19,13 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.printer;
 
+import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.TempFiles;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,24 +33,27 @@ import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
-
+@DisplayName("File Printer should")
 public class FilePrinterTest {
-    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/FilePrinterTest.txt");
+    //    private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/FilePrinterTest.txt");
+    private File output;
 
-    @Before
-    public void testReadPreconditions() {
-        try {
-            if (!output.exists()) {
-                output.createNewFile();
-            }
-        } catch (IOException e) {}
+    @BeforeEach
+    public void precondition() {
+        final boolean tempFileExists = TempFiles.isCreated();
+        if (tempFileExists) {
+            output = TempFiles.getDraft();
+        } else {
+            TempFiles.createTempFile("draft-file");
+            output = TempFiles.getDraft();
+        }
     }
 
-
     @Test
-    public void testPrintToFile() throws Exception {
+    @DisplayName("print specified text to file")
+    public void testPrintToFile() throws FileNotFoundException {
         final String expected = "testString";
-        final FilePrinter filePrinter = new FilePrinter(output);
+        final Printer filePrinter = new FilePrinter(output);
         List<String> text = new ArrayList<>();
         text.add(expected);
         filePrinter.printToFile(text);
@@ -54,10 +61,4 @@ public class FilePrinterTest {
         String actual = in.next();
         assertEquals(actual, expected);
     }
-
-    @Test
-    public void clearFile() throws Exception {
-
-    }
-
 }

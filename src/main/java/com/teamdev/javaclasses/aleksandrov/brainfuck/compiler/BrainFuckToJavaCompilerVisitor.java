@@ -20,6 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import com.google.common.collect.Lists;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.TempFiles;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.AbstractCommand;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
@@ -40,8 +41,8 @@ import java.util.List;
  * @author Alexander Aleksandrov
  */
 public class BrainFuckToJavaCompilerVisitor implements CommandVisitor {
-    private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/Draft.txt");
 
+    private final File output = TempFiles.getDraft();
     private final Printer printer = new FilePrinter(output);
 
     /**
