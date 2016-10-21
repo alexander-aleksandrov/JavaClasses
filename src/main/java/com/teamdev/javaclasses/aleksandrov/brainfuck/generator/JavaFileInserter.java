@@ -19,10 +19,15 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
- * Allows to insert draft generated code into a specific place in template generated file.
+ * Allows to insert a text into a specific place in file.
  *
  * @author Alexander Aleksandrov
  */
@@ -49,7 +54,7 @@ public class JavaFileInserter {
     }
 
     /**
-     * Transforms all the content from file to single string without spaces or breaking
+     * Transforms all the content from file to single string without spaces or breaking.
      *
      * @param file File with text
      * @return String

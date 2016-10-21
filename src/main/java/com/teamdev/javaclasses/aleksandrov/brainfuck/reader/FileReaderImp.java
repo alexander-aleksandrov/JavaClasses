@@ -19,7 +19,9 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.reader;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 /**

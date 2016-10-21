@@ -19,22 +19,10 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
-
 /**
- * Serves to link a visitor object to realisation related to NextCell command.
+ * {@inheritDoc}
  *
  * @author Alexander Aleksandrov
  */
-public class NextCell implements Command {
-
-    /**
-     * Tells visitor go to itself implementation related to this class.
-     *
-     * @param visitor CommandVisitor object
-     */
-    @Override
-    public void accept(CommandVisitor visitor) {
-        visitor.visit(this);
-    }
+public class NextCell extends AbstractCommand {
 }

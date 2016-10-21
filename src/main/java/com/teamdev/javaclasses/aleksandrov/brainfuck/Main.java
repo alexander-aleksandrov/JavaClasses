@@ -19,13 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.BrainFuckToJavaCompiler;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter.BrainFuckInterpreter;
-
 import java.io.File;
 
 /**
- * Start point of Brain Fuck interpreter.
+ * Start point of Brain Fuck  interpreter.
  *
  * @author Alexander Aleksandrov
  */
@@ -36,7 +34,5 @@ public class Main {
     public static void main(String[] args) {
         BrainFuckInterpreter interpreter = new BrainFuckInterpreter();
         interpreter.execute(program);
-        BrainFuckToJavaCompiler compiler = new BrainFuckToJavaCompiler();
-        compiler.execute(program, output);
     }
 }

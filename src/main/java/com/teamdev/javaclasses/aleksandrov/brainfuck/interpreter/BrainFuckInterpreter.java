@@ -23,7 +23,6 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.parser.InterpreterParser;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.FileReaderImp;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.Reader;
-
 import java.io.File;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class BrainFuckInterpreter {
     private String result;
 
     /**
-     * Performs a visitor pattern for every parsed command and prints the result in a command line.
+     * Performs a visitor pattern for every  parsed command and prints the result in a command line.
      *
      * @param program File with Brain Fuck source code
      */

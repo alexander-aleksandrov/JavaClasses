@@ -42,7 +42,7 @@ public class BrainFuckToJavaCompiler {
      * Performs a visitor pattern for every parsed command.
      *
      * @param program File with BrainFuck unformatted source code.
-     * @param output  File with generated Java code.
+     * @param output  File with generated Java codgit merge --no-ff money-javadoce.
      */
     public void execute(File program, File output) {
         final Reader reader = new FileReaderImp();
@@ -55,7 +55,6 @@ public class BrainFuckToJavaCompiler {
         System.out.println("Program text: ");
         System.out.println(programText);
         System.out.println("Result: ");
-
         final List<Command> commands = parser.parse(programText);
 
         /*We create temp files for work in case if we still don't have them*/
@@ -71,6 +70,5 @@ public class BrainFuckToJavaCompiler {
             command.accept(visitor);
         }
         javaFile.generateJavaFile();
-
     }
 }
