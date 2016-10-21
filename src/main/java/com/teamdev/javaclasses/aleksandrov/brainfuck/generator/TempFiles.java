@@ -90,12 +90,22 @@ public class TempFiles {
         return null;
     }
 
+    /**
+     * Obtains a draft file.
+     * @return draft file
+     */
     public static File getDraft() {
         return draft;
     }
     public static File getJavaFile(){
         return brainFuckJavaFile;
     }
+
+    /**
+     * Checks if the instance of a class is created.
+     *
+     * @return true if instance of this class is already exists
+     */
     public static boolean isCreated() {
         if (exist) {
             return true;
