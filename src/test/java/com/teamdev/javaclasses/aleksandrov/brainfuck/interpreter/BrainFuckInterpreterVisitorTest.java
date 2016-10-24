@@ -19,39 +19,49 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.interpreter;
 
-import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.*;
-import org.junit.Test;
+
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellDecrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.CellIncrement;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Memory;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.assertEquals;
 
+@DisplayName("Brainfuck interpreter should")
 public class BrainFuckInterpreterVisitorTest {
 
     @Test
+    @DisplayName("Decrease cell value on one point")
     public void testCellDecrementVisit() throws Exception {
-
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final CellDecrement command = new CellDecrement();
         final Memory memory = visitor.getMemory();
-        memory.setCurrentCellValue(10);
+        memory.setCellValue(10);
         visitor.visit(command);
         assertEquals("Incorrect processing of CellDecrement command.",
-                9, memory.getCurrentCellValue());
+                9, memory.getCellValue());
     }
 
     @Test
+    @DisplayName("Increase cell value on one point")
     public void testCellIncrementVisit() throws Exception {
-
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final CellIncrement command = new CellIncrement();
         final Memory memory = visitor.getMemory();
-        memory.setCurrentCellValue(10);
+        memory.setCellValue(10);
         visitor.visit(command);
         assertEquals("Incorrect processing of CellIncrement command.",
-                11, memory.getCurrentCellValue());
+                11, memory.getCellValue());
     }
 
     @Test
+    @DisplayName("Change pointer position on next cell value.")
     public void testNextCellVisit() throws Exception {
-
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final NextCell command = new NextCell();
         final Memory memory = visitor.getMemory();
@@ -62,8 +72,8 @@ public class BrainFuckInterpreterVisitorTest {
     }
 
     @Test
-    public void testPreviouseCellVisit() throws Exception {
-
+    @DisplayName("Change pointer position on previous cell value")
+    public void testPreviousCellVisit() throws Exception {
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final PreviousCell command = new PreviousCell();
         final Memory memory = visitor.getMemory();
@@ -74,14 +84,14 @@ public class BrainFuckInterpreterVisitorTest {
     }
 
     @Test
+    @DisplayName("Print cell value to console.")
     public void testPrintCellVisit() throws Exception {
-
         final BrainFuckInterpreterVisitor visitor = new BrainFuckInterpreterVisitor();
         final PrintCell command = new PrintCell();
         final Memory memory = visitor.getMemory();
-        memory.setCurrentCellValue(108);
+        memory.setCellValue(108);
         visitor.visit(command);
         assertEquals("Incorrect processing of PrintCell command.",
-                108, memory.getCurrentCellValue());
+                108, memory.getCellValue());
     }
 }

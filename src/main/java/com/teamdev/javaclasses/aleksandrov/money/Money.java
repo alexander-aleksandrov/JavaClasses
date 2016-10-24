@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.money;
 
 /**
- * Class that allows to work with money as value object.
+ * An amount of money of specified currency. Only (USD, GBP, CHF) cna be used now.
  *
  * @author Alexander Aleksandrov
  */
@@ -29,62 +29,6 @@ public class Money implements Comparable<Money> {
     private final Currency currency;
     private final long amount;
 
-    private static Money.Builder newBuilder() {
-        return new Builder();
-    }
-
-    /**
-     * Gets currency.
-     *
-     * @return Enum {@link Currency}
-     */
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    /**
-     * Gets amount of money.
-     *
-     * @return long value
-     */
-    public long getAmount() {
-        return amount;
-    }
-
-    /**
-     * Builder for money object.
-     */
-    public static class Builder {
-        public static Currency currency;
-        public static long amount;
-
-        public Builder setCurrency(Currency currencyCode) {
-            currency = currencyCode;
-            return this;
-        }
-
-        public Builder setAmount(long value) {
-            amount = value;
-            return this;
-
-        }
-
-        public Money build() {
-            return new Money(this);
-        }
-
-    }
-
-    /**
-     * Constructor that takes Builder as a parameter.
-     *
-     * @param builder {@link Builder} object
-     */
-    private Money(Builder builder) {
-        this.currency = builder.currency;
-        this.amount = builder.amount;
-    }
-
     /**
      * Creates a new money object.
      *
@@ -92,17 +36,39 @@ public class Money implements Comparable<Money> {
      * @param amount       long value of new amount
      * @return {@link Money} object
      */
-    public static Money newAmount(String currencyCode, long amount) {
-        Currency currency = Currency.valueOf(currencyCode);
-        Money newAmount = Money.newBuilder().setCurrency(currency).setAmount(amount).build();
-        return newAmount;
+    public static Money createNewAmount(String currencyCode, long amount) {
+        final Currency currency = Currency.valueOf(currencyCode);
+        return new Money(currency, amount);
+    }
+
+    private Money(Currency currency, long amount) {
+        this.currency = currency;
+        this.amount = amount;
     }
 
     /**
-     * Compares amounts of moneys in case if they have the same currency.
+     * Obtains currency of the money amount.
+     *
+     * @return the {@link Currency} object of this money
+     */
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    /**
+     * Obtains amount of money in minor currency units.
+     *
+     * @return amount of money in minor currency units
+     */
+    public long getAmount() {
+        return amount;
+    }
+
+    /**
+     * Compares amounts of money in case if they have the same currency otherwise throws error message.
      *
      * @param o {@link Money} object
-     * @return itn value less than zero in case if comparable is bigger, zero if equals, and more than zero if bigger
+     * @return negative in case if comparable is bigger, zero if equals, and positive if bigger
      */
     @Override
     public int compareTo(Money o) {
@@ -110,7 +76,9 @@ public class Money implements Comparable<Money> {
             String errMsg = String.format("Cannot compare money of different currencies %s, %s", getCurrency(), o.getCurrency());
             throw new IllegalArgumentException(errMsg);
         }
-        long result = getAmount() - o.getAmount();
-        return (int) result;
+        @SuppressWarnings({"SubtractionInCompareTo", // OK to do since we compare numeric values
+                           "NumericCastThatLosesPrecision"}) // we only need the sign
+        final int result = (int)(getAmount() - o.getAmount());
+        return result;
     }
 }

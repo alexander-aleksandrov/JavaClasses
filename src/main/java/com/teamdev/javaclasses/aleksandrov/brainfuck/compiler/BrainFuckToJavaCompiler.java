@@ -20,14 +20,16 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.compiler;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Command;
-import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.JavaFileGenerator;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.JavaFileInserter;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.TempFiles;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.parser.InterpreterParser;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.FileReaderImp;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.reader.Reader;
 
 import java.io.File;
 import java.util.List;
+
+import static java.awt.SystemColor.text;
 
 /**
  * Performs compilation of BrainFuck source code to Java code.
@@ -40,33 +42,33 @@ public class BrainFuckToJavaCompiler {
      * Performs a visitor pattern for every parsed command.
      *
      * @param program File with BrainFuck unformatted source code.
-     * @param output  File with generated Java code.
+     * @param output  File with generated Java codgit merge --no-ff money-javadoce.
      */
     public void execute(File program, File output) {
         final Reader reader = new FileReaderImp();
         final InterpreterParser parser = new InterpreterParser();
-        final JavaFileGenerator generator = new JavaFileGenerator();
         final JavaFileInserter javaFile = new JavaFileInserter();
         final String programText;
 
         programText = reader.read(program);
 
-        generator.generateTemplate(output);
-
         System.out.println("Program text: ");
         System.out.println(programText);
         System.out.println("Result: ");
-
         final List<Command> commands = parser.parse(programText);
 
-        final BrainFuckToJavaCompilerVisitor visitor =
-                new BrainFuckToJavaCompilerVisitor();
+        /*We create temp files for work in case if we still don't have them*/
+        if (TempFiles.isCreated()) {
+            return;
+        } else {
+            TempFiles.createTempFile("draft-file");
+        }
+
+        final CommandVisitor visitor = new BrainFuckToJavaCompilerVisitor();
 
         for (Command command : commands) {
             command.accept(visitor);
         }
-
         javaFile.generateJavaFile();
-
     }
 }

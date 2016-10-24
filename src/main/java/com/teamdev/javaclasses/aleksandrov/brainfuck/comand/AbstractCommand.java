@@ -17,43 +17,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
+package com.teamdev.javaclasses.aleksandrov.brainfuck.comand;
 
-import java.io.*;
+import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 
 /**
- * This class allows to generate a new file similar to specified template.
+ * Abstract class that allows to avoid method description in any child command class.
  *
  * @author Alexander Aleksandrov
  */
-public class JavaFileGenerator {
-
-    private final File templateFile = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/JavaBrainFuckTemplate.txt");
-
+public abstract class AbstractCommand implements Command {
     /**
-     * Copies a content from specified template to newly created file.
-     *
-     * @param output File with template
-     * @return File object with Java text from specified template
+     * {@inheritDoc}
      */
-    public File generateTemplate(File output) {
-        try {
-            if (!output.exists()) {
-                output.createNewFile();
-            }
-            InputStream in = new FileInputStream(templateFile);
-            OutputStream out = new FileOutputStream(output);
-
-            byte[] buf = new byte[1024];
-            int len;
-            while ((len = in.read(buf)) > 0) {
-                out.write(buf, 0, len);
-            }
-            in.close();
-            out.close();
-        } catch (IOException e) {
-        }
-        return output;
-
+    @Override
+    public void accept(CommandVisitor visitor) {
+        visitor.visit(this);
     }
 }

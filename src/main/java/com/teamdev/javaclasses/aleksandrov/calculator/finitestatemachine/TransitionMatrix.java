@@ -24,7 +24,7 @@ import java.util.Set;
 /**
  * An interface to  describe a transition matrix.
  *
- * @param <State> Possible states
+ * @param <State> a type of possible states
  * @author Oleg Melnik
  */
 public interface TransitionMatrix<State extends Enum> {

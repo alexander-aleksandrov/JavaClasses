@@ -19,6 +19,7 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -28,17 +29,17 @@ import java.util.Set;
  */
 public interface BinaryOperatorRepository {
     /**
-     * Gets all  kind of representations that describes binary operator.
+     * Obtains representations of binary operators.
      *
-     * @return Full set of strings representing binary operator
+     * @return set of all binary operator representations
      */
     Set<String> getRepresentations();
 
     /**
-     * Gets {@link BinaryOperator}  object.
+     * Optionally gets binary operator if representation is valid.
      *
-     * @param represetation String with specific representation of operator
-     * @return BinaryOperator object
+     * @param representation binary operator representation
+     * @return binary operator
      */
-    BinaryOperator getBinaryOperator(String represetation);
+    Optional<BinaryOperator> getBinaryOperator(String representation);
 }

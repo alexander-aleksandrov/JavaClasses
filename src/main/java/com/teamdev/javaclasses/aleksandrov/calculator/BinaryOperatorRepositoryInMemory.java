@@ -19,31 +19,31 @@
  */
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
+import com.google.common.collect.ImmutableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
-import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.Priority.LOW;
-import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.Priority.MEDIUM;
+import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.Priority.PRIORITY_LOW;
+import static com.teamdev.javaclasses.aleksandrov.calculator.BinaryOperatorImpl.Priority.PRIORITY_MEDIUM;
 
 /**
  * Implementation  of {@link BinaryOperatorRepository} that stores all binary operators in memo.
  *
  * @author Alexander Aleksandrov
  */
-public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository {
+public class BinaryOperatorRepositoryInMemory implements BinaryOperatorRepository {
 
-    private static final Logger log = LoggerFactory.getLogger(BinaryOperatorRepositoryInMemo.class);
+    private static final Logger log = LoggerFactory.getLogger(BinaryOperatorRepositoryInMemory.class);
 
-    private final Map<String, BinaryOperator> repository = new HashMap<String, BinaryOperator>() {{
-        put("+", new BinaryOperatorImpl("leftOperand + rightOperand", LOW));
-        put("-", new BinaryOperatorImpl("leftOperand - rightOperand", LOW));
-        put("*", new BinaryOperatorImpl("leftOperand * rightOperand", MEDIUM));
-        put("/", new BinaryOperatorImpl("leftOperand / rightOperand", MEDIUM));
-    }};
+    private final ImmutableMap<String, BinaryOperator> repo = ImmutableMap.<String, BinaryOperator>builder()
+            .put("+", new BinaryOperatorImpl("+", PRIORITY_LOW))
+            .put("-", new BinaryOperatorImpl("-", PRIORITY_LOW))
+            .put("*", new BinaryOperatorImpl("*", PRIORITY_MEDIUM))
+            .put("/", new BinaryOperatorImpl("/", PRIORITY_MEDIUM))
+            .build();
 
     /**
      * Gets a set  of representations.
@@ -52,7 +52,7 @@ public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository 
      */
     @Override
     public Set<String> getRepresentations() {
-        return repository.keySet();
+        return repo.keySet();
     }
 
     /**
@@ -62,8 +62,10 @@ public class BinaryOperatorRepositoryInMemo implements BinaryOperatorRepository 
      * @return {@link BinaryOperator} object
      */
     @Override
-    public BinaryOperator getBinaryOperator(String representation) {
+    public Optional<BinaryOperator> getBinaryOperator(String representation) {
         log.info("Someone requesting operator: " + representation);
-        return repository.get(representation);
+        final BinaryOperator operator = repo.get(representation);
+        final Optional<BinaryOperator> binaryOperator = Optional.ofNullable(operator);
+        return binaryOperator;
     }
 }

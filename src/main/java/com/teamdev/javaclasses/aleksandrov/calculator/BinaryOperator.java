@@ -22,16 +22,16 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
 /**
  * An interface  to make operations between two numbers.
  *
- * @param <O>
+ * @param <O> binary operator object
  * @author Oleg Melnik
  */
 public interface BinaryOperator<O extends BinaryOperator> extends Comparable<O> {
     /**
-     * Describes  an operation between two double numbers.
+     * Execute operation between two operands.
      *
-     * @param leftOperand  double number
-     * @param rightOperand double number
-     * @return double result of operation
+     * @param leftOperand  left number in expression
+     * @param rightOperand right number in expression
+     * @return calculation result
      */
     double calculate(double leftOperand, double rightOperand);
 }

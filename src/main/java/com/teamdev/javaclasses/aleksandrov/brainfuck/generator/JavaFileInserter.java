@@ -19,17 +19,22 @@
  */
 package com.teamdev.javaclasses.aleksandrov.brainfuck.generator;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
- * Allows to insert draft generated code into a specific place in template generated file.
+ * Allows to insert a text into a specific place in file.
  *
  * @author Alexander Aleksandrov
  */
 public class JavaFileInserter {
 
-    private final File source = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/Draft.txt");
-    private final File output = new File("C:/Projects/BrainFuck1/src/main/java/com/teamdev/javaclasses/files/BrainFuckRunner.java");
+    private final File source = TempFiles.getDraft();
+    private final File output = TempFiles.getJavaFile();
 
     /**
      * Inserts the source string in a specific position into the output File.
@@ -49,7 +54,7 @@ public class JavaFileInserter {
     }
 
     /**
-     * Transforms all the content from file to single string without spaces or breaking
+     * Transforms all the content from file to single string without spaces or breaking.
      *
      * @param file File with text
      * @return String

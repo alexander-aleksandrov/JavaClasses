@@ -20,13 +20,13 @@
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 /**
- * Area code for phone numbers.
+ * Area code for  phone numbers.
  *
  * @author Alexander Aleksandrov
  */
 public enum AreaCode {
     ALABAMA("250"),
-    ARISONА("480");
+    ARISONA("480");
 
     private String ac;
 

@@ -22,10 +22,10 @@ package com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine;
 /**
  * Generic interface to  describe a recognizer of a valid state.
  *
- * @param <InputContext>  InputContext
- * @param <OutputContext> OutputContext
- * @param <State>         State
- * @author Oleg  Melnik
+ * @param <InputContext>  inputContext
+ * @param <OutputContext> outputContext
+ * @param <State>         state
+ * @author Oleg Melnik
  */
 public interface StateRecognizer<
         InputContext,
@@ -34,9 +34,9 @@ public interface StateRecognizer<
     /**
      * Returns true  in case if a State was accepted.
      *
-     * @param inputContext  InputContext object
-     * @param outputContext OutputContext object
-     * @param possibleState State object
+     * @param inputContext  {@link InputContext} object
+     * @param outputContext {@link OutputContext} object
+     * @param possibleState {@link State} object
      * @return boolean
      */
     boolean accept(InputContext inputContext, OutputContext outputContext, State possibleState);

@@ -36,8 +36,8 @@ public class NumberParser implements ExpressionParser {
     /**
      * Returns true after a number was pushed to {@link EvaluationStack} and sets a new position to expression reader.
      *
-     * @param reader ExpressionReader object
-     * @param stack  EvaluationStack object
+     * @param reader {@link ExpressionReader} object
+     * @param stack  {@link EvaluationStack} object
      * @return
      */
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {

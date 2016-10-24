@@ -31,8 +31,8 @@ public class IncorrectEvaluationException extends Exception {
     /**
      * Throws  and shows a message and error position in expression.
      *
-     * @param message       String with error message
-     * @param errorPosition A place of symbol in expression that has wrong format
+     * @param message       error message
+     * @param errorPosition a place of symbol in expression that has wrong format
      */
     public IncorrectEvaluationException(String message, int errorPosition) {
         super(message);
@@ -42,7 +42,7 @@ public class IncorrectEvaluationException extends Exception {
     /**
      * Returns  a specific position in expression.
      *
-     * @return int index of symbol
+     * @return index number of symbol
      */
     public int getErrorPosition() {
         return errorPosition;

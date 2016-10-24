@@ -28,8 +28,8 @@ public interface MathExpressionCalculator {
     /**
      * Evaluates  math expression and returns a result.
      *
-     * @param equation String with math expression
-     * @return double result of calculation
+     * @param equation math expression
+     * @return result of calculation
      * @throws IncorrectEvaluationException in case if expression was in wrong format
      */
     double evaluate(String equation) throws IncorrectEvaluationException;

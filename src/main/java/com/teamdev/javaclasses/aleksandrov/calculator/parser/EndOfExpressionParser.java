@@ -32,8 +32,8 @@ public class EndOfExpressionParser implements ExpressionParser {
     /**
      * Return true if there no more expression to read and starts all calculations across stored value in stacks.
      *
-     * @param reader ExpressionReader object
-     * @param stack  EvaluationStack object
+     * @param reader {@link ExpressionReader} object
+     * @param stack  {@link EvaluationStack} object
      * @return boolean
      */
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {

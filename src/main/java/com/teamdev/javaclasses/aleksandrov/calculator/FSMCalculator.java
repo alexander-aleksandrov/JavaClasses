@@ -22,7 +22,7 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
 import com.teamdev.javaclasses.aleksandrov.calculator.finitestatemachine.MachineRunner;
 
 /**
- * Finite  state machine realisation in view of calculator.
+ * The finite state machine realisation in view of a calculator.
  *
  * @author Oleg Melnik
  * @author Alexander Aleksandrov
@@ -35,21 +35,22 @@ public class FSMCalculator extends MachineRunner<
         ParsingService,
         CalculatorTransitions> implements MathExpressionCalculator {
     /**
-     * Constructor  that takes {@link ParsingService} as Recognizer and {@link CalculatorTransitions} as matrix.
+     * A constructor that takes {@link ParsingService} as Recognizer and {@link CalculatorTransitions} as matrix.
      */
     public FSMCalculator() {
         super(new CalculatorTransitions(), new ParsingService());
     }
 
     /**
-     * Evaluates  math expression and shows the result.
+     * Evaluates a math expression and shows the result.
      *
-     * @param equation String that contains math expression
-     * @return double Result of all moves through expression.
+     * @param expression math expression
+     * @return a result of all moves through expression.
      * @throws IncorrectEvaluationException
      */
-    public double evaluate(String equation) throws IncorrectEvaluationException {
-        return move(new ExpressionReader(equation), new EvaluationStack());
+    public double evaluate(String expression) throws IncorrectEvaluationException {
+        final Double result = move(new ExpressionReader(expression), new EvaluationStack());
+        return result;
     }
 
     /**

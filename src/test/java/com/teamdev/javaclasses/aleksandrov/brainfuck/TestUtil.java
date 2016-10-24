@@ -25,10 +25,12 @@ import java.io.IOException;
 
 public class TestUtil {
 
-    public static void clearDraft(final File output){
+    public static void clearDraft(File output){
         try (FileWriter writer = new FileWriter(output)) {
             writer.write("");
             writer.close();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
