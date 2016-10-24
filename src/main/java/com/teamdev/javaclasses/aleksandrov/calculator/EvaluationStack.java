@@ -65,9 +65,9 @@ public class EvaluationStack {
      */
     @SuppressWarnings("unchecked")
     public void pushOperator(Optional<BinaryOperator> operator) {
-
+        BinaryOperator binaryOperator = operator.orElseThrow(IllegalArgumentException::new);
         if (operatorStack.isEmpty() || operatorStack.peek().compareTo(operator) <= 0) {
-            operatorStack.push(operator.orElseThrow(IllegalArgumentException::new));
+            operatorStack.push(binaryOperator);
             log.info("Pushed operator to stack: " + operator);
             return;
         }
@@ -78,7 +78,7 @@ public class EvaluationStack {
             double result = operatorStack.pop().calculate(leftOperand, rightOperand);
             log.info("The result was pushed to stack: " + result);
             argumentStack.push(result);
-            operatorStack.push(operator.orElseThrow(IllegalArgumentException::new));
+            operatorStack.push(binaryOperator);
         }
 
     }
