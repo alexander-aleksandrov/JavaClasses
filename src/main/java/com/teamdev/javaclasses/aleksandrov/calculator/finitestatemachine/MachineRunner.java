@@ -27,12 +27,12 @@ import java.util.Set;
 /**
  * An abstract class that describes the logic of finite state machine.
  *
- * @param <Result>        The result of machine work
- * @param <State>         A possible state of machine
- * @param <InputContext>  The context before the new state
- * @param <OutputContext> The context after the state has passed
- * @param <Recognizer>    Some one who check states for validity
- * @param <Matrix>        A matrix of all possible states
+ * @param <Result>        a result of machine work
+ * @param <State>         a possible state of machine
+ * @param <InputContext>  a context before the new state
+ * @param <OutputContext> a context after the state has passed
+ * @param <Recognizer>    some one who checks state for validity
+ * @param <Matrix>        a matrix of all possible states
  * @author Oleg Melnik
  */
 public abstract class MachineRunner<
@@ -51,8 +51,8 @@ public abstract class MachineRunner<
     /**
      * Constructor for Machine runner.
      *
-     * @param matrix     Matrix object
-     * @param recognizer Recognizer object
+     * @param matrix     matrix object
+     * @param recognizer recognizer object
      */
     public MachineRunner(Matrix matrix, Recognizer recognizer) {
         this.matrix = matrix;
@@ -62,8 +62,8 @@ public abstract class MachineRunner<
     /**
      * Returns a result of every move that was made.
      *
-     * @param inputContext  InputContext object
-     * @param outputContext OutputContext object
+     * @param inputContext  inputContext object
+     * @param outputContext outputContext object
      * @return A Result object
      */
     public Result move(InputContext inputContext, OutputContext outputContext) {

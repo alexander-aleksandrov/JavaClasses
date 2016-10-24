@@ -23,6 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.IllegalFormatException;
+import java.util.Optional;
 
 /**
  * An output context of the model a stack that contains all results of calculations.
@@ -39,7 +41,7 @@ public class EvaluationStack {
     /**
      * Puts the number to stack.
      *
-     * @param number double value of a number
+     * @param number value of a number
      */
     public void pushNumber(double number) {
         log.info("The number was pushed to stack: " + number);
@@ -49,7 +51,7 @@ public class EvaluationStack {
     /**
      * Pops the last number out of stack.
      *
-     * @return double number
+     * @return last digit
      */
     double popNumber() {
         log.info("The number was poped from stack: " + argumentStack.peek());
@@ -62,10 +64,10 @@ public class EvaluationStack {
      * @param operator {@link BinaryOperator} object
      */
     @SuppressWarnings("unchecked")
-    public void pushOperator(BinaryOperator operator) {
+    public void pushOperator(Optional<BinaryOperator> operator) {
 
         if (operatorStack.isEmpty() || operatorStack.peek().compareTo(operator) <= 0) {
-            operatorStack.push(operator);
+            operatorStack.push(operator.orElseThrow(IllegalArgumentException::new));
             log.info("Pushed operator to stack: " + operator);
             return;
         }
@@ -76,7 +78,7 @@ public class EvaluationStack {
             double result = operatorStack.pop().calculate(leftOperand, rightOperand);
             log.info("The result was pushed to stack: " + result);
             argumentStack.push(result);
-            operatorStack.push(operator);
+            operatorStack.push(operator.orElseThrow(IllegalArgumentException::new));
         }
 
     }

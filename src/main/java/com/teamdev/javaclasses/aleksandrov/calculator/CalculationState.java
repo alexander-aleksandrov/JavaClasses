@@ -26,15 +26,15 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
  */
 public enum CalculationState {
     /**
-     * Initial state of machine
+     * Initial state of the machine
      */
     START,
     /**
-     * State when we met a number inside expression
+     * The state when we met a number inside an expression
      */
     NUMBER,
     /**
-     * State when we met binary operator in expression
+     * The state when we met a binary operator inside an expression
      */
     BINARY_OPERATOR,
     /**

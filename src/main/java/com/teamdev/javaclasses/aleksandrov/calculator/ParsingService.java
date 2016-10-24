@@ -56,7 +56,7 @@ public class ParsingService implements StateRecognizer<
      *
      * @param reader        {@link ExpressionReader} object
      * @param stack         {@link EvaluationStack} object
-     * @param possibleState State object
+     * @param possibleState {@link CalculationState} object
      * @return boolean
      */
     public boolean accept(ExpressionReader reader, EvaluationStack stack, CalculationState possibleState) {

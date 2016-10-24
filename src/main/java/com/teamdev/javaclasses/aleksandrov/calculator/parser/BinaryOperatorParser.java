@@ -31,13 +31,13 @@ import org.slf4j.LoggerFactory;
 public class BinaryOperatorParser implements ExpressionParser {
 
     private static final Logger log = LoggerFactory.getLogger(BinaryOperatorParser.class);
-    private final BinaryOperatorRepository reposytory = new BinaryOperatorRepositoryInMemo();
+    private final BinaryOperatorRepository reposytory = new BinaryOperatorRepositoryInMemory();
 
     /**
      * Returns boolean in case if expression was parsed correctly and pushes binary operator object to stack and changes current position in expression.
      *
-     * @param reader ExpressionReader object
-     * @param stack  EvaluationStack object
+     * @param reader {@link ExpressionReader} object
+     * @param stack  {@link EvaluationStack} object
      * @return boolean
      */
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {

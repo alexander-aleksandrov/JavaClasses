@@ -42,17 +42,18 @@ public class CalculatorTransitions implements TransitionMatrix<CalculationState>
     }};
 
     /**
-     * Gets the initial state
+     * Gets the initial state.
      *
-     * @return Enum initial state
+     * @return initial state
      */
     public CalculationState getStartState() {
         return CalculationState.START;
     }
+
     /**
-     * Gets the final state
+     * Gets the final state.
      *
-     * @return Enum final state
+     * @return final state
      */
     public CalculationState getFinishState() {
         return CalculationState.FINISH;
@@ -61,8 +62,8 @@ public class CalculatorTransitions implements TransitionMatrix<CalculationState>
     /**
      * Gets all possible allowed states in case of some current state.
      *
-     * @param currentState Enum current state of machine
-     * @return Set of Enum of allowed states
+     * @param currentState current state of machine
+     * @return set of allowed states
      */
     public Set<CalculationState> getPossibleTransitions(CalculationState currentState) {
         return transitions.get(currentState);

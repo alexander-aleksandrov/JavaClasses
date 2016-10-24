@@ -32,55 +32,62 @@ import org.slf4j.LoggerFactory;
  */
 public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
 
+    /**
+     * Binary operator priority taken from math.
+     */
     enum Priority {
-        LOW,
-        MEDIUM,
-        HIGH
+        /**
+         * Addition, subtraction.
+         */
+        PRIORITY_LOW,
+        /**
+         * Multiplication, division, raising to a power.
+         */
+        PRIORITY_MEDIUM,
+        PRIORITY_HIGH
     }
 
     private static final Logger log = LoggerFactory.getLogger(BinaryOperatorImpl.class);
-
-    private final String script;
+    private String operation;
     private final Priority priority;
 
     /**
-     * Constructor that makes Binary operator object.
+     * Constructor for Binary operator object.
      *
-     * @param script   String that contain Groovy script.
-     * @param priority Priority Enum of
+     * @param operation operator meaning
+     * @param priority  operator priority
      */
-    public BinaryOperatorImpl(String script, Priority priority) {
-        this.script = script;
+    public BinaryOperatorImpl(String operation, Priority priority) {
+        this.operation = operation;
         this.priority = priority;
     }
 
     /**
-     * Calculates operation stored in this script with left and right operands.
+     * Binds and executes groovy script for specific operator.
      *
-     * @param leftOperand  double number
-     * @param rightOperand double number
-     * @return double result of calculation
+     * @param leftOperand  left operand of expression
+     * @param rightOperand right operand of expression
+     * @return calculation result
      */
     @Override
     public double calculate(double leftOperand, double rightOperand) {
-
         Binding binding = new Binding();
-        binding.setVariable("leftOperand", leftOperand);
-        binding.setVariable("rightOperand", rightOperand);
+        binding.setVariable("x", leftOperand);
+        binding.setVariable("y", rightOperand);
         GroovyShell shell = new GroovyShell(binding);
         log.info("Made a calculation");
-        return (Double) shell.evaluate(script);
+        String scriptEquation = 'x' + operation + 'y';
+        return (Double) shell.evaluate(scriptEquation);
     }
 
     /**
      * Overrides compareTo method based on priority specified in {@link Priority} enum.
      *
-     * @param o Comparable object
-     * @return int value less than 0 if object have a higher priority, 0 if equals, and more than 0 if object have lower priority
+     * @param o comparable object
+     * @return negative value if object have a higher priority, 0 if equals, and positive if object have lower priority
      */
     @Override
     public int compareTo(BinaryOperatorImpl o) {
-
         return priority.compareTo(o.priority);
     }
 }

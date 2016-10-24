@@ -31,8 +31,8 @@ public interface ExpressionParser {
     /**
      * Returns boolean after attempt to parse math expression
      *
-     * @param reader ExpressionReader object
-     * @param stack  EvaluationStack object
+     * @param reader {@link ExpressionReader} object
+     * @param stack  {@link EvaluationStack} object
      * @return boolean
      */
     boolean parseExpression(ExpressionReader reader, EvaluationStack stack);
