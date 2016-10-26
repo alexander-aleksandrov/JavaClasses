@@ -20,13 +20,13 @@
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
 /**
- * An interface for expression calculator that can evaluate simple expression contained of numbers and binary operators.
+ * An interface  for expression calculator that can evaluate simple expression contained of numbers and binary operators.
  *
  * @author Alexander Aleksandrov
  */
 public interface MathExpressionCalculator {
     /**
-     * Evaluates math expression and returns a result.
+     * Evaluates  math expression and returns a result.
      *
      * @param equation math expression
      * @return result of calculation

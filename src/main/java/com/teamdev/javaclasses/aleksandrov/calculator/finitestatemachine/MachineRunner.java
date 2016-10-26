@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Set;
 
 /**
- * An abstract class that describes the logic of finite state machine.
+ * An abstract class that describes the logic  of finite state machine.
  *
  * @param <Result>        a result of machine work
  * @param <State>         a possible state of machine
@@ -49,7 +49,7 @@ public abstract class MachineRunner<
     private static final Logger log = LoggerFactory.getLogger(MachineRunner.class);
 
     /**
-     * Constructor for Machine runner.
+     * Constructor for  Machine runner.
      *
      * @param matrix     matrix object
      * @param recognizer recognizer object
@@ -60,7 +60,7 @@ public abstract class MachineRunner<
     }
 
     /**
-     * Returns a result of every move that was made.
+     * Returns a result of  every move that was made.
      *
      * @param inputContext  inputContext object
      * @param outputContext outputContext object

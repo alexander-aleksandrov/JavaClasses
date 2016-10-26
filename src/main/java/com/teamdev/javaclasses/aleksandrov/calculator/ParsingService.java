@@ -32,7 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Implementation of {@link StateRecognizer} allows to chose specific state and run a parser for it.
+ * Implementation  of {@link StateRecognizer} allows to chose specific state and run a parser for it.
  *
  * @author Oleg Melnik
  * @author Alexander Aleksandrov
@@ -52,7 +52,7 @@ public class ParsingService implements StateRecognizer<
                     .build();
 
     /**
-     * Returns true in case if state parser was run well.
+     * Returns  true in case if state parser was run well.
      *
      * @param reader        {@link ExpressionReader} object
      * @param stack         {@link EvaluationStack} object

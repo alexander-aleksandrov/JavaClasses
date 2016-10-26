@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Expression container that allows to work with it.
+ * Expression  container that allows to work with it.
  *
  * @author Alexander Aleksandrov
  */
@@ -34,7 +34,7 @@ public class ExpressionReader {
     private int position = 0;
 
     /**
-     * Constructor that takes expression String as parameter.
+     * Constructor  that takes expression String as parameter.
      *
      * @param mathExpression
      */
@@ -43,7 +43,7 @@ public class ExpressionReader {
     }
 
     /**
-     * Gets a current position in expression.
+     * Gets  a current position in expression.
      *
      * @return
      */
@@ -52,7 +52,7 @@ public class ExpressionReader {
     }
 
     /**
-     * Sets the position of current symbol in expression ro specific value.
+     * Sets  the position of current symbol in expression ro specific value.
      *
      * @param newposition
      */
@@ -61,7 +61,7 @@ public class ExpressionReader {
     }
 
     /**
-     * Parse the expression and passes a chunk of expression either it will be a number or a binary operator.
+     * Parse  the expression and passes a chunk of expression either it will be a number or a binary operator.
      *
      * @return String with next part of expression
      */
@@ -94,7 +94,7 @@ public class ExpressionReader {
     }
 
     /**
-     * Return true in case if there a still has something to read in expression.
+     * Return  true in case if there a still has something to read in expression.
      *
      * @return boolean
      */

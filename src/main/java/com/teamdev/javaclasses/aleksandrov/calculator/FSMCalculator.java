@@ -54,7 +54,7 @@ public class FSMCalculator extends MachineRunner<
     }
 
     /**
-     * Throws {@link IllegalStateException} in case if expression is not valid and machine don't know next state.
+     * Throws  {@link IllegalStateException} in case if expression is not valid and machine don't know next state.
      *
      * @param expressionReader {@link ExpressionReader} object
      */

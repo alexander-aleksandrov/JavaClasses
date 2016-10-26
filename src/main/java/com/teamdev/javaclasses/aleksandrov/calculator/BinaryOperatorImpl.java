@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Binary Operator logic implemented with Groovy script.
+ * Binary Operator  logic implemented with Groovy script.
  *
  * @author Oleg Melnik
  * @author Alexander Aleksandrov
@@ -81,7 +81,7 @@ public class BinaryOperatorImpl implements BinaryOperator<BinaryOperatorImpl> {
     }
 
     /**
-     * Overrides compareTo method based on priority specified in {@link Priority} enum.
+     * Overrides  compareTo method based on priority specified in {@link Priority} enum.
      *
      * @param o comparable object
      * @return negative value if object have a higher priority, 0 if equals, and positive if object have lower priority
