@@ -63,9 +63,10 @@ public class EvaluationStack {
      *
      * @param operator {@link BinaryOperator} object
      */
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     public void pushOperator(Optional<BinaryOperator> operator) {
-        BinaryOperator binaryOperator = operator.orElseThrow(IllegalArgumentException::new);
+        BinaryOperator binaryOperator = operator.orElseThrow(() ->
+                new IllegalArgumentException("There are no binary operator for such representation"));
         if (operatorStack.isEmpty() || operatorStack.peek().compareTo(operator) <= 0) {
             operatorStack.push(binaryOperator);
             log.info("Pushed operator to stack: " + operator);
