@@ -19,6 +19,8 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
+import java.awt.geom.Area;
+
 /**
  * Area code for  phone numbers.
  *
@@ -26,7 +28,8 @@ package com.teamdev.javaclasses.aleksandrov.phonenumber;
  */
 public enum AreaCode {
     ALABAMA("250"),
-    ARISONA("480");
+    ARISONA("480"),
+    DEFAULT("Not found");
 
     private String ac;
 
@@ -34,4 +37,21 @@ public enum AreaCode {
         this.ac = ac;
     }
 
+    /**
+     * Gets area code from a record.
+     *
+     * @return String with a area code
+     */
+    public String getAreaCode() {
+        return ac;
+    }
+
+    public static AreaCode contains(String test) {
+        for (AreaCode c : AreaCode.values()) {
+            if (c.name().equals(test)) {
+                return c;
+            }
+        }
+        return AreaCode.DEFAULT;
+    }
 }

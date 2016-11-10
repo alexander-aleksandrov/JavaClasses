@@ -19,8 +19,16 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
+
+import com.google.common.base.CharMatcher;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
 import javax.annotation.Nullable;
 import java.text.ParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A class  that allows to work with phone number as value object.
@@ -72,7 +80,7 @@ public final class PhoneNumber {
         return extensionNumber;
     }
 
-    public static PhoneNumber.Builder newBuilder() {
+    public static Builder newPhoneNumber() {
         return new Builder();
     }
 
@@ -91,8 +99,8 @@ public final class PhoneNumber {
          * @param cc {@link CountryCode} enum
          * @return this Builder
          */
-        public Builder setCountryCode(CountryCode cc) {
-            countryCode = cc;
+        public Builder setCountryCode(CountryCode code) {
+            countryCode = code;
             return this;
         }
 
@@ -148,32 +156,22 @@ public final class PhoneNumber {
     }
 
     /**
-     *  Creates  a new phone number instance.
+     * Creates  a new phone number instance.
      *
-     * @return {@link PhoneNumber} object
+     * @param input Any input from client
+     * @return Phone Number
+     * @throws ParseException
      */
-    public static PhoneNumber newPhoneNumber() {
+    public static PhoneNumber parse(String input) throws ParseException {
+        Iterable<String> phoneSplit = Splitter.on(CharMatcher.anyOf("-)("))
+                .omitEmptyStrings().trimResults().split(input);
+        String countryCode = Iterables.get(phoneSplit, 0);
+        String areaCode = Iterables.get(phoneSplit, 1);
+        String lineNumber = Iterables.get(phoneSplit, 2) + Iterables.get(phoneSplit, 3) + Iterables.get(phoneSplit, 4);
+        System.out.println(countryCode + " " + areaCode + " " + lineNumber);
 
-//        CountryCode cc = CountryCode.valueOf();
-//        PhoneNumber ph = PhoneNumber.newBuilder()
-//                .setCountryCode()
-//                .setAreaCode()
-//                .setPhoneLineNumber()
-//                .setExtension()
-//                .build();
-//        return ph;
-//    }
-
-//    public final static PhoneNumber parse(String input) throws ParseException {
-//        input.toCharArray();
-//    }
-
-        return null;
-    }
-
-    public final static PhoneNumber parse(String input) throws ParseException {
-        input.toCharArray();
-        return null;
+        PhoneNumber ph = newPhoneNumber().setCountryCode(CountryCode.contains(countryCode)).setAreaCode(AreaCode.contains(areaCode)).build();
+        return ph;
     }
 
     @Override

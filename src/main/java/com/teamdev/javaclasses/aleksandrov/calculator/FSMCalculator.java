@@ -46,7 +46,7 @@ public class FSMCalculator extends MachineRunner<
      *
      * @param expression math expression
      * @return a result of all moves through expression.
-     * @throws IncorrectEvaluationException
+     * @throws IncorrectEvaluationException exception that contains error message and wrong symbol position
      */
     public double evaluate(String expression) throws IncorrectEvaluationException {
         final Double result = move(new ExpressionReader(expression), new EvaluationStack());
