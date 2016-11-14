@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
 /**
- * All possible states of finite state machine during calculation.
+ * All possible  states of finite state machine during calculation.
  *
  * @author Oleg Melnik
  */
@@ -38,7 +38,7 @@ public enum CalculationState {
      */
     BINARY_OPERATOR,
     /**
-     * Final state
+     * Final  state
      */
     FINISH
 }

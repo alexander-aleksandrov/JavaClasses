@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Expression container that allows to work with it.
+ * Expression  container that allows to work with it.
  *
  * @author Alexander Aleksandrov
  */
@@ -61,7 +61,7 @@ public class ExpressionReader {
     }
 
     /**
-     * Parse the expression and passes a chunk of expression either it will be a number or a binary operator.
+     * Parse  the expression and passes a chunk of expression either it will be a number or a binary operator.
      *
      * @return String with next part of expression
      */
@@ -94,7 +94,7 @@ public class ExpressionReader {
     }
 
     /**
-     * Return true in case if there a still has something to read in expression.
+     * Return  true in case if there a still has something to read in expression.
      *
      * @return boolean
      */

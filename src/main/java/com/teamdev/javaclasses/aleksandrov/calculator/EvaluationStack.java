@@ -27,7 +27,7 @@ import java.util.IllegalFormatException;
 import java.util.Optional;
 
 /**
- * An output context of the model a stack that contains all results of calculations.
+ * An output  context of the model a stack that contains all results of calculations.
  *
  * @author Oleg Melnik
  * @author Alexander Aleksandrov`
@@ -39,7 +39,7 @@ public class EvaluationStack {
     private final Deque<BinaryOperator> operatorStack = new ArrayDeque<>();
 
     /**
-     * Puts the number to stack.
+     * Puts  the number to stack.
      *
      * @param number value of a number
      */
@@ -49,7 +49,7 @@ public class EvaluationStack {
     }
 
     /**
-     * Pops the last number out of stack.
+     * Pops  the last number out of stack.
      *
      * @return last digit
      */
@@ -59,15 +59,16 @@ public class EvaluationStack {
     }
 
     /**
-     * Puts Binary operator to stack with checking priority and making appropriate calculation if it needed.
+     * Puts  Binary operator to stack with checking priority and making appropriate calculation if it needed.
      *
      * @param operator {@link BinaryOperator} object
      */
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     public void pushOperator(Optional<BinaryOperator> operator) {
-
+        BinaryOperator binaryOperator = operator.orElseThrow(() ->
+                new IllegalArgumentException("There are no binary operator for such representation"));
         if (operatorStack.isEmpty() || operatorStack.peek().compareTo(operator) <= 0) {
-            operatorStack.push(operator.orElseThrow(IllegalArgumentException::new));
+            operatorStack.push(binaryOperator);
             log.info("Pushed operator to stack: " + operator);
             return;
         }
@@ -78,13 +79,13 @@ public class EvaluationStack {
             double result = operatorStack.pop().calculate(leftOperand, rightOperand);
             log.info("The result was pushed to stack: " + result);
             argumentStack.push(result);
-            operatorStack.push(operator.orElseThrow(IllegalArgumentException::new));
+            operatorStack.push(binaryOperator);
         }
 
     }
 
     /**
-     * Initiates calculation for all operators that have been stored in stack in case if expression is finished.
+     * Initiates  calculation for all operators that have been stored in stack in case if expression is finished.
      */
     public void finalCalculation() {
         while (!operatorStack.isEmpty()) {
@@ -97,7 +98,7 @@ public class EvaluationStack {
     }
 
     /**
-     * Pops last {@link BinaryOperator} out of stack.
+     * Pops  last {@link BinaryOperator} out of stack.
      *
      * @return {@link BinaryOperator} object
      */

@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * A matrix of valid transitions between states.
+ * A matrix  of valid transitions between states.
  *
  * @author Oleg Melnik
  * @author Alexander Aleksandrov
@@ -60,7 +60,7 @@ public class CalculatorTransitions implements TransitionMatrix<CalculationState>
     }
 
     /**
-     * Gets all possible allowed states in case of some current state.
+     * Gets all  possible allowed states in case of some current state.
      *
      * @param currentState current state of machine
      * @return set of allowed states

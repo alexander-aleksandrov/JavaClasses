@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
 /**
- * Binary operator.
+ * An interface  to make operations between two numbers.
  *
  * @param <O> binary operator object
  * @author Oleg Melnik

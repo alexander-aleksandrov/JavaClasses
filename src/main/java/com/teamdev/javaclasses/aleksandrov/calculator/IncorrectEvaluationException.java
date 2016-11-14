@@ -20,7 +20,7 @@
 package com.teamdev.javaclasses.aleksandrov.calculator;
 
 /**
- * Exception that states that evaluation of math expression was corrupted by wrong format.
+ * Exception  that states that evaluation of math expression was corrupted by wrong format.
  *
  * @author Alexander Aleksandrov
  */
@@ -29,7 +29,7 @@ public class IncorrectEvaluationException extends Exception {
     private final int errorPosition;
 
     /**
-     * Throws and shows a message and error position in expression.
+     * Throws  and shows a message and error position in expression.
      *
      * @param message       error message
      * @param errorPosition a place of symbol in expression that has wrong format
@@ -40,7 +40,7 @@ public class IncorrectEvaluationException extends Exception {
     }
 
     /**
-     * Returns a specific position in expression.
+     * Returns  a specific position in expression.
      *
      * @return index number of symbol
      */

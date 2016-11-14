@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * An interface to work with repository of binary operators.
+ * An interface  to work with repository of binary operators.
  *
  * @author Oleg Melnik
  */
