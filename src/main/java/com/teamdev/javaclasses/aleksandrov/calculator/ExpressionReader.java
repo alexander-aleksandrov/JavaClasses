@@ -34,30 +34,30 @@ public class ExpressionReader {
     private int position = 0;
 
     /**
-     * Constructor  that takes expression String as parameter.
+     * Takes a a math expression as parameter.
      *
-     * @param mathExpression
+     * @param mathExpression mathematical expression
      */
     public ExpressionReader(String mathExpression) {
         this.mathExpression = mathExpression;
     }
 
     /**
-     * Gets  a current position in expression.
+     * Obtains a current position in expression.
      *
-     * @return
+     * @return a current position in expression
      */
     public int getPosition() {
         return position;
     }
 
     /**
-     * Sets  the position of current symbol in expression ro specific value.
+     * Sets the position of next symbol that will be read to a specific value  .
      *
-     * @param newposition
+     * @param newPosition indexed value of new position
      */
-    public void setPosition(int newposition) {
-        this.position = position + newposition;
+    public void setPosition(int newPosition) {
+        this.position = position + newPosition;
     }
 
     /**

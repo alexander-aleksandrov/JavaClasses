@@ -38,7 +38,7 @@ public class NumberParser implements ExpressionParser {
      *
      * @param reader {@link ExpressionReader} object
      * @param stack  {@link EvaluationStack} object
-     * @return
+     * @return confirmation that expression was parsed
      */
     public boolean parseExpression(ExpressionReader reader, EvaluationStack stack) {
         log.info("I'm in the number parser");

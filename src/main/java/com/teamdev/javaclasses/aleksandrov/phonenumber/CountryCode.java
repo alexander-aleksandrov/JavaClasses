@@ -28,7 +28,8 @@ public enum CountryCode {
 
     ANGUILLA("1-264", "Anguilla"),
     CANADA("1", "Canada"),
-    UNITED_STATES("1", "United States");
+    UNITED_STATES("1", "United States"),
+    DEFAULT("Not Found", "No Such country");
 
     private String countryCode;
     private String country;
@@ -56,4 +57,17 @@ public enum CountryCode {
         return country;
     }
 
+    /**
+     *
+     * @param test
+     * @return
+     */
+    public static CountryCode contains(String test) {
+        for (CountryCode c : CountryCode.values()) {
+            if (c.name().equals(test)) {
+                return c;
+            }
+        }
+        return CountryCode.DEFAULT;
+    }
 }

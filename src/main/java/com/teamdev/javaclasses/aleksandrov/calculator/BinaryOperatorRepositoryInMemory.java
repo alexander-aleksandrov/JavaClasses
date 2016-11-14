@@ -58,7 +58,7 @@ public class BinaryOperatorRepositoryInMemory implements BinaryOperatorRepositor
     /**
      * Gets some Binary  operator according to representation.
      *
-     * @param representation
+     * @param representation symbol or word that describes binary operator
      * @return {@link BinaryOperator} object
      */
     @Override
