@@ -163,6 +163,10 @@ public final class PhoneNumber {
      * @throws ParseException
      */
     public static PhoneNumber parse(String input) throws ParseException {
+
+        if (input.length() <= 7 && input.matches("\\d")){
+            PhoneNumber ph = newPhoneNumber().setPhoneLineNumber(input).build();
+        }
         Iterable<String> phoneSplit = Splitter.on(CharMatcher.anyOf("-)("))
                 .omitEmptyStrings().trimResults().split(input);
         String countryCode = Iterables.get(phoneSplit, 0);
@@ -170,7 +174,7 @@ public final class PhoneNumber {
         String lineNumber = Iterables.get(phoneSplit, 2) + Iterables.get(phoneSplit, 3) + Iterables.get(phoneSplit, 4);
         System.out.println(countryCode + " " + areaCode + " " + lineNumber);
 
-        PhoneNumber ph = newPhoneNumber().setCountryCode(CountryCode.contains(countryCode)).setAreaCode(AreaCode.contains(areaCode)).build();
+        PhoneNumber ph = newPhoneNumber().setCountryCode(CountryCode.contains(countryCode)).setAreaCode(AreaCode.contains(areaCode)).setPhoneLineNumber(lineNumber).build();
         return ph;
     }
 
