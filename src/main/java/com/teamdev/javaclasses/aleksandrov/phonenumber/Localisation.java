@@ -19,20 +19,38 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+
 /**
- * A list of  countries.
+ * Defines current user geographical location.
  *
  * @author Alexander Aleksandrov
  */
-public enum Country {
-    UNITED_STATES("United States"),
-    CANADA("Canada"),
-    NEWCOUNTRY("qwerty");
+public class Localisation {
 
-    private String country;
-
-    Country(String counrty) {
-        this.country = country;
+    /**
+     * Gets the country numbering plan based on geolocation of the IP selfrequest.
+     *
+     * @return Country numbering plan based on location
+     */
+    public static CountryNumberingPlan getCountryNumberingPlan(){
+        URL myCountry;
+        try {
+            myCountry = new URL("http://ip2c.org/s");
+            BufferedReader in = new BufferedReader(new InputStreamReader(myCountry.openStream()));
+            String webResponse = in.readLine();
+            String alpha2CountryCode = parseLocation(webResponse);
+            return CountryNumberingPlan.valueOf(alpha2CountryCode);
+        } catch (Exception e) {
+        }
+        return CountryNumberingPlan.UNDEFINED;
     }
 
+    private static String parseLocation (String webResponse){
+        String location = webResponse.split(";")[1];
+        return location;
+    }
 }
+
