@@ -32,7 +32,7 @@ public enum CountryNumberingPlan {
 
     UNDEFINED(" ", new int[]{}, new int[]{}, CountryCode.UNDEFINED),
 
-    /*Zone 1: North American Numbering Plan Area*/
+    /* Zone 1: North American Numbering Plan Area */
     CA("1", new int[]{3}, new int[]{7}, CountryCode.CA),
     US("1", new int[]{3}, new int[]{7}, CountryCode.US),
     BS("1242", new int[]{3}, new int[]{4}, CountryCode.BS),
@@ -62,7 +62,8 @@ public enum CountryNumberingPlan {
     JM("1876", new int[]{3}, new int[]{4}, CountryCode.JM),
     PR_2("1939", new int[]{3}, new int[]{4}, CountryCode.PR),
 
-    /*Zone 2: mostly Africa (but also Aruba, Faroe Islands, Greenland and British Indian Ocean Territory)*/
+    /* Zone 2: mostly Africa (but also Aruba, Faroe Islands,
+    Greenland and British Indian Ocean Territory) */
     EG("20", new int[]{1, 5}, new int[]{3, 11}, CountryCode.EG),
     SS("211", new int[]{2}, new int[]{7}, CountryCode.SS),
     MA("212", new int[]{4, 6}, new int[]{4, 6}, CountryCode.MA),
@@ -80,7 +81,7 @@ public enum CountryNumberingPlan {
     TG("228", new int[]{2}, new int[]{6}, CountryCode.TG),
     BJ("229", new int[]{2}, new int[]{3, 6}, CountryCode.BJ),
     MU("230", new int[]{2}, new int[]{3, 7}, CountryCode.MU),
-//TODO:2016-11-24:alexander.aleksandrov: finish with areacode range
+    //TODO:2016-11-25:alexander.aleksandrov: finish with areacode range
     LR("231", new int[]{2}, new int[]{7}, CountryCode.LR),
     SL("232", new int[]{2}, new int[]{7}, CountryCode.SL),
     GH("233", new int[]{2}, new int[]{7}, CountryCode.GH),
@@ -129,7 +130,7 @@ public enum CountryNumberingPlan {
     FO("298", new int[]{2}, new int[]{7}, CountryCode.FO),
     GL("299", new int[]{2}, new int[]{7}, CountryCode.GL),
 
-    /*Zones 3-4: Europe*/
+    /* Zones 3-4: Europe */
     GR("30", new int[]{2}, new int[]{7}, CountryCode.GR),
     NL("31", new int[]{2}, new int[]{7}, CountryCode.NL),
     BE("32", new int[]{2}, new int[]{7}, CountryCode.BE),
@@ -186,7 +187,7 @@ public enum CountryNumberingPlan {
     PL("48", new int[]{2}, new int[]{7}, CountryCode.PL),
     DE("49", new int[]{3, 5}, new int[]{3, 14}, CountryCode.DE),
 
-    /*Zone 5: Central America and South America*/
+    /* Zone 5: Central America and South America */
     FK("500", new int[]{2}, new int[]{7}, CountryCode.FK),
     GS("500", new int[]{2}, new int[]{7}, CountryCode.GS),
     BZ("501", new int[]{2}, new int[]{7}, CountryCode.BZ),
@@ -220,7 +221,7 @@ public enum CountryNumberingPlan {
     BQ("599", new int[]{2}, new int[]{7}, CountryCode.BQ),
     CW("599", new int[]{2}, new int[]{7}, CountryCode.CW),
 
-    /*Zone 6: Southeast Asia and Oceania*/
+    /* Zone 6: Southeast Asia and Oceania */
     MY("60", new int[]{2}, new int[]{7}, CountryCode.MY),
     AU("61", new int[]{2}, new int[]{7}, CountryCode.AU),
     CX("61", new int[]{2}, new int[]{7}, CountryCode.CX),
@@ -254,7 +255,7 @@ public enum CountryNumberingPlan {
     FM("691", new int[]{2}, new int[]{7}, CountryCode.FM),
     MH("692", new int[]{2}, new int[]{7}, CountryCode.MH),
 
-    /*Zone 7: Parts of the former Soviet Union*/
+    /* Zone 7: Parts of the former Soviet Union */
     RU_1("7", new int[]{2}, new int[]{7}, CountryCode.RU),
     KZ_1("7", new int[]{2}, new int[]{7}, CountryCode.KZ),
     RU_2("73", new int[]{2}, new int[]{7}, CountryCode.RU),
@@ -264,7 +265,7 @@ public enum CountryNumberingPlan {
     RU_4("78", new int[]{2}, new int[]{7}, CountryCode.RU),
     RU_5("79", new int[]{2}, new int[]{7}, CountryCode.RU),
 
-    /*Zone 8: East Asia and special services*/
+    /* Zone 8: East Asia and special services */
     XT("800", new int[]{2}, new int[]{7}, CountryCode.XT),
     XS("808", new int[]{2}, new int[]{7}, CountryCode.XS),
     JP("81", new int[]{2}, new int[]{7}, CountryCode.JP),
@@ -285,7 +286,7 @@ public enum CountryNumberingPlan {
     TW("886", new int[]{2}, new int[]{7}, CountryCode.TW),
     XD("888", new int[]{2}, new int[]{7}, CountryCode.XD),
 
-    /*Zone 9: mostly Asia*/
+    /* Zone 9: mostly Asia */
     TR("90", new int[]{2}, new int[]{7}, CountryCode.TR),
     CT("90", new int[]{2}, new int[]{7}, CountryCode.CT),
     IN("91", new int[]{2}, new int[]{7}, CountryCode.IN),
@@ -326,7 +327,10 @@ public enum CountryNumberingPlan {
     private final int[] subscriberNumberRange;
     private final CountryCode countryCode;
 
-    private CountryNumberingPlan(String countryCallingCode, int[] areaCodeRange, int[] subscriberNumberRange, CountryCode countryCode) {
+    private CountryNumberingPlan(String countryCallingCode,
+                                 int[] areaCodeRange,
+                                 int[] subscriberNumberRange,
+                                 CountryCode countryCode) {
         this.countryCallingCode = countryCallingCode;
         this.areaCodeRange = areaCodeRange;
         this.subscriberNumberRange = subscriberNumberRange;
@@ -341,7 +345,7 @@ public enum CountryNumberingPlan {
     public int[] getAreaCodeRange() {
         return areaCodeRange;
     }
-    
+
     /**
      * Gets allowed range of digits for subscriber number .
      *
@@ -363,7 +367,7 @@ public enum CountryNumberingPlan {
     /**
      * Gets {@link CountryCode}
      *
-     * @return  with a full name
+     * @return with a full name
      */
     public CountryCode getCountryCode() {
         return countryCode;

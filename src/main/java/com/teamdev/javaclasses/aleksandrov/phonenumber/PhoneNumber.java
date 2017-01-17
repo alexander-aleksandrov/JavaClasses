@@ -21,6 +21,8 @@ package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
 import javax.annotation.Nullable;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.OffsetTime;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -250,13 +252,12 @@ public final class PhoneNumber {
         String subscriberNumber = "";
         String extensionNumber = "";
         CountryNumberingPlan countryNumberingPlan = CountryNumberingPlan.UNDEFINED;
-
         phoneNumber = format(phoneNumber);
         Validation.applyTo(phoneNumber);
         setPhoneRemainder(phoneNumber);
 
         while (getPhoneRemainder().length() != 0) {
-            /*Parsing of country calling code.*/
+            /* Parsing of country calling code. */
             if (phoneNumber.startsWith("+") && countryNumberingPlan == CountryNumberingPlan.UNDEFINED) {
                 countryNumberingPlan = parseCountryCodeAfterPlus();
             }
@@ -264,18 +265,18 @@ public final class PhoneNumber {
                 countryNumberingPlan = parseCountryCodeAfterIDD();
             }
 
-            /*Parsing of international direct dialing code.*/
+            /* Parsing of international direct dialing code. */
             final String possibleIDDRegex = "(00[0-9][0-9][0-9]|01[0-9]|8[0-9][0-9]|1[0-9][0-9]0|99[0-9][0-9]).*";
             if (phoneNumber.matches(possibleIDDRegex) && iddPrefix.isEmpty()) {
                 iddPrefix = parseIDDCode();
             }
 
-            /*Parsing of area code in case if the country code is already known.*/
+            /* Parsing of area code in case if the country code is already known. */
             if (countryNumberingPlan != CountryNumberingPlan.UNDEFINED && areaCode.isEmpty()) {
                 areaCode = parseAreaCodeByNumberingPlan(countryNumberingPlan);
             }
 
-            /*Parsing of area code in case if the country code is not stated.*/
+            /* Parsing of area code in case if the country code is not stated. */
             final String trunkCodeRegex = "(0|1|01|02|8).*";
             if (phoneNumber.matches(trunkCodeRegex) && areaCode.isEmpty() && iddPrefix.isEmpty()) {
                 countryNumberingPlan = Localisation.getCountryNumberingPlan();
@@ -283,7 +284,7 @@ public final class PhoneNumber {
                 trunkCode = parseTrunkCodByLocalisation();
             }
 
-            /*Parsing of subscriber number*/
+            /* Parsing of subscriber number */
             if (phoneNumber.length() <= 4 || phoneNumber.startsWith("*") & phoneNumber.endsWith("#")) {
                 subscriberNumber = getPhoneRemainder();
                 setPhoneRemainder("");
@@ -293,7 +294,7 @@ public final class PhoneNumber {
                 setPhoneRemainder("");
             }
 
-            /*Parsing of extension code.*/
+            /* Parsing of extension code. */
             if (getPhoneRemainder().length() != 0 && getPhoneRemainder().matches(".*[,].*")) {
                 extensionNumber = getPhoneRemainder().split(",")[1];
                 cutPhoneRemainder(0, getPhoneRemainder().length() - extensionNumber.length()-1);
