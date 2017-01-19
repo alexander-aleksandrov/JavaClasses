@@ -19,15 +19,11 @@
  */
 package com.teamdev.javaclasses.aleksandrov.phonenumber;
 
-
-import com.google.common.base.CharMatcher;
-import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
-
 import javax.annotation.Nullable;
 import java.text.ParseException;
-import java.util.regex.Matcher;
+import java.time.LocalDate;
+import java.time.OffsetTime;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -37,47 +33,98 @@ import java.util.regex.Pattern;
  */
 public final class PhoneNumber {
     @Nullable
-    private final CountryCode countryCode;
+    private final String iddPrefix;
     @Nullable
-    private final AreaCode areaCode;
-    private final String phoneLineNumber;
+    private final String trunkCode;
+    @Nullable
+    private final CountryNumberingPlan countryNumberingPlan;
+    @Nullable
+    private final String areaCode;
+    private final String subscriberNumber;
     @Nullable
     private final String extensionNumber;
 
-    /**
-     * Gets  international country code.
-     *
-     * @return {@link CountryCode} enum
-     */
-    public CountryCode getCountryCode() {
-        return countryCode;
+    private static String phoneRemainder;
+
+    private static String getPhoneRemainder() {
+        return phoneRemainder;
+    }
+
+    private static void setPhoneRemainder(String phoneNumber) {
+        phoneRemainder = phoneNumber;
     }
 
     /**
-     * Gets  local to country area codes.
+     * Gets international direct dialing code.
      *
-     * @return {@link AreaCode} enum
+     * @return {@link IDDPrefixPatterns} enum
      */
-    public AreaCode getAreaCode() {
+    @Nullable
+    public String getIddPrefix() {
+        return iddPrefix;
+    }
+
+    /**
+     * Gets trunk code.
+     *
+     * @return {@link IDDPrefixPatterns} enum
+     */
+    @Nullable
+    public String getTrunkCode() {
+        return trunkCode;
+    }
+
+    /**
+     * Gets international country code.
+     *
+     * @return {@link CountryNumberingPlan} enum
+     */
+    @Nullable
+    public CountryNumberingPlan getCountryNumberingPlan() {
+        return countryNumberingPlan;
+    }
+
+    /**
+     * Gets local to country area codes.
+     *
+     * @return {@link AreaCodePatterns} enum
+     */
+    @Nullable
+    public String getAreaCode() {
         return areaCode;
     }
 
     /**
-     * Gets  phone line number.
+     * Gets phone line number.
      *
      * @return String with phone line number
      */
-    public String getPhoneLineNumber() {
-        return phoneLineNumber;
+    public String getSubscriberNumber() {
+        return subscriberNumber;
     }
 
     /**
-     * Gets  Extension number.
+     * Gets Extension number.
      *
      * @return String with extension number
      */
+    @Nullable
     public String getExtensionNumber() {
         return extensionNumber;
+    }
+
+    /**
+     * Gets a number.
+     *
+     * @return whole number in string
+     */
+    public String getNumber() {
+        String countryCode = "";
+        if (iddPrefix.isEmpty() && countryNumberingPlan != CountryNumberingPlan.UNDEFINED) {
+            countryCode = "+" + countryNumberingPlan.getCountryCallingCode();
+        }
+        String number = iddPrefix + trunkCode + countryCode + areaCode + subscriberNumber + extensionNumber;
+        return number;
     }
 
     public static Builder newPhoneNumber() {
@@ -88,35 +135,60 @@ public final class PhoneNumber {
      * Builder  for Phone Number.
      */
     public static class Builder {
-        private CountryCode countryCode;
-        private AreaCode areaCode;
+        private String iddPrefix;
+        private String trunkCode;
+        private IDDPrefixPatterns iddPrefixPatterns;
+        private CountryNumberingPlan countryNumberingPlan;
+        private String areaCode;
         private String phoneLineNumber;
         private String extensionNumber;
 
         /**
-         * Sets  country code for this builder.
+         * Sets international direct dialing code for this builder.
          *
-         * @param cc {@link CountryCode} enum
+         * @param prefix {@link IDDPrefixPatterns} enum
          * @return this Builder
          */
-        public Builder setCountryCode(CountryCode code) {
-            countryCode = code;
+        public Builder setIDDPrefix(String prefix) {
+            iddPrefix = prefix;
             return this;
         }
 
         /**
-         * Sets  area code for this builder.
+         * Sets trunk code for this builder.
          *
-         * @param ac {@link AreaCode} enum
+         * @param trunk {@link IDDPrefixPatterns} enum
          * @return this Builder
          */
-        public Builder setAreaCode(AreaCode ac) {
+        public Builder setTrunkCde(String trunk) {
+            trunkCode = trunk;
+            return this;
+        }
+
+        /**
+         * Sets country code for this builder.
+         *
+         * @param code {@link CountryNumberingPlan} enum
+         * @return this Builder
+         */
+        public Builder setCountryNumberingPlan(CountryNumberingPlan code) {
+            countryNumberingPlan = code;
+            return this;
+        }
+
+        /**
+         * Sets area code for this builder.
+         *
+         * @param ac area code
+         * @return this Builder
+         */
+        public Builder setAreaCode(String ac) {
             areaCode = ac;
             return this;
         }
 
         /**
-         * Sets  phone line number for this builder.
+         * Sets phone line number for this builder.
          *
          * @param ln String with digits of line number
          * @return this Builder
@@ -127,7 +199,7 @@ public final class PhoneNumber {
         }
 
         /**
-         * Sets  extension number for this builder.
+         * Sets extension number for this builder.
          *
          * @param ex String with digits of extension number
          * @return this Builder
@@ -138,7 +210,7 @@ public final class PhoneNumber {
         }
 
         /**
-         * Calls  constructor and passes itself to it.
+         * Calls constructor and passes itself to it.
          *
          * @return {@link PhoneNumber} object
          */
@@ -148,34 +220,261 @@ public final class PhoneNumber {
     }
 
     private PhoneNumber(Builder builder) {
-        this.countryCode = builder.countryCode;
+        this.iddPrefix = builder.iddPrefix;
+        this.trunkCode = builder.trunkCode;
+        this.countryNumberingPlan = builder.countryNumberingPlan;
         this.areaCode = builder.areaCode;
-        this.phoneLineNumber = builder.phoneLineNumber;
+        this.subscriberNumber = builder.phoneLineNumber;
         this.extensionNumber = builder.extensionNumber;
 
     }
 
     /**
-     * Creates  a new phone number instance.
+     * Parse a phone number. In case if the phone number starts with "+" sign or international direct dialing(IDD) code
+     * it will have a structure of IDD(if stated) + CC + NDC + SN.
+     * <p>Where:
+     * <p>IDD - International direct dialing code
+     * <p>CC - Country calling code
+     * <p>NDC - National destination code (Area code)
+     * <p>SN - Subscriber number
+     * <p>
+     * <p>In all other cases phone number will be parsed as National (Significant) number(NSN). It will have a structure
+     * NDC + SN.
      *
-     * @param input Any input from client
-     * @return Phone Number
+     * @param phoneNumber Any phoneNumber from client
+     * @return {@link PhoneNumber}
      * @throws ParseException
      */
-    public static PhoneNumber parse(String input) throws ParseException {
+    public static PhoneNumber parse(String phoneNumber) throws ParseException {
+        String iddPrefix = "";
+        String trunkCode = "";
+        String areaCode = "";
+        String subscriberNumber = "";
+        String extensionNumber = "";
+        CountryNumberingPlan countryNumberingPlan = CountryNumberingPlan.UNDEFINED;
+        phoneNumber = format(phoneNumber);
+        Validation.applyTo(phoneNumber);
+        setPhoneRemainder(phoneNumber);
 
-        if (input.length() <= 7 && input.matches("\\d")){
-            PhoneNumber ph = newPhoneNumber().setPhoneLineNumber(input).build();
+        while (getPhoneRemainder().length() != 0) {
+            /* Parsing of country calling code. */
+            if (phoneNumber.startsWith("+") && countryNumberingPlan == CountryNumberingPlan.UNDEFINED) {
+                countryNumberingPlan = parseCountryCodeAfterPlus();
+            }
+            if (iddPrefix.length() > 1 && countryNumberingPlan == CountryNumberingPlan.UNDEFINED) {
+                countryNumberingPlan = parseCountryCodeAfterIDD();
+            }
+
+            /* Parsing of international direct dialing code. */
+            final String possibleIDDRegex = "(00[0-9][0-9][0-9]|01[0-9]|8[0-9][0-9]|1[0-9][0-9]0|99[0-9][0-9]).*";
+            if (phoneNumber.matches(possibleIDDRegex) && iddPrefix.isEmpty()) {
+                iddPrefix = parseIDDCode();
+            }
+
+            /* Parsing of area code in case if the country code is already known. */
+            if (countryNumberingPlan != CountryNumberingPlan.UNDEFINED && areaCode.isEmpty()) {
+                areaCode = parseAreaCodeByNumberingPlan(countryNumberingPlan);
+            }
+
+            /* Parsing of area code in case if the country code is not stated. */
+            final String trunkCodeRegex = "(0|1|01|02|8).*";
+            if (phoneNumber.matches(trunkCodeRegex) && areaCode.isEmpty() && iddPrefix.isEmpty()) {
+                countryNumberingPlan = Localisation.getCountryNumberingPlan();
+                areaCode = parseAreaCodByLocalisation();
+                trunkCode = parseTrunkCodByLocalisation();
+            }
+
+            /* Parsing of subscriber number */
+            if (phoneNumber.length() <= 4 || phoneNumber.startsWith("*") & phoneNumber.endsWith("#")) {
+                subscriberNumber = getPhoneRemainder();
+                setPhoneRemainder("");
+            }
+            if (getPhoneRemainder().length() != 0 && areaCode.length() != 0 && !getPhoneRemainder().matches(".*[,].*")) {
+                subscriberNumber = getPhoneRemainder();
+                setPhoneRemainder("");
+            }
+
+            /* Parsing of extension code. */
+            if (getPhoneRemainder().length() != 0 && getPhoneRemainder().matches(".*[,].*")) {
+                extensionNumber = getPhoneRemainder().split(",")[1];
+                cutPhoneRemainder(0, getPhoneRemainder().length() - extensionNumber.length()-1);
+                System.out.println(getPhoneRemainder());
+            }
+
         }
-        Iterable<String> phoneSplit = Splitter.on(CharMatcher.anyOf("-)("))
-                .omitEmptyStrings().trimResults().split(input);
-        String countryCode = Iterables.get(phoneSplit, 0);
-        String areaCode = Iterables.get(phoneSplit, 1);
-        String lineNumber = Iterables.get(phoneSplit, 2) + Iterables.get(phoneSplit, 3) + Iterables.get(phoneSplit, 4);
-        System.out.println(countryCode + " " + areaCode + " " + lineNumber);
-
-        PhoneNumber ph = newPhoneNumber().setCountryCode(CountryCode.contains(countryCode)).setAreaCode(AreaCode.contains(areaCode)).setPhoneLineNumber(lineNumber).build();
+        PhoneNumber ph = newPhoneNumber()
+                .setIDDPrefix(iddPrefix)
+                .setTrunkCde(trunkCode)
+                .setCountryNumberingPlan(countryNumberingPlan)
+                .setAreaCode(areaCode)
+                .setPhoneLineNumber(subscriberNumber)
+                .setExtension(extensionNumber)
+                .build();
         return ph;
+    }
+
+    private static void cutPhoneRemainder(int startIndex, int endIndex) {
+        setPhoneRemainder(getPhoneRemainder().substring(startIndex, endIndex));
+    }
+
+    private static CountryNumberingPlan parseCountryCodeAfterPlus() {
+        int i;
+        CountryNumberingPlan countryNumberingPlan = null;
+        for (i = 5; i >= 1; i--) {
+            final String regex = getPhoneRemainder().substring(1, i);
+            final List<CountryNumberingPlan> list = CountryNumberingPlan.findByCountryCallingCode(regex);
+            if (!list.isEmpty()) {
+                countryNumberingPlan = list.get(0);
+                cutPhoneRemainder(countryNumberingPlan.getCountryCallingCode().length() + 1, getPhoneRemainder().length());
+                break;
+            }
+        }
+        return countryNumberingPlan;
+    }
+
+    private static CountryNumberingPlan parseCountryCodeAfterIDD() throws ParseException {
+        int i;
+        CountryNumberingPlan countryNumberingPlan = CountryNumberingPlan.UNDEFINED;
+        for (i = 4; i >= 1; i--) {
+            final String regex = getPhoneRemainder().substring(0, i);
+            final List<CountryNumberingPlan> list = CountryNumberingPlan.findByCountryCallingCode(regex);
+            if (!list.isEmpty()) {
+                countryNumberingPlan = list.get(0);
+                cutPhoneRemainder(countryNumberingPlan.getCountryCallingCode().length(), getPhoneRemainder().length());
+                break;
+            }
+        }
+        if (countryNumberingPlan == CountryNumberingPlan.UNDEFINED) {
+            throw new ParseException("Country calling code cannot be undefined after IDD code is presented", 1);
+        }
+        return countryNumberingPlan;
+    }
+
+    private static String parseAreaCodeByNumberingPlan(CountryNumberingPlan countryNumberingPlan) {
+        final boolean areaCodeHasFixedLength = countryNumberingPlan.getAreaCodeRange().length == 1;
+        String areaCode = "";
+        if (areaCodeHasFixedLength) {
+            areaCode = getPhoneRemainder().substring(0, countryNumberingPlan.getAreaCodeRange()[0]);
+            cutPhoneRemainder(areaCode.length(), getPhoneRemainder().length());
+        } else {
+            int i;
+            final int maxAreaCodeLength = countryNumberingPlan.getAreaCodeRange()[1];
+            for (i = maxAreaCodeLength; i >= 1; i--) {
+                String probableAreaCode = getPhoneRemainder().substring(0, i);
+                List<String> listOfAreaCodes = AreaCodePatterns.findAreaCode(probableAreaCode, countryNumberingPlan);
+                if (!listOfAreaCodes.isEmpty()) {
+                    areaCode = probableAreaCode;
+                    cutPhoneRemainder(areaCode.length(), getPhoneRemainder().length());
+                    break;
+                }
+
+            }
+        }
+        return areaCode;
+    }
+
+    private static String parseIDDCode() {
+        int i;
+        int j;
+        String iddPrefix = "";
+        for (i = 5; i >= 1; i--) {
+            final String clippedPhoneNumber = getPhoneRemainder().substring(0, i);
+            final List<IDDPrefixPatterns> iddList = IDDPrefixPatterns.findIDDCode(clippedPhoneNumber);
+            if (!iddList.isEmpty()) {
+                iddPrefix = clippedPhoneNumber;
+                final IDDPrefixPatterns iddPrefixPatterns = iddList.get(0);
+                CountryNumberingPlan countryNumberingPlan = CountryNumberingPlan.UNDEFINED;
+                switch (iddPrefixPatterns.getIDDPrefix()) {
+                    case "01?":
+                    case "8??":
+                    case "1??0":
+                        iddPrefix = clippedPhoneNumber;
+                        cutPhoneRemainder(iddPrefix.length(), getPhoneRemainder().length());
+                        break;
+                    case "00???":
+                        iddPrefix = clippedPhoneNumber;
+                        for (i = 2; i < 6; i++) {
+                            String regex = getPhoneRemainder().substring(i, i + 4);
+                            for (j = 4; j >= 1; j--) {
+                                String regex1 = regex.substring(0, j);
+                                List<CountryNumberingPlan> countryNumPlanList = CountryNumberingPlan.findByCountryCallingCode(regex1);
+                                if (!countryNumPlanList.isEmpty()) {
+                                    countryNumberingPlan = countryNumPlanList.get(0);
+                                    iddPrefix = getPhoneRemainder().split(regex1)[0];
+                                    cutPhoneRemainder(iddPrefix.length(), getPhoneRemainder().length());
+                                    break;
+                                }
+                            }
+                            if (countryNumberingPlan != CountryNumberingPlan.UNDEFINED) {
+                                break;
+                            }
+                        }
+                        break;
+                    case "99??":
+                        iddPrefix = clippedPhoneNumber;
+                        for (i = 2; i < 5; i++) {
+                            String regex = getPhoneRemainder().substring(i, i + 4);
+                            for (j = 4; j >= 1; j--) {
+                                String regex1 = regex.substring(0, j);
+                                List<CountryNumberingPlan> countryNumPlanList = CountryNumberingPlan.findByCountryCallingCode(regex1);
+                                if (!countryNumPlanList.isEmpty()) {
+                                    countryNumberingPlan = countryNumPlanList.get(0);
+                                    iddPrefix = getPhoneRemainder().split(regex1)[0];
+                                    cutPhoneRemainder(iddPrefix.length(), getPhoneRemainder().length());
+                                    break;
+
+                                }
+                            }
+                            if (countryNumberingPlan != CountryNumberingPlan.UNDEFINED) {
+                                break;
+                            }
+                        }
+                        break;
+                }
+                break;
+            }
+        }
+        return iddPrefix;
+    }
+
+    private static String parseAreaCodByLocalisation() {
+        CountryNumberingPlan countryNumberingPlan = Localisation.getCountryNumberingPlan();
+        String areaCode = "";
+        if (countryNumberingPlan.getCountryCode() != CountryCode.MN) {
+            areaCode = getPhoneRemainder().substring(1, countryNumberingPlan.getAreaCodeRange()[0] + 1);
+            cutPhoneRemainder(areaCode.length() + 1, getPhoneRemainder().length());
+        } else {
+            areaCode = getPhoneRemainder().substring(2, countryNumberingPlan.getAreaCodeRange()[0] + 2);
+            cutPhoneRemainder(areaCode.length() + 2, getPhoneRemainder().length());
+        }
+        return areaCode;
+    }
+
+    private static String parseTrunkCodByLocalisation() {
+        CountryNumberingPlan countryNumberingPlan = Localisation.getCountryNumberingPlan();
+        String trunkCode = "";
+        if (countryNumberingPlan.getCountryCode() != CountryCode.MN) {
+            trunkCode = getPhoneRemainder().substring(0, 1);
+        } else {
+            trunkCode = getPhoneRemainder().substring(0, 2);
+        }
+        return trunkCode;
+    }
+
+    private static String format(String rawPhoneNumber) {
+        String phoneNumber = rawPhoneNumber.replaceAll("[^\\w+#*,]", "");
+        boolean containsLetters = Pattern.compile("[a-zA-z]").matcher(phoneNumber).find();
+        if (containsLetters) {
+            phoneNumber = phoneNumber.replaceAll("[a-cA-C]", "2");
+            phoneNumber = phoneNumber.replaceAll("[d-fD-F]", "3");
+            phoneNumber = phoneNumber.replaceAll("[g-iG-I]", "4");
+            phoneNumber = phoneNumber.replaceAll("[j-lJ-L]", "5");
+            phoneNumber = phoneNumber.replaceAll("[m-oM-O]", "6");
+            phoneNumber = phoneNumber.replaceAll("[p-sP-S]", "7");
+            phoneNumber = phoneNumber.replaceAll("[t-vT-V]", "8");
+            phoneNumber = phoneNumber.replaceAll("[w-zW-Z]", "9");
+        }
+        return phoneNumber;
     }
 
     @Override

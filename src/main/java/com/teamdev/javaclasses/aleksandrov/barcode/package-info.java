@@ -17,41 +17,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.teamdev.javaclasses.aleksandrov.phonenumber;
-
-import java.awt.geom.Area;
-
 /**
- * Area code for  phone numbers.
- *
- * @author Alexander Aleksandrov
+ * This package provides classes for Ean13BarCode VO
  */
-public enum AreaCode {
-    ALABAMA("250"),
-    ARISONA("480"),
-    DEFAULT("Not found");
+@ParametersAreNonnullByDefault
+package com.teamdev.javaclasses.aleksandrov.barcode;
 
-    private String ac;
-
-    private AreaCode(String ac) {
-        this.ac = ac;
-    }
-
-    /**
-     * Gets area code from a record.
-     *
-     * @return String with a area code
-     */
-    public String getAreaCode() {
-        return ac;
-    }
-
-    public static AreaCode contains(String test) {
-        for (AreaCode c : AreaCode.values()) {
-            if (c.name().equals(test)) {
-                return c;
-            }
-        }
-        return AreaCode.DEFAULT;
-    }
-}
+import javax.annotation.ParametersAreNonnullByDefault;

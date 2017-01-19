@@ -38,6 +38,7 @@ dependencies {
 
     testCompile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.21'
     testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.0-M2'
+    //testCompile 'org.junit.platform:junit-platform-launcher:1.0.0-M3'
     testCompile('junit:junit:4.11') {
         exclude(module: 'hamcrest-core')
     }
