@@ -19,6 +19,7 @@
 */
 package com.teamdev.javaclasses.aleksandrov.barcode;
 
+import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkEAN13Format;
 import static java.lang.Integer.valueOf;
 
 /**
@@ -99,15 +100,18 @@ public final class EAN13BarCode {
                 build();
     }
 
-    public static EAN13BarCode parse(String string) {
-        return EAN13BarCode.newBuilder().setFirstDigit(Integer.parseInt(string.substring(0, 1))).
-                setLeftGroup(Integer.parseInt(string.substring(1, 7))).
-                setRightGroup(Integer.parseInt(string.substring(7, 12))).
-                setChecksumDigit(countCheckSum(string)).
+    public static EAN13BarCode parse(String str) {
+        checkEAN13Format(str);
+
+        String barcode = str.replaceAll("[^\\w]", "");
+        return EAN13BarCode.newBuilder().setFirstDigit(Integer.parseInt(barcode.substring(0, 1))).
+                setLeftGroup(Integer.parseInt(barcode.substring(1, 7))).
+                setRightGroup(Integer.parseInt(barcode.substring(7, 12))).
+                setChecksumDigit(countCheckSum(barcode)).
                 build();
     }
 
-    public static String toString(EAN13BarCode barCode) {
+    public String toString(EAN13BarCode barCode) {
         String result = String.valueOf(barCode.getFirstDigit()) +
                 String.valueOf(barCode.getLeftGroup()) +
                 String.valueOf(barCode.getRightGroup()) +
