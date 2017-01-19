@@ -42,19 +42,4 @@ class EAN13BarCodeShould {
         assertEquals(37962, barCode.getRightGroup());
         assertEquals(4, barCode.getChecksumDigit());
     }
-
-    @Test
-    @DisplayName("have LeftGroup code")
-    void groupCode() {
-    }
-
-    @Test
-    @DisplayName("have rightGoup code")
-    void publisherCode() {
-    }
-
-    @Test
-    @DisplayName("have Check digit")
-    void checkDigit() {
-    }
 }
