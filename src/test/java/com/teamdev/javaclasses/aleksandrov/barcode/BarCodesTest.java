@@ -24,32 +24,33 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
-@DisplayName("ISBN barcode should")
+@DisplayName("EAN13 barcode should")
 public class BarCodesTest {
 
     @Test
-    @DisplayName("have 3 digit EAN code")
+    @DisplayName("have first digit")
     void eanCode() {
+        assertEquals(0, Ean13BarCode.getDefaultInstance().getFirstDigit());
     }
 
     @Test
-    @DisplayName("start with 978 code")
-    void startWithCode() {
+    @DisplayName("parse from string")
+    void parseFromString() {
+        Ean13BarCode barCode = Ean13BarCode.from("978020137962");
+        assertEquals(9, barCode.getFirstDigit());
+        assertEquals(780201, barCode.getLeftGroup());
+        assertEquals(37962, barCode.getRightGroup());
+        assertEquals(4, barCode.getChecksumDigit());
     }
 
     @Test
-    @DisplayName("have Group code")
+    @DisplayName("have LeftGroup code")
     void groupCode() {
     }
 
     @Test
-    @DisplayName("have Publisher code")
+    @DisplayName("have rightGoup code")
     void publisherCode() {
-    }
-
-    @Test
-    @DisplayName("have Title code")
-    void titleCode() {
     }
 
     @Test
