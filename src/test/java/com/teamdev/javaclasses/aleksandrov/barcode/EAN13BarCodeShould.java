@@ -17,10 +17,44 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-/**
- * This package provides classes for EAN13BarCode VO
- */
-@ParametersAreNonnullByDefault
+
 package com.teamdev.javaclasses.aleksandrov.barcode;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@DisplayName("EAN13BarCode should")
+class EAN13BarCodeShould {
+
+    @Test
+    @DisplayName("have first digit")
+    void eanCode() {
+        assertEquals(0, EAN13BarCode.getDefaultInstance().getFirstDigit());
+    }
+
+    @Test
+    @DisplayName("parse from string")
+    void parseFromString() {
+        EAN13BarCode barCode = EAN13BarCode.parse("978020137962");
+        assertEquals(9, barCode.getFirstDigit());
+        assertEquals(780201, barCode.getLeftGroup());
+        assertEquals(37962, barCode.getRightGroup());
+        assertEquals(4, barCode.getChecksumDigit());
+    }
+
+    @Test
+    @DisplayName("have LeftGroup code")
+    void groupCode() {
+    }
+
+    @Test
+    @DisplayName("have rightGoup code")
+    void publisherCode() {
+    }
+
+    @Test
+    @DisplayName("have Check digit")
+    void checkDigit() {
+    }
+}
