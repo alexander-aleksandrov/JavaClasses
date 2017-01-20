@@ -29,7 +29,7 @@ public class Validation {
 
     public static void checkEAN13Format(String str) {
         String barcode = str.replaceAll("[^\\w]", "");
-        if (barcode.length() != 13) {
+        if (barcode.length() != 12) {
             throw new IllegalArgumentException("Barcode should have 13 digits");
         }
         if (barcode.contains("[a-zA-Z]+")) {

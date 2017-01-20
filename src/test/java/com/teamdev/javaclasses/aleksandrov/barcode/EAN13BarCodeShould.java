@@ -31,6 +31,9 @@ class EAN13BarCodeShould {
     @DisplayName("have first digit")
     void eanCode() {
         assertEquals(0, EAN13BarCode.getDefaultInstance().getFirstDigit());
+        assertEquals(000000, EAN13BarCode.getDefaultInstance().getLeftGroup());
+        assertEquals(00000, EAN13BarCode.getDefaultInstance().getRightGroup());
+        assertEquals(0, EAN13BarCode.getDefaultInstance().getChecksumDigit());
     }
 
     @Test

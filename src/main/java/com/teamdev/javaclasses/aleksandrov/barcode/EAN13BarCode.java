@@ -125,10 +125,9 @@ public final class EAN13BarCode {
         int i;
         for (i = 0; i < string.toCharArray().length; i++) {
             if (i % 2 == 0) {
-                result += valueOf(barcode[i]);
-            }
-            if (i % 3 == 0) {
-                result += valueOf(barcode[i]) * 3;
+                result += Integer.parseInt(String.valueOf(barcode[i]));
+            }else {
+                result += Integer.parseInt(String.valueOf(barcode[i])) * 3;
             }
         }
         return 10 - result % 10;
