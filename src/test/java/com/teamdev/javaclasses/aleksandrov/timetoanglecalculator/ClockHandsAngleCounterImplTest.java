@@ -19,9 +19,10 @@
  */
 package com.teamdev.javaclasses.aleksandrov.timetoanglecalculator;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ClockHandsAngleCounterImplTest {
     @Test
@@ -29,7 +30,7 @@ public class ClockHandsAngleCounterImplTest {
         ClockHandsAngleCalculator clocks = new ClockHandsAngleCalculatorImpl();
         double angle = clocks.getMinAngleBetweenClockHands(12, 10);
         double expected = 55.0;
-        assertEquals("Angle should be: ", expected, angle, 0.1);
+        assertEquals(expected, angle, "Angle should be: ");
     }
 
     @Test
@@ -55,6 +56,4 @@ public class ClockHandsAngleCounterImplTest {
         }
         assertTrue(thrown);
     }
-
-
 }

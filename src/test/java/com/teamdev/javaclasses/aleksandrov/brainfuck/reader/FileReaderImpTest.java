@@ -20,7 +20,6 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.reader;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.TempFiles;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("File reader should")
 public class FileReaderImpTest {
     private File output;
-    private static final String expected = "+++<><+++";
+    private static final String expected = "compiledChar";
 
     @BeforeEach
     public void precondition() {
@@ -45,9 +44,8 @@ public class FileReaderImpTest {
         if (tempFileExists) {
             output = TempFiles.getDraft();
         } else {
-            TempFiles.createTempFile("draft-file");
+            TempFiles.createTempFile("draft-file2");
             output = TempFiles.getDraft();
-
         }
         try {
             Files.write(Paths.get(output.getPath()), expected.getBytes(), StandardOpenOption.APPEND);

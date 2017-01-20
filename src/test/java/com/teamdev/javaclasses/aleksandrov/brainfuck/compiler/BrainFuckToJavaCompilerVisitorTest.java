@@ -38,8 +38,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Brainfuck compiler should")
 public class BrainFuckToJavaCompilerVisitorTest {
@@ -67,8 +66,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
         Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
         System.out.println(actual);
-        assertEquals("Incorrect processing of CellDecrement command.",
-                "memory[pointer]--;", actual);
+        assertEquals("memory[pointer]--;", actual, "Incorrect processing of CellDecrement command.");
     }
 
     @Test
@@ -80,8 +78,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
         visitor.visit(command);
         Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
-        assertEquals("Incorrect processing of CellIncrement command.",
-                "memory[pointer]++;", actual);
+        assertEquals("memory[pointer]++;", actual, "Incorrect processing of CellIncrement command.");
     }
 
     @Test
@@ -93,8 +90,7 @@ public class BrainFuckToJavaCompilerVisitorTest {
         visitor.visit(command);
         Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
-        assertEquals("Incorrect processing of NextCell command.",
-                "pointer++;", actual);
+        assertEquals("pointer++;", actual, "Incorrect processing of PreviousCell command.");
     }
 
     @Test
@@ -106,8 +102,8 @@ public class BrainFuckToJavaCompilerVisitorTest {
         visitor.visit(command);
         Scanner in = new Scanner(new FileReader(output));
         String actual = in.next();
-        assertEquals("Incorrect processing of PreviousCell command.",
-                "pointer--;", actual);
+        assertEquals(
+                "pointer--;", actual, "Incorrect processing of PreviousCell command.");
     }
 
     @Test
@@ -119,8 +115,9 @@ public class BrainFuckToJavaCompilerVisitorTest {
         visitor.visit(command);
         Scanner in = new Scanner(new FileReader(output));
         String actual = in.nextLine() + in.nextLine();
-        assertEquals("Incorrect processing of PrintCell command.",
-                "compiledChar = (char) memory[pointer];System.out.print(compiledChar);", actual);
+        assertEquals("compiledChar = (char) memory[pointer];System.out.print(compiledChar);",
+                actual,
+                "Incorrect processing of PrintCell command.");
     }
 
     @Test
@@ -133,10 +130,8 @@ public class BrainFuckToJavaCompilerVisitorTest {
         TestUtil.clearDraft(output);
         visitor.visit(command);
         Scanner in = new Scanner(new FileReader(output));
-        String actual = in.nextLine() + in.nextLine() + in.nextLine();
-        assertEquals("Incorrect processing of Cycle command.",
-                "while(memory[pointer] > 0) {memory[pointer]++;}", actual);
+        String actual = in.nextLine() + in.nextLine();
+        assertEquals("while(memory[pointer] > 0) {}", actual, "Incorrect processing of Cycle command.");
     }
-
 
 }
