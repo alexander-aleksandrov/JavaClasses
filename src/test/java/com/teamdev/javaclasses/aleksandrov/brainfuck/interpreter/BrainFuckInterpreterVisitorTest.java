@@ -26,11 +26,11 @@ import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.Memory;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.NextCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PreviousCell;
 import com.teamdev.javaclasses.aleksandrov.brainfuck.comand.PrintCell;
-import com.teamdev.javaclasses.aleksandrov.brainfuck.compiler.CommandVisitor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @DisplayName("Brainfuck interpreter should")
 public class BrainFuckInterpreterVisitorTest {
@@ -43,8 +43,9 @@ public class BrainFuckInterpreterVisitorTest {
         final Memory memory = visitor.getMemory();
         memory.setCellValue(10);
         visitor.visit(command);
-        assertEquals("Incorrect processing of CellDecrement command.",
-                9, memory.getCellValue());
+
+        assertEquals(9, memory.getCellValue(),
+                "Incorrect processing of CellDecrement command.");
     }
 
     @Test
@@ -55,8 +56,7 @@ public class BrainFuckInterpreterVisitorTest {
         final Memory memory = visitor.getMemory();
         memory.setCellValue(10);
         visitor.visit(command);
-        assertEquals("Incorrect processing of CellIncrement command.",
-                11, memory.getCellValue());
+        assertEquals(11, memory.getCellValue(), "Incorrect processing of CellIncrement command.");
     }
 
     @Test
@@ -67,8 +67,7 @@ public class BrainFuckInterpreterVisitorTest {
         final Memory memory = visitor.getMemory();
         memory.setPointer(10);
         visitor.visit(command);
-        assertEquals("Incorrect processing of NextCell command.",
-                11, memory.getPointer());
+        assertEquals(11, memory.getPointer(), "Incorrect processing of NextCell command.");
     }
 
     @Test
@@ -79,8 +78,7 @@ public class BrainFuckInterpreterVisitorTest {
         final Memory memory = visitor.getMemory();
         memory.setPointer(10);
         visitor.visit(command);
-        assertEquals("Incorrect processing of PreviousCell command.",
-                9, memory.getPointer());
+        assertEquals(9, memory.getPointer(), "Incorrect processing of PreviousCell command.");
     }
 
     @Test
@@ -91,7 +89,6 @@ public class BrainFuckInterpreterVisitorTest {
         final Memory memory = visitor.getMemory();
         memory.setCellValue(108);
         visitor.visit(command);
-        assertEquals("Incorrect processing of PrintCell command.",
-                108, memory.getCellValue());
+        assertEquals(108, memory.getCellValue(), "Incorrect processing of PrintCell command.");
     }
 }

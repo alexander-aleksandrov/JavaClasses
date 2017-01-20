@@ -25,8 +25,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("Interpreter parser should")
 public class InterpreterParserTest {
@@ -36,7 +36,7 @@ public class InterpreterParserTest {
     public void testParseCellIncrement() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("+");
-        assertTrue("Should be CellIncrenment object", actual.get(0) instanceof CellIncrement);
+        assertTrue(actual.get(0) instanceof CellIncrement, "Should be CellIncrenment object");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class InterpreterParserTest {
     public void testParseCellDecrement() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("-");
-        assertTrue("Should be CellDecrement object", actual.get(0) instanceof CellDecrement);
+        assertTrue(actual.get(0) instanceof CellDecrement, "Should be CellDecrement object");
     }
 
     @Test
@@ -52,7 +52,7 @@ public class InterpreterParserTest {
     public void testParseNextCell() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse(">");
-        assertTrue("Should be NextCell object", actual.get(0) instanceof NextCell);
+        assertTrue(actual.get(0) instanceof NextCell, "Should be NextCell object");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class InterpreterParserTest {
     public void testParsePreviousCell() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("<");
-        assertTrue("Should be PreviousCell object", actual.get(0) instanceof PreviousCell);
+        assertTrue(actual.get(0) instanceof PreviousCell, "Should be PreviousCell object");
     }
 
     @Test
@@ -68,7 +68,7 @@ public class InterpreterParserTest {
     public void testParsePrintCell() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse(".");
-        assertTrue("Should be PrintCell object", actual.get(0) instanceof PrintCell);
+        assertTrue(actual.get(0) instanceof PrintCell, "Should be PrintCell object");
     }
 
     @Test
@@ -76,7 +76,7 @@ public class InterpreterParserTest {
     public void testParseInputCell() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse(",");
-        assertTrue("Should be InputCell object", actual.get(0) instanceof InputCell);
+        assertTrue(actual.get(0) instanceof InputCell, "Should be InputCell object");
     }
 
     @Test
@@ -84,6 +84,6 @@ public class InterpreterParserTest {
     public void testParseCycle() throws Exception {
         final InterpreterParser parser = new InterpreterParser();
         final List<Command> actual = parser.parse("[]");
-        assertNotNull("Should be Cycle object", actual.get(0));
+        assertNotNull(actual.get(0), "Should be Cycle object");
     }
 }
