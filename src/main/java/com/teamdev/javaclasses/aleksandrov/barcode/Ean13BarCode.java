@@ -26,7 +26,7 @@ import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkEAN13F
  *
  * @author Alexander Aleksandrov
  */
-public final class EAN13BarCode {
+public final class Ean13BarCode {
     private final int firstDigit;
     private final int leftGroup;
     private final int rightGroup;
@@ -78,13 +78,13 @@ public final class EAN13BarCode {
             return this;
         }
 
-        public EAN13BarCode build() {
-            return new EAN13BarCode(this);
+        public Ean13BarCode build() {
+            return new Ean13BarCode(this);
 
         }
     }
 
-    public EAN13BarCode(Builder builder) {
+    public Ean13BarCode(Builder builder) {
         this.firstDigit = builder.firstDigit;
         this.leftGroup = builder.leftGroup;
         this.rightGroup = builder.rightGroup;
@@ -94,8 +94,8 @@ public final class EAN13BarCode {
     /**
      *  Obtains default instance of EAN13 barcode filled with zero values.
      */
-    public static EAN13BarCode getDefaultInstance() {
-        return EAN13BarCode.newBuilder().setFirstDigit(0).
+    public static Ean13BarCode getDefaultInstance() {
+        return newBuilder().setFirstDigit(0).
                 setLeftGroup(000000).
                 setRightGroup(00000).
                 setChecksumDigit(0).
@@ -108,11 +108,11 @@ public final class EAN13BarCode {
      * @param str   target string with barcode
      * @return EAN13 barcode instance
      */
-    public static EAN13BarCode parse(String str) {
+    public static Ean13BarCode parse(String str) {
         checkEAN13Format(str);
 
         String barcode = str.replaceAll("[^\\w]", "");
-        return EAN13BarCode.newBuilder().setFirstDigit(Integer.parseInt(barcode.substring(0, 1))).
+        return newBuilder().setFirstDigit(Integer.parseInt(barcode.substring(0, 1))).
                 setLeftGroup(Integer.parseInt(barcode.substring(1, 7))).
                 setRightGroup(Integer.parseInt(barcode.substring(7, 12))).
                 setChecksumDigit(countCheckSum(barcode)).
@@ -125,7 +125,7 @@ public final class EAN13BarCode {
      * @param barCode   EAN13 barcode
      * @return  String view of information inside barcode
      */
-    public String toString(EAN13BarCode barCode) {
+    public String toString(Ean13BarCode barCode) {
         String result = String.valueOf(barCode.getFirstDigit()) +
                 String.valueOf(barCode.getLeftGroup()) +
                 String.valueOf(barCode.getRightGroup()) +

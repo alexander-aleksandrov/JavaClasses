@@ -18,7 +18,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 /**
- * This package provides classes for EAN13BarCode VO
+ * This package provides classes for Ean13BarCode VO
  */
 @ParametersAreNonnullByDefault
 package com.teamdev.javaclasses.aleksandrov.barcode;

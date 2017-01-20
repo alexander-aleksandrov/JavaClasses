@@ -24,25 +24,31 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("EAN13BarCode should")
-class EAN13BarCodeShould {
+@DisplayName("Ean13BarCode should")
+class Ean13BarCodeShould {
 
     @Test
     @DisplayName("have first digit")
     void eanCode() {
-        assertEquals(0, EAN13BarCode.getDefaultInstance().getFirstDigit());
-        assertEquals(000000, EAN13BarCode.getDefaultInstance().getLeftGroup());
-        assertEquals(00000, EAN13BarCode.getDefaultInstance().getRightGroup());
-        assertEquals(0, EAN13BarCode.getDefaultInstance().getChecksumDigit());
+        assertEquals(0, Ean13BarCode.getDefaultInstance().getFirstDigit());
+        assertEquals(000000, Ean13BarCode.getDefaultInstance().getLeftGroup());
+        assertEquals(00000, Ean13BarCode.getDefaultInstance().getRightGroup());
+        assertEquals(0, Ean13BarCode.getDefaultInstance().getChecksumDigit());
     }
 
     @Test
     @DisplayName("parse from string")
     void parseFromString() {
-        EAN13BarCode barCode = EAN13BarCode.parse("978020137962");
+        Ean13BarCode barCode = Ean13BarCode.parse("978020137962");
         assertEquals(9, barCode.getFirstDigit());
         assertEquals(780201, barCode.getLeftGroup());
         assertEquals(37962, barCode.getRightGroup());
         assertEquals(4, barCode.getChecksumDigit());
+    }
+    @Test
+    @DisplayName("have toString method")
+    void barcodeToString(){
+        Ean13BarCode barCode = Ean13BarCode.parse("978020137962");
+        assertEquals("978020137962" + barCode.getChecksumDigit(), barCode.toString(barCode));
     }
 }

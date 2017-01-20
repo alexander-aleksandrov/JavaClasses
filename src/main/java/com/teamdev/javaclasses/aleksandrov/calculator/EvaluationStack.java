@@ -21,9 +21,9 @@ package com.teamdev.javaclasses.aleksandrov.calculator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.IllegalFormatException;
 import java.util.Optional;
 
 /**
@@ -63,7 +63,7 @@ public class EvaluationStack {
      *
      * @param operator {@link BinaryOperator} object
      */
-//    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "OptionalUsedAsFieldOrParameterType"})
     public void pushOperator(Optional<BinaryOperator> operator) {
         BinaryOperator binaryOperator = operator.orElseThrow(() ->
                 new IllegalArgumentException("There are no binary operator for such representation"));
