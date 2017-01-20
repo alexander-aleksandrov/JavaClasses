@@ -20,7 +20,6 @@
 package com.teamdev.javaclasses.aleksandrov.barcode;
 
 import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkEAN13Format;
-import static java.lang.Integer.valueOf;
 
 /**
  * One dimensional barcode
@@ -92,6 +91,9 @@ public final class EAN13BarCode {
         this.checksumDigit = builder.checksumDigit;
     }
 
+    /**
+     *  Obtains default instance of EAN13 barcode filled with zero values.
+     */
     public static EAN13BarCode getDefaultInstance() {
         return EAN13BarCode.newBuilder().setFirstDigit(0).
                 setLeftGroup(000000).
@@ -100,6 +102,12 @@ public final class EAN13BarCode {
                 build();
     }
 
+    /**
+     * Parse target string to barcode.
+     *
+     * @param str   target string with barcode
+     * @return EAN13 barcode instance
+     */
     public static EAN13BarCode parse(String str) {
         checkEAN13Format(str);
 
@@ -111,6 +119,12 @@ public final class EAN13BarCode {
                 build();
     }
 
+    /**
+     * Converts barcode instance to string value.
+     *
+     * @param barCode   EAN13 barcode
+     * @return  String view of information inside barcode
+     */
     public String toString(EAN13BarCode barCode) {
         String result = String.valueOf(barCode.getFirstDigit()) +
                 String.valueOf(barCode.getLeftGroup()) +
@@ -119,14 +133,17 @@ public final class EAN13BarCode {
         return result;
     }
 
-    public static int countCheckSum(String string) {
+    /**
+     * Counts checksum digit for any one dimensional barcode.
+     */
+    private static int countCheckSum(String str) {
         int result = 0;
-        char[] barcode = string.toCharArray();
+        char[] barcode = str.toCharArray();
         int i;
-        for (i = 0; i < string.toCharArray().length; i++) {
+        for (i = 0; i < str.toCharArray().length; i++) {
             if (i % 2 == 0) {
                 result += Integer.parseInt(String.valueOf(barcode[i]));
-            }else {
+            } else {
                 result += Integer.parseInt(String.valueOf(barcode[i])) * 3;
             }
         }
