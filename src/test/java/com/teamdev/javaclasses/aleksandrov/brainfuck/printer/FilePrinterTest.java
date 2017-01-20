@@ -20,22 +20,21 @@
 package com.teamdev.javaclasses.aleksandrov.brainfuck.printer;
 
 import com.teamdev.javaclasses.aleksandrov.brainfuck.generator.TempFiles;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
 @DisplayName("File Printer should")
 public class FilePrinterTest {
-    //    private final File output = new File("C:/Projects/JavaClasses/src/main/resources/files/FilePrinterTest.txt");
+
     private File output;
 
     @BeforeEach
@@ -44,7 +43,7 @@ public class FilePrinterTest {
         if (tempFileExists) {
             output = TempFiles.getDraft();
         } else {
-            TempFiles.createTempFile("draft-file");
+            TempFiles.createTempFile("draft-file1");
             output = TempFiles.getDraft();
         }
     }
@@ -52,7 +51,7 @@ public class FilePrinterTest {
     @Test
     @DisplayName("print specified text to file")
     public void testPrintToFile() throws FileNotFoundException {
-        final String expected = "testString";
+        final String expected = "compiledChar";
         final Printer filePrinter = new FilePrinter(output);
         List<String> text = new ArrayList<>();
         text.add(expected);

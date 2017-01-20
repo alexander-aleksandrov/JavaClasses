@@ -17,10 +17,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-/**
- * This package provides classes for EAN13BarCode VO
- */
-@ParametersAreNonnullByDefault
 package com.teamdev.javaclasses.aleksandrov.barcode;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+/**
+ * @author Alexander Aleksandrov
+ */
+public class Validation {
+
+    private Validation() {
+    }
+
+    public static void checkEAN13Format(String str) {
+        String barcode = str.replaceAll("[^\\w]", "");
+        if (barcode.length() != 12) {
+            throw new IllegalArgumentException("Barcode should have 13 digits");
+        }
+        if (barcode.contains("[a-zA-Z]+")) {
+            throw new IllegalArgumentException("Barcode should contain only numeric values");
+        }
+    }
+
+}
