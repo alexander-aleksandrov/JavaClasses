@@ -19,7 +19,7 @@
 */
 package com.teamdev.javaclasses.aleksandrov.barcode;
 
-import static com.teamdev.javaclasses.aleksandrov.barcode.Validate.checkEAN13Format;
+import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkEAN13Format;
 import static java.lang.Integer.valueOf;
 
 /**
@@ -27,7 +27,7 @@ import static java.lang.Integer.valueOf;
  *
  * @author Alexander Aleksandrov
  */
-public final class Ean13BarCode {
+public final class EAN13BarCode {
     private final int firstDigit;
     private final int leftGroup;
     private final int rightGroup;
@@ -79,39 +79,39 @@ public final class Ean13BarCode {
             return this;
         }
 
-        public Ean13BarCode build() {
-            return new Ean13BarCode(this);
+        public EAN13BarCode build() {
+            return new EAN13BarCode(this);
 
         }
     }
 
-    public Ean13BarCode(Builder builder) {
+    public EAN13BarCode(Builder builder) {
         this.firstDigit = builder.firstDigit;
         this.leftGroup = builder.leftGroup;
         this.rightGroup = builder.rightGroup;
         this.checksumDigit = builder.checksumDigit;
     }
 
-    public static Ean13BarCode getDefaultInstance() {
-        return Ean13BarCode.newBuilder().setFirstDigit(0).
+    public static EAN13BarCode getDefaultInstance() {
+        return EAN13BarCode.newBuilder().setFirstDigit(0).
                 setLeftGroup(000000).
                 setRightGroup(00000).
                 setChecksumDigit(0).
                 build();
     }
 
-    public static Ean13BarCode parse(String str) {
+    public static EAN13BarCode parse(String str) {
         checkEAN13Format(str);
 
         String barcode = str.replaceAll("[^\\w]", "");
-        return Ean13BarCode.newBuilder().setFirstDigit(Integer.parseInt(barcode.substring(0, 1))).
+        return EAN13BarCode.newBuilder().setFirstDigit(Integer.parseInt(barcode.substring(0, 1))).
                 setLeftGroup(Integer.parseInt(barcode.substring(1, 7))).
                 setRightGroup(Integer.parseInt(barcode.substring(7, 12))).
                 setChecksumDigit(countCheckSum(barcode)).
                 build();
     }
 
-    public String toString(Ean13BarCode barCode) {
+    public String toString(EAN13BarCode barCode) {
         String result = String.valueOf(barCode.getFirstDigit()) +
                 String.valueOf(barCode.getLeftGroup()) +
                 String.valueOf(barCode.getRightGroup()) +
