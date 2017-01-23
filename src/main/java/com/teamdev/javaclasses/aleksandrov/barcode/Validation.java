@@ -37,4 +37,9 @@ public class Validation {
         }
     }
 
+    public static void checkScannedBarcode(int[] barcode) {
+        if (barcode.length < 94) {
+            throw new IllegalArgumentException("Barcode has unrecognized fromat");
+        }
+    }
 }

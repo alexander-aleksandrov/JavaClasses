@@ -19,10 +19,6 @@
  */
 package com.teamdev.javaclasses.aleksandrov.barcode;
 
-import com.google.common.collect.ImmutableList;
-
-import java.util.List;
-
 /**
  * Describes dependency of encoding patterns from first digit used in EAN13.
  *
@@ -32,30 +28,30 @@ import java.util.List;
  * @author Alexander Aleksandrov
  */
 public enum FirstDigitPattern {
-    ZERO(new byte[]{0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2}),
-    ONE(new byte[]{0, 0, 1, 0, 1, 1, 2, 2, 2, 2, 2, 2}),
-    TWO(new byte[]{0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2}),
-    THREE(new byte[]{0, 0, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2}),
-    FOUR(new byte[]{0, 1, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2}),
-    FIVE(new byte[]{0, 1, 1, 0, 0, 1, 2, 2, 2, 2, 2, 2}),
-    SIX(new byte[]{0, 1, 1, 1, 0, 0, 2, 2, 2, 2, 2, 2}),
-    SEVEN(new byte[]{0, 1, 0, 1, 0, 1, 2, 2, 2, 2, 2, 2}),
-    EIGHT(new byte[]{0, 1, 0, 1, 1, 0, 2, 2, 2, 2, 2, 2}),
-    NINE(new byte[]{0, 1, 1, 0, 1, 0, 2, 2, 2, 2, 2, 2});
+    ZERO(new int[]{0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2}),
+    ONE(new int[]{0, 0, 1, 0, 1, 1, 2, 2, 2, 2, 2, 2}),
+    TWO(new int[]{0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2}),
+    THREE(new int[]{0, 0, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2}),
+    FOUR(new int[]{0, 1, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2}),
+    FIVE(new int[]{0, 1, 1, 0, 0, 1, 2, 2, 2, 2, 2, 2}),
+    SIX(new int[]{0, 1, 1, 1, 0, 0, 2, 2, 2, 2, 2, 2}),
+    SEVEN(new int[]{0, 1, 0, 1, 0, 1, 2, 2, 2, 2, 2, 2}),
+    EIGHT(new int[]{0, 1, 0, 1, 1, 0, 2, 2, 2, 2, 2, 2}),
+    NINE(new int[]{0, 1, 1, 0, 1, 0, 2, 2, 2, 2, 2, 2});
 
 
-    private byte[] pattern;
+    private final int[] pattern;
 
-    FirstDigitPattern(byte[] pattern) {
+    FirstDigitPattern(int[] pattern) {
         this.pattern = pattern;
     }
 
-    public static byte[] getSequence(int num) {
+    public static int[] getSequence(int num) {
         FirstDigitPattern number = FirstDigitPattern.values()[num];
         return number.getPattern();
     }
 
-    private byte[] getPattern() {
+    private int[] getPattern() {
         return pattern;
     }
 }

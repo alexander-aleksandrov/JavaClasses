@@ -25,29 +25,29 @@ package com.teamdev.javaclasses.aleksandrov.barcode;
  * @author Alexander Aleksandrov
  */
 public enum GroupL {
-    ZERO(new byte[]{0, 0, 0, 1, 1, 0, 1}),
-    ONE(new byte[]{0, 0, 1, 1, 0, 0, 1}),
-    TWO(new byte[]{0, 0, 1, 0, 0, 1, 1}),
-    THREE(new byte[]{0, 1, 1, 1, 1, 0, 1}),
-    FOUR(new byte[]{0, 1, 0, 0, 0, 1, 1}),
-    FIVE(new byte[]{0, 1, 1, 0, 0, 0, 1}),
-    SIX(new byte[]{0, 1, 0, 1, 1, 1, 1}),
-    SEVEN(new byte[]{0, 1, 1, 1, 0, 1, 1}),
-    EIGHT(new byte[]{0, 1, 1, 0, 1, 1, 1}),
-    NINE(new byte[]{0, 0, 0, 1, 0, 1, 1});
+    ZERO(new int[]{0, 0, 0, 1, 1, 0, 1}),
+    ONE(new int[]{0, 0, 1, 1, 0, 0, 1}),
+    TWO(new int[]{0, 0, 1, 0, 0, 1, 1}),
+    THREE(new int[]{0, 1, 1, 1, 1, 0, 1}),
+    FOUR(new int[]{0, 1, 0, 0, 0, 1, 1}),
+    FIVE(new int[]{0, 1, 1, 0, 0, 0, 1}),
+    SIX(new int[]{0, 1, 0, 1, 1, 1, 1}),
+    SEVEN(new int[]{0, 1, 1, 1, 0, 1, 1}),
+    EIGHT(new int[]{0, 1, 1, 0, 1, 1, 1}),
+    NINE(new int[]{0, 0, 0, 1, 0, 1, 1});
 
-    private byte[] code;
+    private final int[] code;
 
-    GroupL(byte[] code) {
+    GroupL(int[] code) {
         this.code = code;
     }
 
-    public static byte[] getSequence(int num){
+    public static int[] getSequence(int num){
         GroupL number = GroupL.values()[num];
         return number.getCode();
     }
 
-    private byte[] getCode() {
+    private int[] getCode() {
         return code;
     }
 }
