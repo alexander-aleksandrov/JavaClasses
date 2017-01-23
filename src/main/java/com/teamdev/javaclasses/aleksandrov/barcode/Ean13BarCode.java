@@ -19,6 +19,8 @@
 */
 package com.teamdev.javaclasses.aleksandrov.barcode;
 
+import java.util.Arrays;
+
 import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkEAN13Format;
 
 /**
@@ -28,20 +30,38 @@ import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkEAN13F
  */
 public final class Ean13BarCode {
     private final int firstDigit;
-    private final int leftGroup;
-    private final int rightGroup;
+    private final byte[] startPattern;
+    private final byte[] firstGroup;
+    private final byte[] middlePattern;
+    private final byte[] lastGroup;
     private final int checksumDigit;
+    private final byte[] endPattern;
+    private static final byte[] START_PATTERN = {1, 0, 1};
+    private static final byte[] MIDDLE_PATTERN = {0, 1, 0, 1, 0};
+    private static final byte[] END_PATTERN = {1, 0, 1};
 
     public int getFirstDigit() {
         return firstDigit;
     }
 
-    public int getLeftGroup() {
-        return leftGroup;
+    public byte[] getStartPattern() {
+        return startPattern;
     }
 
-    public int getRightGroup() {
-        return rightGroup;
+    public byte[] getMiddlePattern() {
+        return middlePattern;
+    }
+
+    public byte[] getEndPattern() {
+        return endPattern;
+    }
+
+    public byte[] getFirstGroup() {
+        return firstGroup;
+    }
+
+    public byte[] getLastGroup() {
+        return lastGroup;
     }
 
     public int getChecksumDigit() {
@@ -54,21 +74,39 @@ public final class Ean13BarCode {
 
     public static class Builder {
         private int firstDigit;
-        private int leftGroup;
-        private int rightGroup;
+        private byte[] leftGroup;
+        private byte[] rightGroup;
         private int checksumDigit;
+        private byte[] startPattern;
+        private byte[] middlePattern;
+        private byte[] endPattern;
 
         public Builder setFirstDigit(int digit) {
             firstDigit = digit;
             return this;
         }
 
-        public Builder setLeftGroup(int leftGroupDigits) {
+        public Builder setStartPattern(byte[] startPatternGroup) {
+            startPattern = startPatternGroup;
+            return this;
+        }
+
+        public Builder setMiddlePattern(byte[] middlePatternGroup) {
+            middlePattern = middlePatternGroup;
+            return this;
+        }
+
+        public Builder setEndPattern(byte[] endPatternGroup) {
+            endPattern = endPatternGroup;
+            return this;
+        }
+
+        public Builder setFirstGroup(byte[] leftGroupDigits) {
             leftGroup = leftGroupDigits;
             return this;
         }
 
-        public Builder setRightGroup(int rightGroupDigits) {
+        public Builder setLastGroup(byte[] rightGroupDigits) {
             rightGroup = rightGroupDigits;
             return this;
         }
@@ -86,51 +124,80 @@ public final class Ean13BarCode {
 
     public Ean13BarCode(Builder builder) {
         this.firstDigit = builder.firstDigit;
-        this.leftGroup = builder.leftGroup;
-        this.rightGroup = builder.rightGroup;
+        this.firstGroup = builder.leftGroup;
+        this.lastGroup = builder.rightGroup;
         this.checksumDigit = builder.checksumDigit;
+        this.startPattern = builder.startPattern;
+        this.middlePattern = builder.middlePattern;
+        this.endPattern = builder.endPattern;
     }
 
     /**
-     *  Obtains default instance of EAN13 barcode filled with zero values.
+     * Obtains default instance of EAN13 barcode filled with zero values.
      */
     public static Ean13BarCode getDefaultInstance() {
-        return newBuilder().setFirstDigit(0).
-                setLeftGroup(000000).
-                setRightGroup(00000).
-                setChecksumDigit(0).
-                build();
+        return parse("000000000000");
     }
 
     /**
      * Parse target string to barcode.
      *
-     * @param str   target string with barcode
+     * @param str target string with barcode
      * @return EAN13 barcode instance
      */
     public static Ean13BarCode parse(String str) {
         checkEAN13Format(str);
 
-        String barcode = str.replaceAll("[^\\w]", "");
-        return newBuilder().setFirstDigit(Integer.parseInt(barcode.substring(0, 1))).
-                setLeftGroup(Integer.parseInt(barcode.substring(1, 7))).
-                setRightGroup(Integer.parseInt(barcode.substring(7, 12))).
-                setChecksumDigit(countCheckSum(barcode)).
+        final String barcode = str.replaceAll("[^\\w]", "") + countCheckSum(str);
+        int firstNumber = Integer.parseInt(str.substring(0, 1));
+        final byte[] patterns = FirstDigitPattern.getSequence(firstNumber);
+        int position = 0;
+        final int maxEanModulesNumber = 95;
+        byte[] barcodeBuffer = new byte[maxEanModulesNumber];
+
+        for (int i = 1; i < barcode.length(); i++) {
+            int num = Integer.parseInt(str.substring(i, i + 1));
+            byte code = patterns[(i - 1)];
+            if (code == 0) {
+                position += appendData(GroupL.getSequence(num), barcodeBuffer, position);
+            } else if (code == 1) {
+               position += appendData(GroupG.getSequence(num), barcodeBuffer, position);
+            } else {
+                position += appendData(GroupR.getSequence(num), barcodeBuffer, position);
+            }
+        }
+
+        return newBuilder().setFirstDigit(firstNumber).
+                setStartPattern(START_PATTERN).
+                setFirstGroup(Arrays.copyOfRange(barcodeBuffer, 0, 41)).
+                setMiddlePattern(MIDDLE_PATTERN).
+                setLastGroup(Arrays.copyOfRange(barcodeBuffer, 42, 84)).
+                setEndPattern(END_PATTERN).
+                setChecksumDigit(countCheckSum(str)).
                 build();
+    }
+
+    private static int appendData(byte[] src, byte[] dst, int pos) {
+        System.arraycopy(src, 0, dst, pos, src.length);
+        return src.length;
     }
 
     /**
      * Converts barcode instance to string value.
      *
-     * @param barCode   EAN13 barcode
-     * @return  String view of information inside barcode
+     * @param barCode EAN13 barcode
+     * @return String view of information inside barcode
      */
     public String toString(Ean13BarCode barCode) {
         String result = String.valueOf(barCode.getFirstDigit()) +
-                String.valueOf(barCode.getLeftGroup()) +
-                String.valueOf(barCode.getRightGroup()) +
+                String.valueOf(barCode.getFirstGroup()) +
+                String.valueOf(barCode.getLastGroup()) +
                 String.valueOf(barCode.getChecksumDigit());
         return result;
+    }
+
+    public String fromBytes(byte[] barcode) {
+        return "";
     }
 
     /**

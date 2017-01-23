@@ -31,8 +31,8 @@ class Ean13BarCodeShould {
     @DisplayName("have first digit")
     void eanCode() {
         assertEquals(0, Ean13BarCode.getDefaultInstance().getFirstDigit());
-        assertEquals(000000, Ean13BarCode.getDefaultInstance().getLeftGroup());
-        assertEquals(00000, Ean13BarCode.getDefaultInstance().getRightGroup());
+        assertEquals(000000, Ean13BarCode.getDefaultInstance().getFirstGroup());
+        assertEquals(00000, Ean13BarCode.getDefaultInstance().getLastGroup());
         assertEquals(0, Ean13BarCode.getDefaultInstance().getChecksumDigit());
     }
 
@@ -41,8 +41,8 @@ class Ean13BarCodeShould {
     void parseFromString() {
         Ean13BarCode barCode = Ean13BarCode.parse("978020137962");
         assertEquals(9, barCode.getFirstDigit());
-        assertEquals(780201, barCode.getLeftGroup());
-        assertEquals(37962, barCode.getRightGroup());
+        assertEquals(780201, barCode.getFirstGroup());
+        assertEquals(37962, barCode.getLastGroup());
         assertEquals(4, barCode.getChecksumDigit());
     }
     @Test

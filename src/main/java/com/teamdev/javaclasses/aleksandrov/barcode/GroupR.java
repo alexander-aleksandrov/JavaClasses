@@ -20,21 +20,34 @@
 package com.teamdev.javaclasses.aleksandrov.barcode;
 
 /**
+ * R-code for encoding digits.
+ *
  * @author Alexander Aleksandrov
  */
-public class Validation {
+public enum GroupR {
+    ZERO(new byte[]{1, 1, 1, 0, 0, 1, 0}),
+    ONE(new byte[]{1, 1, 0, 0, 1, 1, 0}),
+    TWO(new byte[]{1, 1, 0, 1, 1, 0, 0}),
+    THREE(new byte[]{1, 0, 0, 0, 0, 1, 0}),
+    FOUR(new byte[]{1, 0, 1, 1, 1, 0, 0}),
+    FIVE(new byte[]{1, 0, 0, 1, 1, 1, 0}),
+    SIX(new byte[]{1, 0, 1, 0, 0, 0, 0}),
+    SEVEN(new byte[]{1, 0, 0, 0, 1, 0, 0}),
+    EIGHT(new byte[]{1, 0, 0, 1, 0, 0, 0}),
+    NINE(new byte[]{1, 1, 1, 0, 1, 0, 0});
 
-    private Validation() {
+    private byte[] code;
+
+    GroupR(byte[] code) {
+        this.code = code;
     }
 
-    public static void checkEAN13Format(String str) {
-        String barcode = str.replaceAll("[^\\w]", "");
-        if (barcode.length() != 12) {
-            throw new IllegalArgumentException("Barcode should have 12 digits");
-        }
-        if (barcode.contains("[a-zA-Z]+")) {
-            throw new IllegalArgumentException("Barcode should contain only numeric values");
-        }
+    public static byte[] getSequence(int num){
+        GroupR number = GroupR.values()[num];
+        return number.getCode();
     }
 
+    private byte[] getCode() {
+        return code;
+    }
 }
