@@ -58,7 +58,8 @@ class Ean13BarCodeShould {
     @Test
     @DisplayName("throw exception in case if barcode bynary sequence have wrong format")
     void notAcceptWrongFormatedBarcode() {
-        final int[] scannedBarcode = {1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0};
+        final int[] scannedBarcode = {1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0,1, 1, 1,
+                0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0};
         assertThrows(IllegalArgumentException.class, () -> {
             Ean13BarCode.fromScanner(scannedBarcode);
         });
@@ -67,7 +68,10 @@ class Ean13BarCodeShould {
     @Test
     @DisplayName("convert barcode bynary sequence to Ean13Barcode instance")
     void convertBinaryBarcode() {
-        final int[] scannedBarcode = {1, 0, 1,  0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1,  0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0, 1, 0, 1};
+        final int[] scannedBarcode = {1, 0, 1,  0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1,
+                0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1,
+                1, 0, 1,  0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0,1, 1, 1,
+                0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0, 1, 0, 1};
            Ean13BarCode barcode = Ean13BarCode.fromScanner(scannedBarcode);
         assertEquals(0, barcode.getFirstDigit());
         assertEquals("000000", Ean13BarCode.groupToString(barcode.getFirstGroup()));

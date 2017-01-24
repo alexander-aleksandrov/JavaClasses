@@ -29,6 +29,7 @@ import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkScanne
  *
  * @author Alexander Aleksandrov
  */
+@SuppressWarnings("MagicNumber")
 public final class Ean13BarCode {
     private final int firstDigit;
     private final int[] startPattern;
