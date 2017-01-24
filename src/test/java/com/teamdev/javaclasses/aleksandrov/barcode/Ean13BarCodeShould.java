@@ -28,22 +28,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Ean13BarCodeShould {
 
     @Test
-    @DisplayName("have first digit")
-    void eanCode() {
-        assertEquals(0, Ean13BarCode.getDefaultInstance().getFirstDigit());
-        assertEquals(000000, Ean13BarCode.getDefaultInstance().getFirstGroup());
-        assertEquals(00000, Ean13BarCode.getDefaultInstance().getLastGroup());
-        assertEquals(0, Ean13BarCode.getDefaultInstance().getChecksumDigit());
+    @DisplayName("have default instance")
+    void getDefaultInstance() {
+        Ean13BarCode barcode = Ean13BarCode.getDefaultInstance();
+        assertEquals(0, barcode.getFirstDigit());
+        assertEquals("000000", Ean13BarCode.groupToString(barcode.getFirstGroup()));
+        assertEquals("000000", Ean13BarCode.groupToString(barcode.getLastGroup()));
+        assertEquals(0, barcode.getChecksumDigit());
     }
 
     @Test
     @DisplayName("parse from string")
     void parseFromString() {
-        Ean13BarCode barCode = Ean13BarCode.parse("978020137962");
-        assertEquals(9, barCode.getFirstDigit());
-        assertEquals(780201, barCode.getFirstGroup());
-        assertEquals(37962, barCode.getLastGroup());
-        assertEquals(4, barCode.getChecksumDigit());
+        Ean13BarCode barcode = Ean13BarCode.parse("978020137962");
+        assertEquals(9, barcode.getFirstDigit());
+        assertEquals("780201", Ean13BarCode.groupToString(barcode.getFirstGroup()));
+        assertEquals("379624", Ean13BarCode.groupToString(barcode.getLastGroup()));
+        assertEquals(4, barcode.getChecksumDigit());
     }
     @Test
     @DisplayName("have toString method")

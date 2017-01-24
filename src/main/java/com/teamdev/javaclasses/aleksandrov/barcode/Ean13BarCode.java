@@ -22,6 +22,7 @@ package com.teamdev.javaclasses.aleksandrov.barcode;
 import java.util.Arrays;
 
 import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkEAN13Format;
+import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkScannedBarcode;
 
 /**
  * One dimensional barcode
@@ -30,37 +31,37 @@ import static com.teamdev.javaclasses.aleksandrov.barcode.Validation.checkEAN13F
  */
 public final class Ean13BarCode {
     private final int firstDigit;
-    private final byte[] startPattern;
-    private final byte[] firstGroup;
-    private final byte[] middlePattern;
-    private final byte[] lastGroup;
+    private final int[] startPattern;
+    private final int[] firstGroup;
+    private final int[] middlePattern;
+    private final int[] lastGroup;
     private final int checksumDigit;
-    private final byte[] endPattern;
-    private static final byte[] START_PATTERN = {1, 0, 1};
-    private static final byte[] MIDDLE_PATTERN = {0, 1, 0, 1, 0};
-    private static final byte[] END_PATTERN = {1, 0, 1};
+    private final int[] endPattern;
+    private static final int[] START_PATTERN = {1, 0, 1};
+    private static final int[] MIDDLE_PATTERN = {0, 1, 0, 1, 0};
+    private static final int[] END_PATTERN = {1, 0, 1};
 
     public int getFirstDigit() {
         return firstDigit;
     }
 
-    public byte[] getStartPattern() {
+    public int[] getStartPattern() {
         return startPattern;
     }
 
-    public byte[] getMiddlePattern() {
+    public int[] getMiddlePattern() {
         return middlePattern;
     }
 
-    public byte[] getEndPattern() {
+    public int[] getEndPattern() {
         return endPattern;
     }
 
-    public byte[] getFirstGroup() {
+    public int[] getFirstGroup() {
         return firstGroup;
     }
 
-    public byte[] getLastGroup() {
+    public int[] getLastGroup() {
         return lastGroup;
     }
 
@@ -74,39 +75,39 @@ public final class Ean13BarCode {
 
     public static class Builder {
         private int firstDigit;
-        private byte[] leftGroup;
-        private byte[] rightGroup;
+        private int[] leftGroup;
+        private int[] rightGroup;
         private int checksumDigit;
-        private byte[] startPattern;
-        private byte[] middlePattern;
-        private byte[] endPattern;
+        private int[] startPattern;
+        private int[] middlePattern;
+        private int[] endPattern;
 
         public Builder setFirstDigit(int digit) {
             firstDigit = digit;
             return this;
         }
 
-        public Builder setStartPattern(byte[] startPatternGroup) {
+        public Builder setStartPattern(int[] startPatternGroup) {
             startPattern = startPatternGroup;
             return this;
         }
 
-        public Builder setMiddlePattern(byte[] middlePatternGroup) {
+        public Builder setMiddlePattern(int[] middlePatternGroup) {
             middlePattern = middlePatternGroup;
             return this;
         }
 
-        public Builder setEndPattern(byte[] endPatternGroup) {
+        public Builder setEndPattern(int[] endPatternGroup) {
             endPattern = endPatternGroup;
             return this;
         }
 
-        public Builder setFirstGroup(byte[] leftGroupDigits) {
+        public Builder setFirstGroup(int[] leftGroupDigits) {
             leftGroup = leftGroupDigits;
             return this;
         }
 
-        public Builder setLastGroup(byte[] rightGroupDigits) {
+        public Builder setLastGroup(int[] rightGroupDigits) {
             rightGroup = rightGroupDigits;
             return this;
         }
@@ -150,18 +151,23 @@ public final class Ean13BarCode {
 
         final String barcode = str.replaceAll("[^\\w]", "") + countCheckSum(str);
         int firstNumber = Integer.parseInt(str.substring(0, 1));
-        final byte[] patterns = FirstDigitPattern.getSequence(firstNumber);
+        final int[] patterns = FirstDigitPattern.getSequence(firstNumber);
         int position = 0;
-        final int maxEanModulesNumber = 95;
-        byte[] barcodeBuffer = new byte[maxEanModulesNumber];
+        final int maxEanModulesNumber = 1000;
+        int[] barcodeBuffer = new int[maxEanModulesNumber];
 
         for (int i = 1; i < barcode.length(); i++) {
-            int num = Integer.parseInt(str.substring(i, i + 1));
-            byte code = patterns[(i - 1)];
+            int num = 0;
+            if (i == 12) {
+                num = Integer.parseInt(barcode.substring(i));
+            } else {
+                num = Integer.parseInt(barcode.substring(i, i + 1));
+            }
+            int code = patterns[(i - 1)];
             if (code == 0) {
                 position += appendData(GroupL.getSequence(num), barcodeBuffer, position);
             } else if (code == 1) {
-               position += appendData(GroupG.getSequence(num), barcodeBuffer, position);
+                position += appendData(GroupG.getSequence(num), barcodeBuffer, position);
             } else {
                 position += appendData(GroupR.getSequence(num), barcodeBuffer, position);
             }
@@ -169,7 +175,7 @@ public final class Ean13BarCode {
 
         return newBuilder().setFirstDigit(firstNumber).
                 setStartPattern(START_PATTERN).
-                setFirstGroup(Arrays.copyOfRange(barcodeBuffer, 0, 41)).
+                setFirstGroup(Arrays.copyOfRange(barcodeBuffer, 0, 42)).
                 setMiddlePattern(MIDDLE_PATTERN).
                 setLastGroup(Arrays.copyOfRange(barcodeBuffer, 42, 84)).
                 setEndPattern(END_PATTERN).
@@ -177,7 +183,7 @@ public final class Ean13BarCode {
                 build();
     }
 
-    private static int appendData(byte[] src, byte[] dst, int pos) {
+    private static int appendData(int[] src, int[] dst, int pos) {
         System.arraycopy(src, 0, dst, pos, src.length);
         return src.length;
     }
@@ -189,16 +195,120 @@ public final class Ean13BarCode {
      * @return String view of information inside barcode
      */
     public String toString(Ean13BarCode barCode) {
-        String result = String.valueOf(barCode.getFirstDigit()) +
-                String.valueOf(barCode.getFirstGroup()) +
-                String.valueOf(barCode.getLastGroup()) +
-                String.valueOf(barCode.getChecksumDigit());
-        return result;
+
+        return String.valueOf(barCode.getFirstDigit()) +
+                groupToString(barCode.getFirstGroup()) +
+                groupToString(barCode.getLastGroup());
     }
 
-    public String fromBytes(byte[] barcode) {
-        return "";
+    public static String groupToString(int[] group) {
+        int i = 0;
+        StringBuilder builder = new StringBuilder();
+        for (i = 0; i < group.length; i = i + 7) {
+            builder.append(getNumberFromSequence((Arrays.copyOfRange(group, i, i + 7))));
+        }
+        return builder.toString();
     }
+
+    /**
+     * Converts barcode binary sequence to string value.
+     *
+     * @param barcode EAN13 barcode binary sequence
+     * @return String view of information inside barcode
+     */
+    public Ean13BarCode fromScanner(int[] barcode) {
+        checkScannedBarcode(barcode);
+        int firstDigit = getFirstDigitFromSequence(Arrays.copyOfRange(barcode, 3, 45));
+        int checkSumDigit = getCheckSumDigitFromSequence(Arrays.copyOfRange(barcode, 85, 92));
+
+        return newBuilder().setFirstDigit(firstDigit).
+                setStartPattern(START_PATTERN).
+                setFirstGroup(Arrays.copyOfRange(barcode, 3, 45)).
+                setMiddlePattern(MIDDLE_PATTERN).
+                setLastGroup(Arrays.copyOfRange(barcode, 50, 92)).
+                setEndPattern(END_PATTERN).
+                setChecksumDigit(checkSumDigit).
+                build();
+    }
+
+    private static int getFirstDigitFromSequence(int[] sequence) {
+        int[] firstDigitSequence = new int[7];
+        int i;
+        int j = 0;
+        int firstDigit = 0;
+
+        for (i = 0; i < sequence.length; i = i + 6) {
+            firstDigitSequence[j] = getGroupType(Arrays.copyOfRange(sequence, i, i + 6));
+            ++j;
+        }
+
+        int k = 0;
+        for (k = 0; k < 9; k++) {
+            if (Arrays.equals(FirstDigitPattern.getSequence(k), firstDigitSequence)) {
+                firstDigit = k;
+                break;
+            }
+        }
+        return firstDigit;
+    }
+
+    private static int getCheckSumDigitFromSequence(int[] sequence) {
+        int i = 0;
+        int number = 0;
+        for (i = 0; i < 9; i++) {
+            if (Arrays.equals(GroupR.getSequence(i), sequence)) {
+                number = i;
+                break;
+            }
+        }
+        return number;
+    }
+
+    private static int getGroupType(int[] sequence) {
+        int i = 0;
+        int group = 0;
+        for (i = 0; i < 9; i++) {
+            if (Arrays.equals(GroupL.getSequence(i), sequence)) {
+                group = 0;
+                break;
+            }
+        }
+        i = 0;
+        for (i = 0; i < 9; i++) {
+            if (Arrays.equals(GroupG.getSequence(i), sequence)) {
+                group = 1;
+                break;
+            }
+        }
+        return group;
+    }
+
+    private static int getNumberFromSequence(int[] sequence) {
+        int i = 0;
+        int number = 0;
+        for (i = 0; i <= 9; i++) {
+            if (Arrays.equals(GroupL.getSequence(i), sequence)) {
+                number = i;
+                break;
+            }
+        }
+        i = 0;
+        for (i = 0; i <= 9; i++) {
+            if (Arrays.equals(GroupG.getSequence(i), sequence)) {
+                number = i;
+                break;
+            }
+        }
+        i= 0;
+        for (i = 0; i <= 9; i++) {
+            if (Arrays.equals(GroupR.getSequence(i), sequence)) {
+                number = i;
+                break;
+            }
+        }
+        return number;
+    }
+
 
     /**
      * Counts checksum digit for any one dimensional barcode.
@@ -207,13 +317,18 @@ public final class Ean13BarCode {
         int result = 0;
         char[] barcode = str.toCharArray();
         int i;
-        for (i = 0; i < str.toCharArray().length; i++) {
+        for (i = 0; i < barcode.length; i++) {
             if (i % 2 == 0) {
                 result += Integer.parseInt(String.valueOf(barcode[i]));
             } else {
                 result += Integer.parseInt(String.valueOf(barcode[i])) * 3;
             }
         }
-        return 10 - result % 10;
+        if (result % 10 == 0) {
+            result = 0;
+        } else {
+            result = 10 - (result % 10);
+        }
+        return result;
     }
 }
