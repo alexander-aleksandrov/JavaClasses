@@ -216,8 +216,9 @@ public final class Ean13BarCode {
      * @param barcode EAN13 barcode binary sequence
      * @return String view of information inside barcode
      */
-    public Ean13BarCode fromScanner(int[] barcode) {
+    public static Ean13BarCode fromScanner(int[] barcode) {
         checkScannedBarcode(barcode);
+
         int firstDigit = getFirstDigitFromSequence(Arrays.copyOfRange(barcode, 3, 45));
         int checkSumDigit = getCheckSumDigitFromSequence(Arrays.copyOfRange(barcode, 85, 92));
 

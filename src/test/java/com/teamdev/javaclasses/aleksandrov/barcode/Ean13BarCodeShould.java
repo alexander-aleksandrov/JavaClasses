@@ -23,9 +23,11 @@ package com.teamdev.javaclasses.aleksandrov.barcode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Ean13BarCode should")
 class Ean13BarCodeShould {
+    private static final String barcodeStr = "978020137962";
 
     @Test
     @DisplayName("have default instance")
@@ -40,7 +42,7 @@ class Ean13BarCodeShould {
     @Test
     @DisplayName("parse from string")
     void parseFromString() {
-        Ean13BarCode barcode = Ean13BarCode.parse("978020137962");
+        Ean13BarCode barcode = Ean13BarCode.parse(barcodeStr);
         assertEquals(9, barcode.getFirstDigit());
         assertEquals("780201", Ean13BarCode.groupToString(barcode.getFirstGroup()));
         assertEquals("379624", Ean13BarCode.groupToString(barcode.getLastGroup()));
@@ -49,7 +51,43 @@ class Ean13BarCodeShould {
     @Test
     @DisplayName("have toString method")
     void barcodeToString(){
-        Ean13BarCode barCode = Ean13BarCode.parse("978020137962");
-        assertEquals("978020137962" + barCode.getChecksumDigit(), barCode.toString(barCode));
+        Ean13BarCode barCode = Ean13BarCode.parse(barcodeStr);
+        assertEquals(barcodeStr + barCode.getChecksumDigit(), barCode.toString(barCode));
+    }
+
+    @Test
+    @DisplayName("throw exception in case if barcode bynary sequence have wrong format")
+    void notAcceptWrongFormatedBarcode() {
+        final int[] scannedBarcode = {1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0};
+        assertThrows(IllegalArgumentException.class, () -> {
+            Ean13BarCode.fromScanner(scannedBarcode);
+        });
+    }
+
+    @Test
+    @DisplayName("convert barcode bynary sequence to Ean13Barcode instance")
+    void convertBinaryBarcode() {
+        final int[] scannedBarcode = {1, 0, 1,  0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1,  0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0,1, 1, 1, 0, 0, 1, 0, 1, 0, 1};
+           Ean13BarCode barcode = Ean13BarCode.fromScanner(scannedBarcode);
+        assertEquals(0, barcode.getFirstDigit());
+        assertEquals("000000", Ean13BarCode.groupToString(barcode.getFirstGroup()));
+        assertEquals("000000", Ean13BarCode.groupToString(barcode.getLastGroup()));
+        assertEquals(0, barcode.getChecksumDigit());
+    }
+
+    @Test
+    @DisplayName("throw exception in case if barcode string is short")
+    void notAcceptshortBarcode() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Ean13BarCode.parse("123123");
+        });
+    }
+
+    @Test
+    @DisplayName("throw exception in case if barcode contains literals")
+    void notAcceptLiteralsInBarcode() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Ean13BarCode.parse("1k3456789012");
+        });
     }
 }

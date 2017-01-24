@@ -24,9 +24,6 @@ package com.teamdev.javaclasses.aleksandrov.barcode;
  */
 public class Validation {
 
-    private Validation() {
-    }
-
     public static void checkEAN13Format(String str) {
         String barcode = str.replaceAll("[^\\w]", "");
         if (barcode.length() != 12) {
@@ -39,7 +36,7 @@ public class Validation {
 
     public static void checkScannedBarcode(int[] barcode) {
         if (barcode.length < 94) {
-            throw new IllegalArgumentException("Barcode has unrecognized fromat");
+            throw new IllegalArgumentException("Barcode has unrecognized format");
         }
     }
 }
